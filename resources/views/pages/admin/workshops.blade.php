@@ -28,7 +28,8 @@
                 <!-- Gambar Cover -->
                 <div class="mt-4">
                     <label class="block text-sm font-medium text-slate-700 mb-1">Gambar Cover (Opsional)</label>
-                    <input type="file" id="image" name="image" accept="image/*" class="w-full px-3 py-2 border rounded-lg focus:ring-emerald-500 bg-white">
+                    <img class="img-preview mb-3 w-full max-w-sm rounded-lg object-cover" style="display: none;">
+                    <input type="file" id="image" name="image" onchange="previewImage()" accept="image/*" class="block w-full px-3 py-2 border rounded-lg focus:ring-emerald-500 bg-white">
                     <p class="text-xs text-slate-500 mt-1">*Format .jpg / .png, maksimal 2MB</p>
                     @error('image')
                         <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
