@@ -19,17 +19,16 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-# Salin composer files dulu
-COPY composer.json composer.lock ./
-
-# Biarkan server Render meracik composer vendor sendiri secara bersih sesuai PHP 8.4
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-# Salin sisa file project
+# 1. Salin SEMUA file project terlebih dahulu (termasuk artisan & composer.json)
 COPY . /var/www
 
+# 2. Baru jalankan composer install di dalam folder yang sudah lengkap isinya
+RUN composer install --no-dev --optimize-autoloader --no-interaction
+
+# Beri hak akses untuk storage dan bootstrap cache
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
+# Konfigurasi Apache Document Root ke folder public Laravel
 ENV APACHE_DOCUMENT_ROOT /var/www/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
