@@ -167,31 +167,18 @@
 </div>
 
 <script>
-    document.getElementById('image').addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        
-        if (file) {
-            // Cek apakah file adalah gambar
-            if (file.type.match('image.*')) {
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    // Sembunyikan ikon & teks default
-                    document.getElementById('defaultState').classList.add('hidden');
-                    
-                    // Munculkan tag img dan isi source-nya dengan file yang dipilih
-                    const imgPreview = document.getElementById('imagePreview');
-                    imgPreview.src = e.target.result;
-                    imgPreview.classList.remove('hidden');
-                    
-                    // Munculkan overlay "Ganti Gambar"
-                    document.getElementById('hoverOverlay').classList.remove('hidden');
-                }
-                
-                // Baca file sebagai Data URL biar bisa ditampilin
-                reader.readAsDataURL(file);
-            }
+    function previewImage() {
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result;
         }
-    });
+    }
 </script>
 @endsection
