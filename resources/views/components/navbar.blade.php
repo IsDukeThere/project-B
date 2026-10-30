@@ -56,8 +56,8 @@
         <a href="{{ route('contact') }}" class="block text-sm font-semibold text-slate-700 hover:text-emerald-700">Kontak</a>
         <hr class="border-slate-100 my-2">
         <div class="flex gap-2">
-            <a href="{{ route('depositor.procedure') }}" class="flex-1 text-center py-2 bg-emerald-50 text-emerald-800 text-xs font-bold rounded-xl">Portal Penyetor</a>
-            <a href="{{ route('admin.dashboard') }}" class="flex-1 text-center py-2 bg-amber-50 text-amber-900 text-xs font-bold rounded-xl">Portal Admin</a>
+            <a href="{{ route('login') }}" class="text-xs font-bold text-slate-700 hover:text-emerald-700 px-3 py-2">Masuk</a>
+            <a href="{{ route('register') }}" class="text-xs font-bold bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 rounded-full transition shadow-sm">Daftar</a>
         </div>
     </div>
 </header>
