@@ -74,7 +74,7 @@ Route::middleware(['auth', PreventBackHistory::class])->group(function () {
 
     // Rute Admin Lainnya
     Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
         Route::get('/setoran', [AdminDepositController::class, 'index'])->name('deposits.index');
         Route::post('/setoran/verifikasi/{id}', [AdminDepositController::class, 'verify'])->name('deposits.verify');
         Route::get('/pengaturan-poin', [AdminPointConfigController::class, 'edit'])->name('points.edit');
