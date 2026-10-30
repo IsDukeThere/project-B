@@ -81,7 +81,7 @@ Route::middleware(['auth', PreventBackHistory::class])->group(function () {
         Route::get('/sertifikat', [CertificateController::class, 'create'])->name('certificates.create');
         Route::post('/sertifikat/simpan', [CertificateController::class, 'store'])->name('certificates.store');
         Route::delete('/sertifikat/hapus/{id}', [CertificateController::class, 'destroy'])->name('certificates.destroy');
-        Route::get('/admin/workshops', [WorkshopController::class, 'create'])->name('workshops.create');
+        Route::get('/workshops', [WorkshopController::class, 'create'])->name('workshops.create');
         Route::post('/workshops/simpan', [WorkshopController::class, 'store'])->name('workshops.store');
         Route::delete('/workshops/hapus/{id}', [WorkshopController::class, 'destroy'])->name('workshops.destroy');
     });

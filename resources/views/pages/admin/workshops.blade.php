@@ -23,7 +23,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('workshops.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.workshops.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- Gambar Cover -->
                 <div class="mt-4">
