@@ -26,14 +26,26 @@
             <form action="{{ route('admin.workshops.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- Gambar Cover -->
-                <div class="mt-4">
-                    <label class="block text-sm font-medium text-slate-700 mb-1">Gambar Cover (Opsional)</label>
-                    <img class="img-preview mb-3 w-full max-w-sm rounded-lg object-cover" style="display: none;">
-                    <input type="file" id="image" name="image" onchange="previewImage()" accept="image/*" class="block w-full px-3 py-2 border rounded-lg focus:ring-emerald-500 bg-white">
-                    <p class="text-xs text-slate-500 mt-1">*Format .jpg / .png, maksimal 2MB</p>
-                    @error('image')
-                        <p class="text-xs text-red-500 mt-1">{{ $message }}</p>
-                    @enderror
+                <div class="mb-4 w-full">
+                    <!-- Area Dropzone / Klik -->
+                    <label for="image" class="flex flex-col items-center justify-center w-full h-48 border-2 border-slate-300 border-dashed rounded-xl cursor-pointer bg-slate-50 hover:bg-slate-100 relative overflow-hidden transition-all">
+
+                        <!-- Konten Ikon & Teks (Akan disembunyikan saat gambar dipilih) -->
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6 dropzone-content">
+                            <!-- Ikon Dokumen Warna Ungu Muda -->
+                            <svg class="w-12 h-12 mb-3 text-purple-200" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v6h6v10H6zm2-3h8v2H8v-2zm0-4h8v2H8v-2z"></path>
+                            </svg>
+                            <p class="mb-1 text-sm font-medium text-slate-700">Ketuk untuk unggah dokumen (JPG/PNG)</p>
+                            <p class="text-sm text-slate-400">(Maksimal 5 MB)</p>
+                        </div>
+
+                        <!-- Tempat Preview Gambar (Awalnya disembunyikan dengan class 'hidden') -->
+                        <img class="img-preview absolute inset-0 w-full h-full object-cover hidden" alt="Preview Cover">
+
+                        <!-- Input File Asli (Disembunyikan dari layar tapi tetap berfungsi) -->
+                        <input id="image" type="file" name="cover_image" class="hidden" accept="image/jpeg, image/png" onchange="previewImage()" />
+                    </label>
                 </div>
 
                 <!-- Judul -->
@@ -170,14 +182,18 @@
     function previewImage() {
         const image = document.querySelector('#image');
         const imgPreview = document.querySelector('.img-preview');
+        const dropzoneContent = document.querySelector('.dropzone-content');
 
-        imgPreview.style.display = 'block';
+        if(image.files.length > 0) {
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
 
-        const oFReader = new FileReader();
-        oFReader.readAsDataURL(image.files[0]);
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+                imgPreview.classList.remove('hidden');
 
-        oFReader.onload = function(oFREvent) {
-            imgPreview.src = oFREvent.target.result;
+                dropzoneContent.classList.add('hidden');
+            }
         }
     }
 </script>
