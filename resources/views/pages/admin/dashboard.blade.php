@@ -9,7 +9,7 @@
             <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Selamat Pagi, Admin 👋</h1>
             <p class="text-xs sm:text-sm text-slate-500 mt-1">Ringkasan operasional daur ulang dan status per hari ini</p>
         </div>
-        <a href="{{ route('admin.deposits') }}" class="bg-amber-100 border border-amber-300 text-amber-900 px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2 hover:bg-amber-200 transition">
+        <a href="{{ route('deposits.index') }}" class="bg-amber-100 border border-amber-300 text-amber-900 px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2 hover:bg-amber-200 transition">
             <span>🔔</span> 7 Setoran Perlu Diverifikasi
         </a>
     </div>
