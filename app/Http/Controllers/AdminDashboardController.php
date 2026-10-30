@@ -35,7 +35,8 @@ class AdminDashboardController extends Controller
             'scheduledWorkshops', 
             'issuedCertificates',
             'recentDeposits',
-            'pointConfig'
+            'poinMultilayer',
+            'poinJelantah'
         ));
     }
 }

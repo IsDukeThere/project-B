@@ -98,7 +98,7 @@
                     <span class="text-[10px] text-slate-500 block">Jelantah /L</span>
                 </div>
                 <div>
-                    <span class="text-lg font-bold text-slate-900">{{ $pointConfig->periode ?? 'Bulanan' }}</span>
+                    <span class="text-lg font-bold text-slate-900">Bulanan</span>
                     <span class="text-[10px] text-slate-500 block">Periode</span>
                 </div>
             </div>
