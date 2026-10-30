@@ -19,7 +19,7 @@
         <div class="pb-card p-5 space-y-1">
             <span class="text-xs font-semibold text-slate-400 uppercase">Setoran Menunggu</span>
             <p class="text-2xl sm:text-3xl font-black text-amber-600">7</p>
-            <a href="{{ route('admin.deposits') }}" class="text-xs font-bold text-amber-800 hover:underline pt-1 block">Verifikasi Sekarang →</a>
+            <a href="{{ route('admin.deposits.index') }}" class="text-xs font-bold text-amber-800 hover:underline pt-1 block">Verifikasi Sekarang →</a>
         </div>
 
         <div class="pb-card p-5 space-y-1">
