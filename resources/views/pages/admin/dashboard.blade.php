@@ -48,7 +48,7 @@
                     <span class="text-xl">♻️</span>
                     <h2 class="font-extrabold text-base text-slate-900">Setoran Masuk Terbaru</h2>
                 </div>
-                <a href="{{ route('deposits.index') }}" class="text-xs font-bold text-emerald-700 hover:text-emerald-800">
+                <a href="{{ route('admin.deposits.index') }}" class="text-xs font-bold text-emerald-700 hover:text-emerald-800">
                     Lihat Semua ({{ $pendingDeposits ?? 0 }}) →
                 </a>
             </div>
@@ -70,7 +70,7 @@
                             </p>
                         </div>
                     </div>
-                    <a href="{{ route('deposits.verify', $deposit->id) }}" class="px-3.5 py-1.5 rounded-lg bg-emerald-700 text-white text-xs font-bold">
+                    <a href="{{ route('admin.deposits.verify', $deposit->id) }}" class="px-3.5 py-1.5 rounded-lg bg-emerald-700 text-white text-xs font-bold">
                         Timbang
                     </a>
                 </div>
