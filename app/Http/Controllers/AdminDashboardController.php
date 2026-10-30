@@ -25,7 +25,8 @@ class AdminDashboardController extends Controller
                                  ->take(5)
                                  ->get();
 
-        $pointConfig = PointConfig::first();
+        $poinMultilayer = PointConfig::where('jenis_sampah', 'Kemasan Multilayer')->value('poin_per_satuan') ?? 0;
+        $poinJelantah = PointConfig::where('jenis_sampah', 'Minyak Jelantah')->value('poin_per_satuan') ?? 0;
 
         // Kirim data ke view
         return view('pages.admin.dashboard', compact(

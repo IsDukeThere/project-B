@@ -10,7 +10,7 @@
             <p class="text-xs sm:text-sm text-slate-500 mt-1">Ringkasan operasional daur ulang dan status per hari ini</p>
         </div>
         <a href="{{ route('admin.deposits.index') }}" class="bg-amber-100 border border-amber-300 text-amber-900 px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2 hover:bg-amber-200 transition">
-            <span>🔔</span> 7 Setoran Perlu Diverifikasi
+            <span>🔔</span> {{ $pendingDeposits }} Setoran Perlu Diverifikasi
         </a>
     </div>
 
@@ -90,11 +90,11 @@
 
             <div class="grid grid-cols-3 text-center py-2 bg-slate-50 rounded-2xl border border-slate-100">
                 <div>
-                    <span class="text-lg font-bold text-slate-900">{{ $pointConfig->poin_multilayer ?? 0 }}</span>
+                    <span class="text-lg font-bold text-slate-900">{{ $poinMultilayer }}</span>
                     <span class="text-[10px] text-slate-500 block">Multilayer /kg</span>
                 </div>
                 <div>
-                    <span class="text-lg font-bold text-slate-900">{{ $pointConfig->poin_jelantah ?? 0 }}</span>
+                    <span class="text-lg font-bold text-slate-900">{{ $poinJelantah }}</span>
                     <span class="text-[10px] text-slate-500 block">Jelantah /L</span>
                 </div>
                 <div>
