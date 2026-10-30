@@ -108,7 +108,7 @@
                 </div>
             </div>
 
-            <a href="{{ route('admin.points-config') }}" class="pb-btn-dark w-full py-3 text-xs text-center block">
+            <a href="{{ route('admin.points.edit') }}" class="pb-btn-dark w-full py-3 text-xs text-center block">
                 Ubah Parameter Poin & Periode
             </a>
         </div>
