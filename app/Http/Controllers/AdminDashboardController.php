@@ -9,7 +9,7 @@ use App\Models\Workshop;
 use App\Models\Certificate;
 use App\Models\PointConfig;
 
-class AdminController extends Controller
+class AdminDashboardController extends Controller
 {
     public function index()
     {

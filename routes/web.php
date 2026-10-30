@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminDepositController;
 use App\Http\Controllers\AdminPointConfigController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WorkshopController;
 use App\Http\Middleware\PreventBackHistory;
 use Illuminate\Support\Facades\Route;
@@ -52,13 +54,13 @@ Route::middleware(['auth', PreventBackHistory::class])->group(function () {
         Route::get('/panduan', function () {$configs = \App\Models\PointConfig::all()->keyBy('jenis_sampah');
         return view('pages.depositor.procedure', compact('configs'));
         })->name('procedure');
-        Route::get('/setor-sampah', [App\Http\Controllers\DepositController::class, 'create'])->name('form');
-        Route::post('/setor-sampah/simpan', [App\Http\Controllers\DepositController::class, 'store'])->name('store');
-        Route::get('/riwayat', [App\Http\Controllers\DepositController::class, 'history'])->name('history');
-        Route::get('/riwayat/{id}', [App\Http\Controllers\DepositController::class, 'show'])->name('detail');
-        Route::delete('/riwayat/batal/{id}', [App\Http\Controllers\DepositController::class, 'destroy'])->name('cancel');
-        Route::get('/peringkat', [App\Http\Controllers\DepositController::class, 'leaderboard'])->name('leaderboard');
-        Route::get('/profil', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+        Route::get('/setor-sampah', [DepositController::class, 'create'])->name('form');
+        Route::post('/setor-sampah/simpan', [DepositController::class, 'store'])->name('store');
+        Route::get('/riwayat', [DepositController::class, 'history'])->name('history');
+        Route::get('/riwayat/{id}', [DepositController::class, 'show'])->name('detail');
+        Route::delete('/riwayat/batal/{id}', [DepositController::class, 'destroy'])->name('cancel');
+        Route::get('/peringkat', [DepositController::class, 'leaderboard'])->name('leaderboard');
+        Route::get('/profil', [ProfileController::class, 'index'])->name('profile');
     });
 
     // ==========================================
@@ -72,11 +74,11 @@ Route::middleware(['auth', PreventBackHistory::class])->group(function () {
 
     // Rute Admin Lainnya
     Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'index'])->name('dashboard');
-        Route::get('/setoran', [App\Http\Controllers\AdminDepositController::class, 'index'])->name('deposits.index');
-        Route::post('/setoran/verifikasi/{id}', [App\Http\Controllers\AdminDepositController::class, 'verify'])->name('deposits.verify');
-        Route::get('/pengaturan-poin', [App\Http\Controllers\AdminPointConfigController::class, 'edit'])->name('points.edit');
-        Route::post('/pengaturan-poin/simpan', [App\Http\Controllers\AdminPointConfigController::class, 'update'])->name('points.update');
+        Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        Route::get('/setoran', [AdminDepositController::class, 'index'])->name('deposits.index');
+        Route::post('/setoran/verifikasi/{id}', [AdminDepositController::class, 'verify'])->name('deposits.verify');
+        Route::get('/pengaturan-poin', [AdminPointConfigController::class, 'edit'])->name('points.edit');
+        Route::post('/pengaturan-poin/simpan', [AdminPointConfigController::class, 'update'])->name('points.update');
         Route::get('/sertifikat', function () { return view('pages.admin.certificates'); })->name('certificates');
         Route::get('/sertifikat', [CertificateController::class, 'create'])->name('certificates.create');
         Route::post('/sertifikat/simpan', [CertificateController::class, 'store'])->name('certificates.store');
