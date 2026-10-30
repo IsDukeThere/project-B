@@ -49,7 +49,7 @@
                     <span class="text-xl">♻️</span>
                     <h2 class="font-extrabold text-base text-slate-900">Setoran Masuk Terbaru</h2>
                 </div>
-                <a href="{{ route('admin.deposits') }}" class="text-xs font-bold text-emerald-700 hover:text-emerald-800">
+                <a href="{{ route('admin.deposits.index') }}" class="text-xs font-bold text-emerald-700 hover:text-emerald-800">
                     Lihat Semua (7) →
                 </a>
             </div>
