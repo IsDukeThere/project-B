@@ -1,0 +1,364 @@
+/* ==========================================================================
+   Project B Indonesia - Design System & Truly Fluid Responsive Stylesheet
+   Mobile-First, Scalable for Tablet, Laptop, and Desktop Viewports
+   No Fixed Mobile Frames. 100% Native Viewport Utilization.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-primary: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Brand Colors from Figma */
+  --color-primary: #15803d;         /* Forest green - Project B core */
+  --color-primary-hover: #166534;
+  --color-primary-light: #ecfdf5;
+  --color-primary-accent: #22c55e;
+  
+  --color-dark-btn: #374151;        /* High-contrast charcoal wireframe buttons */
+  --color-dark-btn-hover: #1f2937;
+  
+  /* Backgrounds & Neutrals */
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-subtle: #f1f5f9;
+  --bg-input: #f8fafc;
+  --bg-banner-green: linear-gradient(135deg, #093b33 0%, #0d5c52 50%, #15803d 100%);
+  
+  /* Borders & Dividers */
+  --border-light: #e2e8f0;
+  --border-subtle: #f1f5f9;
+  --border-radius-sm: 10px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 22px;
+  --border-radius-xl: 28px;
+  
+  /* Text */
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  
+  /* Shadows */
+  --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.05);
+  --shadow-hover: 0 10px 25px -4px rgba(15, 23, 42, 0.08);
+  --shadow-modal: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-primary);
+  background-color: #f8fafc;
+  color: var(--text-main);
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Container Width Rules */
+.pb-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .pb-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .pb-container {
+    max-width: 1280px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Responsive Cards */
+.pb-card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .pb-card {
+    padding: 1.5rem;
+  }
+}
+
+.pb-card-interactive {
+  cursor: pointer;
+}
+.pb-card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+  border-color: #cbd5e1;
+}
+
+/* Wireframe & Figma Buttons */
+.pb-btn-dark {
+  background-color: #374151;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9375rem;
+}
+.pb-btn-dark:hover {
+  background-color: #1f2937;
+}
+.pb-btn-dark:active {
+  transform: scale(0.98);
+}
+
+.pb-btn-primary {
+  background-color: #15803d;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9375rem;
+}
+.pb-btn-primary:hover {
+  background-color: #166534;
+}
+.pb-btn-primary:active {
+  transform: scale(0.98);
+}
+
+.pb-btn-outline {
+  background-color: transparent;
+  color: #374151;
+  border: 1.5px solid #d1d5db;
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 0.7rem 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-size: 0.9375rem;
+}
+.pb-btn-outline:hover {
+  background-color: #f8fafc;
+  border-color: #9ca3af;
+}
+
+/* Hero Gradient Banner */
+.pb-hero-banner {
+  background: linear-gradient(135deg, #093b33 0%, #0d5c52 50%, #15803d 100%);
+  color: #ffffff;
+  border-radius: var(--border-radius-xl);
+  padding: 2rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .pb-hero-banner {
+    padding: 3rem 2.5rem;
+  }
+}
+
+.pb-hero-banner::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(74, 222, 128, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Image Placeholders */
+.pb-img-placeholder {
+  background-color: #d1fae5;
+  border-radius: var(--border-radius-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Leaderboard Podium */
+.podium-bar {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  background: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 10px;
+  font-weight: 700;
+  transition: height 0.4s ease;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4);
+}
+
+.podium-1 {
+  background: linear-gradient(180deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1e40af;
+}
+.podium-2 {
+  background: linear-gradient(180deg, #e0e7ff 0%, #c7d2fe 100%);
+  color: #3730a3;
+}
+.podium-3 {
+  background: linear-gradient(180deg, #ede9fe 0%, #ddd6fe 100%);
+  color: #5b21b6;
+}
+.podium-4, .podium-5 {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+/* Stepper / Timeline */
+.timeline-step {
+  position: relative;
+  padding-left: 36px;
+}
+.timeline-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 13px;
+  top: 26px;
+  bottom: -16px;
+  width: 2px;
+  background-color: #cbd5e1;
+}
+.timeline-step.completed:not(:last-child)::after {
+  background-color: #15803d;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 5px;
+  top: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.timeline-dot.active {
+  background-color: #15803d;
+  box-shadow: 0 0 0 4px #dcfce7;
+}
+
+/* Badges */
+.badge-pending {
+  background-color: #fef3c7;
+  color: #92400e;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+.badge-success {
+  background-color: #dcfce7;
+  color: #15803d;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+.badge-danger {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+.badge-neutral {
+  background-color: #f1f5f9;
+  color: #475569;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+
+/* Form inputs */
+.pb-input {
+  width: 100%;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
+  color: #1e293b;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+.pb-input:focus {
+  background: #ffffff;
+  border-color: #15803d;
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.15);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
