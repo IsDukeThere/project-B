@@ -40,4 +40,9 @@ RUN echo '<Directory /var/www/public/>\n\
 
 RUN a2enmod rewrite
 
+# Bersihkan semua cache bawaan Laravel
+RUN php artisan config:clear
+RUN php artisan route:clear
+RUN php artisan view:clear
+
 EXPOSE 80
