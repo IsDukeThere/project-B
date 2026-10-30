@@ -18,14 +18,24 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
+# Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
+# Copy composer files first to cache dependencies if possible
+COPY composer.json composer.lock ./
+
+# Salin seluruh file project
 COPY . /var/www
 
+# Jalankan composer install agar folder vendor dan autoload ter-generate di server
+RUN composer install --no-dev --optimize-autoloader
+
+# Beri hak akses folder storage dan bootstrap cache
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
+# Konfigurasi Document Root Apache ke folder public Laravel
 ENV APACHE_DOCUMENT_ROOT /var/www/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
