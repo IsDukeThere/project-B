@@ -145,7 +145,7 @@
                             <a href="#" class="text-slate-600 hover:text-emerald-700 transition">Edit</a>
                             
                             <!-- Form Hapus -->
-                            <form action="{{ route('workshops.destroy', $ws->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus workshop ini?')">
+                            <form action="{{ route('admin.workshops.destroy', $ws->id) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus workshop ini?')">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-500 hover:text-red-700 transition">Hapus</button>
