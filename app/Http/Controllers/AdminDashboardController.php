@@ -14,9 +14,9 @@ class AdminDashboardController extends Controller
     public function index()
     {
         // Ambil data dari database
-        $pendingDeposits = Deposit::where('status', 'menunggu')->count(); // Sesuaikan nama kolom statusnya
-        $activeProducts = Product::where('status', 'aktif')->count();
-        $scheduledWorkshops = Workshop::where('tanggal', '>=', now())->count(); // Asumsi kolom tanggal
+        $pendingDeposits = Deposit::where('status', 'menunggu')->count();
+        $activeProducts = Product::count();
+        $scheduledWorkshops = Workshop::where('tanggal', '>=', now())->count();
         $issuedCertificates = Certificate::count();
         
         // Ambil beberapa setoran terbaru untuk tabel di bawah
