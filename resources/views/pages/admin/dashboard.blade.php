@@ -65,7 +65,7 @@
                             <p class="text-[11px] text-slate-400">2,5 kg • 2 Okt • Drop Langsung</p>
                         </div>
                     </div>
-                    <a href="{{ route('admin.deposits') }}" class="px-3.5 py-1.5 rounded-lg bg-emerald-700 text-white text-xs font-bold">
+                    <a href="{{ route('admin.deposits.index') }}" class="px-3.5 py-1.5 rounded-lg bg-emerald-700 text-white text-xs font-bold">
                         Timbang
                     </a>
                 </div>
@@ -80,7 +80,7 @@
                             <p class="text-[11px] text-slate-400">5,0 kg • 2 Okt • Via Kurir</p>
                         </div>
                     </div>
-                    <a href="{{ route('admin.deposits') }}" class="px-3.5 py-1.5 rounded-lg bg-emerald-700 text-white text-xs font-bold">
+                    <a href="{{ route('admin.deposits.index') }}" class="px-3.5 py-1.5 rounded-lg bg-emerald-700 text-white text-xs font-bold">
                         Timbang
                     </a>
                 </div>
