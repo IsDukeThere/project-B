@@ -18,25 +18,24 @@
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <div class="pb-card p-5 space-y-1">
             <span class="text-xs font-semibold text-slate-400 uppercase">Setoran Menunggu</span>
-            <p class="text-2xl sm:text-3xl font-black text-amber-600">7</p>
+            <p class="text-2xl sm:text-3xl font-black text-amber-600">{{ $pendingDeposits }}</p>
             <a href="{{ route('admin.deposits.index') }}" class="text-xs font-bold text-amber-800 hover:underline pt-1 block">Verifikasi Sekarang →</a>
         </div>
 
         <div class="pb-card p-5 space-y-1">
             <span class="text-xs font-semibold text-slate-400 uppercase">Produk Aktif</span>
-            <p class="text-2xl sm:text-3xl font-black text-slate-900">24</p>
-            <span class="text-xs text-slate-500">3 stok menipis</span>
+            <p class="text-2xl sm:text-3xl font-black text-slate-900">{{ $activeProducts }}</p>
         </div>
 
         <div class="pb-card p-5 space-y-1">
             <span class="text-xs font-semibold text-slate-400 uppercase">Workshop Terjadwal</span>
-            <p class="text-2xl sm:text-3xl font-black text-slate-900">2</p>
+            <p class="text-2xl sm:text-3xl font-black text-slate-900">{{ $scheduledWorkshops }}</p>
             <a href="{{ route('admin.workshops.create') }}" class="text-xs font-bold text-emerald-700 hover:underline pt-1 block">Kelola Acara →</a>
         </div>
 
         <div class="pb-card p-5 space-y-1">
             <span class="text-xs font-semibold text-slate-400 uppercase">Sertifikat Terbit</span>
-            <p class="text-2xl sm:text-3xl font-black text-slate-900">36</p>
+            <p class="text-2xl sm:text-3xl font-black text-slate-900">{{ $issuedCertificates }}</p>
             <a href="{{ route('admin.certificates.create') }}" class="text-xs font-bold text-emerald-700 hover:underline pt-1 block">Lihat Sertifikat →</a>
         </div>
     </div>
@@ -49,41 +48,37 @@
                     <span class="text-xl">♻️</span>
                     <h2 class="font-extrabold text-base text-slate-900">Setoran Masuk Terbaru</h2>
                 </div>
-                <a href="{{ route('admin.deposits.index') }}" class="text-xs font-bold text-emerald-700 hover:text-emerald-800">
-                    Lihat Semua (7) →
+                <a href="{{ route('deposits.index') }}" class="text-xs font-bold text-emerald-700 hover:text-emerald-800">
+                    Lihat Semua ({{ $pendingDeposits ?? 0 }}) →
                 </a>
             </div>
 
             <div class="space-y-3">
+                @forelse($recentDeposits as $deposit)
                 <div class="p-3.5 bg-slate-50 rounded-2xl flex items-center justify-between gap-3">
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 rounded-full bg-white font-bold text-xs flex items-center justify-center text-slate-700 border border-slate-200">
-                            RN
+                            <!-- Mengambil 2 huruf pertama dari nama user untuk inisial -->
+                            {{ strtoupper(substr($deposit->user->name ?? 'NN', 0, 2)) }}
                         </div>
                         <div>
-                            <h4 class="font-bold text-xs text-slate-900">Rina Wulandari • Kemasan Multilayer</h4>
-                            <p class="text-[11px] text-slate-400">2,5 kg • 2 Okt • Drop Langsung</p>
+                            <h4 class="font-bold text-xs text-slate-900">{{ $deposit->user->name ?? 'Anonim' }} • {{ $deposit->jenis_sampah }}</h4>
+                            <p class="text-[11px] text-slate-400">
+                                {{ number_format($deposit->berat, 1, ',', '.') }} {{ $deposit->jenis_sampah == 'Minyak Jelantah' ? 'L' : 'kg' }} • 
+                                {{ \Carbon\Carbon::parse($deposit->created_at)->translatedFormat('j M') }} • 
+                                {{ $deposit->metode_setor }}
+                            </p>
                         </div>
                     </div>
-                    <a href="{{ route('admin.deposits.index') }}" class="px-3.5 py-1.5 rounded-lg bg-emerald-700 text-white text-xs font-bold">
+                    <a href="{{ route('deposits.verify', $deposit->id) }}" class="px-3.5 py-1.5 rounded-lg bg-emerald-700 text-white text-xs font-bold">
                         Timbang
                     </a>
                 </div>
-
-                <div class="p-3.5 bg-slate-50 rounded-2xl flex items-center justify-between gap-3">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-white font-bold text-xs flex items-center justify-center text-slate-700 border border-slate-200">
-                            BM
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-xs text-slate-900">Budi Mulia • Kemasan Multilayer</h4>
-                            <p class="text-[11px] text-slate-400">5,0 kg • 2 Okt • Via Kurir</p>
-                        </div>
-                    </div>
-                    <a href="{{ route('admin.deposits.index') }}" class="px-3.5 py-1.5 rounded-lg bg-emerald-700 text-white text-xs font-bold">
-                        Timbang
-                    </a>
+                @empty
+                <div class="text-center py-4 text-xs text-slate-500">
+                    Belum ada setoran masuk terbaru.
                 </div>
+                @endforelse
             </div>
         </div>
 
@@ -95,19 +90,20 @@
 
             <div class="grid grid-cols-3 text-center py-2 bg-slate-50 rounded-2xl border border-slate-100">
                 <div>
-                    <span class="text-lg font-bold text-slate-900">10</span>
+                    <span class="text-lg font-bold text-slate-900">{{ $pointConfig->poin_multilayer ?? 0 }}</span>
                     <span class="text-[10px] text-slate-500 block">Multilayer /kg</span>
                 </div>
                 <div>
-                    <span class="text-lg font-bold text-slate-900">10</span>
+                    <span class="text-lg font-bold text-slate-900">{{ $pointConfig->poin_jelantah ?? 0 }}</span>
                     <span class="text-[10px] text-slate-500 block">Jelantah /L</span>
                 </div>
                 <div>
-                    <span class="text-lg font-bold text-slate-900">Bulanan</span>
+                    <span class="text-lg font-bold text-slate-900">{{ $pointConfig->periode ?? 'Bulanan' }}</span>
                     <span class="text-[10px] text-slate-500 block">Periode</span>
                 </div>
             </div>
 
+            <!-- Pastikan nama route admin.points.edit ini memang sudah benar ada di web.php -->
             <a href="{{ route('admin.points.edit') }}" class="pb-btn-dark w-full py-3 text-xs text-center block">
                 Ubah Parameter Poin & Periode
             </a>

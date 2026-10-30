@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Deposit; // Ganti sesuai nama model Abang
+use App\Models\Product; 
+use App\Models\Workshop;
+use App\Models\Certificate;
+use App\Models\PointConfig;
+
+class AdminController extends Controller
+{
+    public function index()
+    {
+        // Ambil data dari database
+        $pendingDeposits = Deposit::where('status', 'menunggu')->count(); // Sesuaikan nama kolom statusnya
+        $activeProducts = Product::where('status', 'aktif')->count();
+        $scheduledWorkshops = Workshop::where('tanggal', '>=', now())->count(); // Asumsi kolom tanggal
+        $issuedCertificates = Certificate::count();
+        
+        // Ambil beberapa setoran terbaru untuk tabel di bawah
+        $recentDeposits = Deposit::where('status', 'menunggu')
+                                 ->orderBy('created_at', 'desc')
+                                 ->take(5)
+                                 ->get();
+
+        $pointConfig = PointConfig::first();
+
+        // Kirim data ke view
+        return view('pages.admin.dashboard', compact(
+            'pendingDeposits', 
+            'activeProducts', 
+            'scheduledWorkshops', 
+            'issuedCertificates',
+            'recentDeposits',
+            'pointConfig'
+        ));
+    }
+}
