@@ -37,6 +37,16 @@ class ProductController extends Controller
         return view('pages.products.index', compact('products', 'totalProducts'));
     }
 
+    public function indexPenyetor()
+    {
+        $products = Product::all();
+        $totalProducts = $products->count();
+        
+        $layout = 'layouts.penyetor';
+
+        return view('pages.products.index', compact('products', 'totalProducts', 'layout'));
+    }
+
     public function home()
     {
         $products = Product::take(4)->get(); 

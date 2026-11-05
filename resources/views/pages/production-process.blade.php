@@ -71,7 +71,7 @@
                         <span class="text-xs font-semibold text-emerald-900 mt-2">Foto: Pembersihan</span>
                     </div>
                     <h3 class="font-bold text-base text-slate-900 mb-1.5">Pembersihan</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">Dicuci dengan air ramah lingkungan, dikeringkan secara higienis, lalu dicacah.</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">Sampah plastik dibersihkan dari kotoran dan sisa material yang menempel.</p>
                 </div>
                 <div class="pt-3 border-t border-slate-100 text-xs text-slate-500">Stasiun: <strong>Pembersihan</strong></div>
             </div>
@@ -79,7 +79,7 @@
             <div class="pb-card flex flex-col justify-between space-y-4">
                 <div>
                     <div class="flex items-center justify-between mb-3">
-                        <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">3</span>
+                        <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">4</span>
                         <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">± 2 hari</span>
                     </div>
                     <div class="pb-img-placeholder h-36 w-full rounded-2xl bg-emerald-100 text-3xl mb-4">
@@ -87,7 +87,7 @@
                         <span class="text-xs font-semibold text-emerald-900 mt-2">Foto: Pencucian & Pencacahan</span>
                     </div>
                     <h3 class="font-bold text-base text-slate-900 mb-1.5">Pengeringan</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">Dicuci dengan air ramah lingkungan, dikeringkan secara higienis, lalu dicacah.</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">Sampah plastik yang telah dibersihkan dijemur hingga kering sebelum masuk ke proses pencacahan.</p>
                 </div>
                 <div class="pt-3 border-t border-slate-100 text-xs text-slate-500">Stasiun: <strong>Pengeringan</strong></div>
             </div>
@@ -95,7 +95,7 @@
             <div class="pb-card flex flex-col justify-between space-y-4">
                 <div>
                     <div class="flex items-center justify-between mb-3">
-                        <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">3</span>
+                        <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">5</span>
                         <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">± 2 hari</span>
                     </div>
                     <div class="pb-img-placeholder h-36 w-full rounded-2xl bg-emerald-100 text-3xl mb-4">
@@ -103,7 +103,7 @@
                         <span class="text-xs font-semibold text-emerald-900 mt-2">Foto: Pencucian & Pencacahan</span>
                     </div>
                     <h3 class="font-bold text-base text-slate-900 mb-1.5">Pencacahan</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">Dicuci dengan air ramah lingkungan, dikeringkan secara higienis, lalu dicacah.</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">Sampah plastik dicacah menjadi potongan-potongan kecil.</p>
                 </div>
                 <div class="pt-3 border-t border-slate-100 text-xs text-slate-500">Stasiun: <strong>Pencacahan</strong></div>
             </div>
@@ -111,7 +111,7 @@
             <div class="pb-card flex flex-col justify-between space-y-4">
                 <div>
                     <div class="flex items-center justify-between mb-3">
-                        <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">4</span>
+                        <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">6</span>
                         <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">± 3 hari</span>
                     </div>
                     <div class="pb-img-placeholder h-36 w-full rounded-2xl bg-emerald-100 text-3xl mb-4">
@@ -119,7 +119,7 @@
                         <span class="text-xs font-semibold text-emerald-900 mt-2">Foto: Pengepresan / Anyaman</span>
                     </div>
                     <h3 class="font-bold text-base text-slate-900 mb-1.5">Pengolahan</h3>
-                    <p class="text-xs text-slate-600 leading-relaxed">Dipres menggunakan suhu terukur atau dianyam menjadi lembaran kain sintetis.</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">Potongan plastik disusun sesuai pola, kemudian dijahit dan dirangkai menjadi berbagai produk kerajinan, seperti tas, dompet, dan aksesori.</p>
                 </div>
                 <div class="pt-3 border-t border-slate-100 text-xs text-slate-500">Stasiun: <strong>Produksi</strong></div>
             </div>
@@ -127,7 +127,7 @@
             <div class="pb-card flex flex-col justify-between space-y-4">
                 <div>
                     <div class="flex items-center justify-between mb-3">
-                        <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">5</span>
+                        <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">7</span>
                         <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">Siap Jual</span>
                     </div>
                     <div class="pb-img-placeholder h-36 w-full rounded-2xl bg-emerald-100 text-3xl mb-4">
