@@ -35,12 +35,4 @@ class AdminPointConfigController extends Controller
 
         return redirect()->back()->with('success', 'Pengaturan poin berhasil diperbarui!');
     }
-
-    public function view() {
-        $poinMultilayer = PointConfig::where('jenis_sampah', 'Kemasan Multilayer')->value('poin_per_satuan') ?? 0;
-
-        return view('pages.home', compact(
-            'poinMultilayer'
-        ));
-    }
 }

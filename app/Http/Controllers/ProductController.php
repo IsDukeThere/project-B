@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\PointConfig;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -39,7 +40,8 @@ class ProductController extends Controller
     public function home()
     {
         $products = Product::take(4)->get(); 
+        $poinMultilayer = PointConfig::where('jenis_sampah', 'Kemasan Multilayer')->value('poin_per_satuan') ?? 0;
 
-        return view('pages.home', compact('products'));
+        return view('pages.home', compact('products', 'poinMultilayer'));
     }
 }
