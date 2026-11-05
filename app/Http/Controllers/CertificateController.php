@@ -65,7 +65,7 @@ class CertificateController extends Controller
         $topRegion = collect($dataSebaran)->sortByDesc('jumlah')->first();
 
         // 3. KIRIM SEMUA DATANYA KE VIEW
-        return view('pages.about', compact(
+        return view('pages.certificates.index', compact(
             'certificates',
             'dataSebaran', 
             'internasional', 

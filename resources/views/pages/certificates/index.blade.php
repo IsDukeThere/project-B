@@ -704,177 +704,177 @@
 
 @push('scripts')
     <script src="https://unpkg.com/lucide@latest"></script>
-<script>
-    // ==========================================
-    // 1. FUNGSI UNTUK SDGS (KARTU 3D)
-    // ==========================================
-    let isAllFlipped = false;
+    <script>
+        // ==========================================
+        // 1. FUNGSI UNTUK SDGS (KARTU 3D)
+        // ==========================================
+        let isAllFlipped = false;
 
-    function toggleCard(cardElement) {
-        cardElement.classList.toggle('is-flipped');
-    }
+        function toggleCard(cardElement) {
+            cardElement.classList.toggle('is-flipped');
+        }
 
-    function toggleFlipAll() {
-        isAllFlipped = !isAllFlipped;
-        const allCards = document.querySelectorAll('.flip-card-inner');
-        allCards.forEach(card => {
-            isAllFlipped ? card.classList.add('is-flipped') : card.classList.remove('is-flipped');
-        });
-        const btnText = document.getElementById('btn-flip-all-text');
-        if(btnText) btnText.textContent = isAllFlipped ? 'Tampilkan Bagian Depan (Reset)' : 'Putar Semua Kartu';
-    }
+        function toggleFlipAll() {
+            isAllFlipped = !isAllFlipped;
+            const allCards = document.querySelectorAll('.flip-card-inner');
+            allCards.forEach(card => {
+                isAllFlipped ? card.classList.add('is-flipped') : card.classList.remove('is-flipped');
+            });
+            const btnText = document.getElementById('btn-flip-all-text');
+            if(btnText) btnText.textContent = isAllFlipped ? 'Tampilkan Bagian Depan (Reset)' : 'Putar Semua Kartu';
+        }
 
-    // ==========================================
-    // 2. FUNGSI UNTUK PETA PERSEBARAN
-    // ==========================================
-    const sebaranData = @json($dataSebaran);
-    const hubsData = @json($hubs);
-    const intlData = @json($internasional);
-    const totalSebaran = {{ $totalSebaran }};
+        // ==========================================
+        // 2. FUNGSI UNTUK PETA PERSEBARAN
+        // ==========================================
+        const sebaranData = @json($dataSebaran);
+        const hubsData = @json($hubs);
+        const intlData = @json($internasional);
+        const totalSebaran = {{ $totalSebaran }};
 
-    let currentFilter = 'all';
-    let isAnimationPlaying = true;
-    let currentSpeed = 1.4;
+        let currentFilter = 'all';
+        let isAnimationPlaying = true;
+        let currentSpeed = 1.4;
 
-    const nodeCoords = { jakarta: { x: 345, y: 465 }, surabaya: { x: 505, y: 490 } };
+        const nodeCoords = { jakarta: { x: 345, y: 465 }, surabaya: { x: 505, y: 490 } };
 
-    function createCurvePath(x1, y1, x2, y2, curvature = 0.22) {
-        const mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dx = x2 - x1, dy = y2 - y1;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const cx = mx - (dy / (dist || 1)) * (dist * curvature * 0.3);
-        const cy = my - Math.abs(dist * curvature);
-        return `M ${x1} ${y1} Q ${cx.toFixed(1)} ${cy.toFixed(1)} ${x2} ${y2}`;
-    }
+        function createCurvePath(x1, y1, x2, y2, curvature = 0.22) {
+            const mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dx = x2 - x1, dy = y2 - y1;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const cx = mx - (dy / (dist || 1)) * (dist * curvature * 0.3);
+            const cy = my - Math.abs(dist * curvature);
+            return `M ${x1} ${y1} Q ${cx.toFixed(1)} ${cy.toFixed(1)} ${x2} ${y2}`;
+        }
 
-    function renderMap() {
-        const routesLayer = document.getElementById('routes-layer');
-        const markersLayer = document.getElementById('markers-layer');
+        function renderMap() {
+            const routesLayer = document.getElementById('routes-layer');
+            const markersLayer = document.getElementById('markers-layer');
+            
+            sebaranData.forEach(item => {
+                const isHub = item.is_hub;
+                const hubId = item.hub || 'jakarta';
+                const hub = hubsData[hubId] || nodeCoords[hubId];
+
+                if (!isHub) {
+                    const isGreen = hubId === 'jakarta';
+                    const color = isGreen ? '#10b981' : '#0ea5e9';
+                    const animClass = isGreen ? 'animate-flow-green' : 'animate-flow-blue';
+                    const curveD = createCurvePath(hub.x, hub.y, item.x, item.y);
+                    const dur = (1.5 + Math.random() * 1.2).toFixed(2);
+                    
+                    const route = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                    route.className.baseVal = `route-item route-hub-${hubId}`;
+                    route.innerHTML = `
+                        <path d="${curveD}" fill="none" stroke="${color}" stroke-width="1.8" class="${animClass}" opacity="0.75" />
+                        <circle r="2.8" fill="${color}"><animateMotion dur="${dur}s" repeatCount="indefinite" path="${curveD}" /></circle>`;
+                    routesLayer.appendChild(route);
+                }
+
+                const marker = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                marker.className.baseVal = `node-point marker-item marker-hub-${hubId}`;
+                marker.id = `marker-${item.kode}`;
+                marker.setAttribute('transform', `translate(${item.x}, ${item.y})`);
+
+                if (isHub) {
+                    const isMain = item.hub_type === 'main';
+                    const color = isMain ? '#10b981' : '#0ea5e9';
+                    marker.innerHTML = `
+                        <circle class="radar-wave-1" cx="0" cy="0" fill="none" stroke="${color}" />
+                        <circle class="radar-wave-2" cx="0" cy="0" fill="none" stroke="${color}" />
+                        <circle r="8.5" fill="${color}" stroke="#fff" stroke-width="2.5" />
+                        <text y="-13.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">${item.jumlah}</text>`;
+                } else {
+                    const color = hubId === 'jakarta' ? '#22c55e' : '#38bdf8';
+                    marker.innerHTML = `
+                        <circle r="4.5" fill="${color}" stroke="#fff" stroke-width="1.5" />
+                        <rect x="-13" y="-18" width="26" height="12" rx="4" fill="rgba(15,23,42,0.85)" stroke="${color}" stroke-width="0.8" />
+                        <text y="-9" text-anchor="middle" fill="#fff" font-size="8.5" font-weight="bold">${item.jumlah}</text>
+                        <text y="15" text-anchor="middle" fill="#cbd5e1" font-size="9">${item.nama}</text>`;
+                }
+
+                marker.addEventListener('mouseenter', (e) => showTooltip(e, item));
+                marker.addEventListener('mouseleave', hideTooltip);
+                marker.addEventListener('click', () => highlightRegion(item.kode));
+                markersLayer.appendChild(marker);
+            });
+
+            intlData.forEach(intl => {
+                const hubId = intl.hub || 'jakarta';
+                const hub = hubsData[hubId] || nodeCoords[hubId];
+                const curveD = createCurvePath(hub.x, hub.y, intl.x, intl.y, 0.38);
+
+                const intlRoute = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                intlRoute.className.baseVal = `route-item route-intl`;
+                intlRoute.innerHTML = `<path d="${curveD}" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="5 5" class="animate-flow-blue" opacity="0.85" /><use href="#airplane-icon"><animateMotion dur="3.8s" repeatCount="indefinite" rotate="auto" path="${curveD}" /></use>`;
+                routesLayer.appendChild(intlRoute);
+
+                const intlMarker = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                intlMarker.className.baseVal = `node-point marker-item marker-intl`;
+                intlMarker.setAttribute('transform', `translate(${intl.x}, ${intl.y})`);
+                intlMarker.innerHTML = `<circle r="5.5" fill="#0ea5e9" stroke="#fff" stroke-width="1.8" /><text y="18" text-anchor="middle" fill="#38bdf8" font-size="10.5" font-weight="bold">${intl.negara.toUpperCase()}</text>`;
+                markersLayer.appendChild(intlMarker);
+            });
+        }
+
+        function renderTable() {
+            const container = document.getElementById('table-grid-container');
+            sebaranData.forEach(item => {
+                const isGreen = item.hub === 'jakarta';
+                container.innerHTML += `
+                    <div id="card-${item.kode}" class="table-card p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80 cursor-pointer flex justify-between" onclick="highlightRegion('${item.kode}')">
+                        <div class="flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-md ${isGreen ? 'bg-emerald-500/20 text-emerald-400' : 'bg-sky-500/20 text-sky-400'} flex items-center justify-center text-[10px]">${item.no}</span>
+                            <span class="font-semibold text-xs text-slate-300">${item.nama}</span>
+                        </div>
+                        <span class="px-2 py-0.5 rounded-md ${isGreen ? 'bg-emerald-950 text-emerald-300' : 'bg-sky-950 text-sky-300'} text-xs">${item.jumlah}</span>
+                    </div>`;
+            });
+        }
+
+        function showTooltip(evt, data) {
+            const t = document.getElementById('map-tooltip');
+            const rect = document.getElementById('map-viewport').getBoundingClientRect();
+            document.getElementById('tooltip-title').textContent = data.nama;
+            document.getElementById('tooltip-count').textContent = data.jumlah + ' Produk';
+            document.getElementById('tooltip-sub').textContent = data.pulau;
+            t.style.left = `${(evt.clientX || (rect.left + (data.x / 1200) * rect.width)) - rect.left}px`;
+            t.style.top = `${(evt.clientY || (rect.top + (data.y / 580) * rect.height)) - rect.top}px`;
+            t.style.opacity = '1';
+        }
         
-        sebaranData.forEach(item => {
-            const isHub = item.is_hub;
-            const hubId = item.hub || 'jakarta';
-            const hub = hubsData[hubId] || nodeCoords[hubId];
+        function hideTooltip() { document.getElementById('map-tooltip').style.opacity = '0'; }
+        
+        function highlightRegion(kode) {
+            document.querySelectorAll('.table-card').forEach(c => c.classList.remove('ring-2', 'ring-emerald-400', 'bg-slate-800'));
+            const card = document.getElementById(`card-${kode}`);
+            if(card) card.classList.add('ring-2', 'ring-emerald-400', 'bg-slate-800');
+        }
+        
+        function setFilter(filter) {
+            document.querySelectorAll('.route-item').forEach(r => r.style.display = (filter === 'all' || r.classList.contains(`route-hub-${filter}`) || (filter==='intl' && r.classList.contains('route-intl'))) ? 'block' : 'none');
+            document.querySelectorAll('.marker-item').forEach(m => m.style.opacity = (filter === 'all' || m.classList.contains(`marker-hub-${filter}`) || m.id === `marker-${filter}` || (filter==='intl' && m.classList.contains('marker-intl'))) ? '1' : '0.25');
+        }
+        
+        function filterTable() {
+            const query = document.getElementById('search-province').value.toLowerCase();
+            document.querySelectorAll('.table-card').forEach(c => c.style.display = c.textContent.toLowerCase().includes(query) ? 'flex' : 'none');
+        }
+        
+        function setSpeed(speed) { document.documentElement.style.setProperty('--anim-speed', `${speed}s`); }
+        
+        function toggleAnimation() {
+            const svg = document.getElementById('persebaran-svg');
+            isAnimationPlaying = !isAnimationPlaying;
+            isAnimationPlaying ? svg.unpauseAnimations() : svg.pauseAnimations();
+        }
 
-            if (!isHub) {
-                const isGreen = hubId === 'jakarta';
-                const color = isGreen ? '#10b981' : '#0ea5e9';
-                const animClass = isGreen ? 'animate-flow-green' : 'animate-flow-blue';
-                const curveD = createCurvePath(hub.x, hub.y, item.x, item.y);
-                const dur = (1.5 + Math.random() * 1.2).toFixed(2);
-                
-                const route = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                route.className.baseVal = `route-item route-hub-${hubId}`;
-                route.innerHTML = `
-                    <path d="${curveD}" fill="none" stroke="${color}" stroke-width="1.8" class="${animClass}" opacity="0.75" />
-                    <circle r="2.8" fill="${color}"><animateMotion dur="${dur}s" repeatCount="indefinite" path="${curveD}" /></circle>`;
-                routesLayer.appendChild(route);
-            }
-
-            const marker = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            marker.className.baseVal = `node-point marker-item marker-hub-${hubId}`;
-            marker.id = `marker-${item.kode}`;
-            marker.setAttribute('transform', `translate(${item.x}, ${item.y})`);
-
-            if (isHub) {
-                const isMain = item.hub_type === 'main';
-                const color = isMain ? '#10b981' : '#0ea5e9';
-                marker.innerHTML = `
-                    <circle class="radar-wave-1" cx="0" cy="0" fill="none" stroke="${color}" />
-                    <circle class="radar-wave-2" cx="0" cy="0" fill="none" stroke="${color}" />
-                    <circle r="8.5" fill="${color}" stroke="#fff" stroke-width="2.5" />
-                    <text y="-13.5" text-anchor="middle" fill="#fff" font-size="9.5" font-weight="bold">${item.jumlah}</text>`;
-            } else {
-                const color = hubId === 'jakarta' ? '#22c55e' : '#38bdf8';
-                marker.innerHTML = `
-                    <circle r="4.5" fill="${color}" stroke="#fff" stroke-width="1.5" />
-                    <rect x="-13" y="-18" width="26" height="12" rx="4" fill="rgba(15,23,42,0.85)" stroke="${color}" stroke-width="0.8" />
-                    <text y="-9" text-anchor="middle" fill="#fff" font-size="8.5" font-weight="bold">${item.jumlah}</text>
-                    <text y="15" text-anchor="middle" fill="#cbd5e1" font-size="9">${item.nama}</text>`;
-            }
-
-            marker.addEventListener('mouseenter', (e) => showTooltip(e, item));
-            marker.addEventListener('mouseleave', hideTooltip);
-            marker.addEventListener('click', () => highlightRegion(item.kode));
-            markersLayer.appendChild(marker);
+        // ==========================================
+        // 3. JALANKAN SEMUANYA SAAT HALAMAN DIBUKA
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => { 
+            renderMap(); 
+            renderTable(); 
+            lucide.createIcons();
         });
-
-        intlData.forEach(intl => {
-            const hubId = intl.hub || 'jakarta';
-            const hub = hubsData[hubId] || nodeCoords[hubId];
-            const curveD = createCurvePath(hub.x, hub.y, intl.x, intl.y, 0.38);
-
-            const intlRoute = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            intlRoute.className.baseVal = `route-item route-intl`;
-            intlRoute.innerHTML = `<path d="${curveD}" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="5 5" class="animate-flow-blue" opacity="0.85" /><use href="#airplane-icon"><animateMotion dur="3.8s" repeatCount="indefinite" rotate="auto" path="${curveD}" /></use>`;
-            routesLayer.appendChild(intlRoute);
-
-            const intlMarker = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            intlMarker.className.baseVal = `node-point marker-item marker-intl`;
-            intlMarker.setAttribute('transform', `translate(${intl.x}, ${intl.y})`);
-            intlMarker.innerHTML = `<circle r="5.5" fill="#0ea5e9" stroke="#fff" stroke-width="1.8" /><text y="18" text-anchor="middle" fill="#38bdf8" font-size="10.5" font-weight="bold">${intl.negara.toUpperCase()}</text>`;
-            markersLayer.appendChild(intlMarker);
-        });
-    }
-
-    function renderTable() {
-        const container = document.getElementById('table-grid-container');
-        sebaranData.forEach(item => {
-            const isGreen = item.hub === 'jakarta';
-            container.innerHTML += `
-                <div id="card-${item.kode}" class="table-card p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80 cursor-pointer flex justify-between" onclick="highlightRegion('${item.kode}')">
-                    <div class="flex items-center gap-2">
-                        <span class="w-5 h-5 rounded-md ${isGreen ? 'bg-emerald-500/20 text-emerald-400' : 'bg-sky-500/20 text-sky-400'} flex items-center justify-center text-[10px]">${item.no}</span>
-                        <span class="font-semibold text-xs text-slate-300">${item.nama}</span>
-                    </div>
-                    <span class="px-2 py-0.5 rounded-md ${isGreen ? 'bg-emerald-950 text-emerald-300' : 'bg-sky-950 text-sky-300'} text-xs">${item.jumlah}</span>
-                </div>`;
-        });
-    }
-
-    function showTooltip(evt, data) {
-        const t = document.getElementById('map-tooltip');
-        const rect = document.getElementById('map-viewport').getBoundingClientRect();
-        document.getElementById('tooltip-title').textContent = data.nama;
-        document.getElementById('tooltip-count').textContent = data.jumlah + ' Produk';
-        document.getElementById('tooltip-sub').textContent = data.pulau;
-        t.style.left = `${(evt.clientX || (rect.left + (data.x / 1200) * rect.width)) - rect.left}px`;
-        t.style.top = `${(evt.clientY || (rect.top + (data.y / 580) * rect.height)) - rect.top}px`;
-        t.style.opacity = '1';
-    }
-    
-    function hideTooltip() { document.getElementById('map-tooltip').style.opacity = '0'; }
-    
-    function highlightRegion(kode) {
-        document.querySelectorAll('.table-card').forEach(c => c.classList.remove('ring-2', 'ring-emerald-400', 'bg-slate-800'));
-        const card = document.getElementById(`card-${kode}`);
-        if(card) card.classList.add('ring-2', 'ring-emerald-400', 'bg-slate-800');
-    }
-    
-    function setFilter(filter) {
-        document.querySelectorAll('.route-item').forEach(r => r.style.display = (filter === 'all' || r.classList.contains(`route-hub-${filter}`) || (filter==='intl' && r.classList.contains('route-intl'))) ? 'block' : 'none');
-        document.querySelectorAll('.marker-item').forEach(m => m.style.opacity = (filter === 'all' || m.classList.contains(`marker-hub-${filter}`) || m.id === `marker-${filter}` || (filter==='intl' && m.classList.contains('marker-intl'))) ? '1' : '0.25');
-    }
-    
-    function filterTable() {
-        const query = document.getElementById('search-province').value.toLowerCase();
-        document.querySelectorAll('.table-card').forEach(c => c.style.display = c.textContent.toLowerCase().includes(query) ? 'flex' : 'none');
-    }
-    
-    function setSpeed(speed) { document.documentElement.style.setProperty('--anim-speed', `${speed}s`); }
-    
-    function toggleAnimation() {
-        const svg = document.getElementById('persebaran-svg');
-        isAnimationPlaying = !isAnimationPlaying;
-        isAnimationPlaying ? svg.unpauseAnimations() : svg.pauseAnimations();
-    }
-
-    // ==========================================
-    // 3. JALANKAN SEMUANYA SAAT HALAMAN DIBUKA
-    // ==========================================
-    document.addEventListener('DOMContentLoaded', () => { 
-        renderMap(); 
-        renderTable(); 
-        lucide.createIcons();
-    });
-</script>
+    </script>
 @endpush
