@@ -42,7 +42,7 @@ class ProductController extends Controller
         $products = Product::all();
         $totalProducts = $products->count();
         
-        $layout = 'layouts.penyetor';
+        $layout = 'layouts.depositor';
 
         return view('pages.products.index', compact('products', 'totalProducts', 'layout'));
     }
