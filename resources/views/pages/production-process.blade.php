@@ -68,12 +68,44 @@
                     </div>
                     <div class="pb-img-placeholder h-36 w-full rounded-2xl bg-emerald-100 text-3xl mb-4">
                         ⚙️
-                        <span class="text-xs font-semibold text-emerald-900 mt-2">Foto: Pencucian & Pencacahan</span>
+                        <span class="text-xs font-semibold text-emerald-900 mt-2">Foto: Pembersihan</span>
                     </div>
-                    <h3 class="font-bold text-base text-slate-900 mb-1.5">Pembersihan & Pencacahan</h3>
+                    <h3 class="font-bold text-base text-slate-900 mb-1.5">Pembersihan</h3>
                     <p class="text-xs text-slate-600 leading-relaxed">Dicuci dengan air ramah lingkungan, dikeringkan secara higienis, lalu dicacah.</p>
                 </div>
-                <div class="pt-3 border-t border-slate-100 text-xs text-slate-500">Stasiun: <strong>Mesin Cacah</strong></div>
+                <div class="pt-3 border-t border-slate-100 text-xs text-slate-500">Stasiun: <strong>Pembersihan</strong></div>
+            </div>
+
+            <div class="pb-card flex flex-col justify-between space-y-4">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">3</span>
+                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">± 2 hari</span>
+                    </div>
+                    <div class="pb-img-placeholder h-36 w-full rounded-2xl bg-emerald-100 text-3xl mb-4">
+                        ⚙️
+                        <span class="text-xs font-semibold text-emerald-900 mt-2">Foto: Pencucian & Pencacahan</span>
+                    </div>
+                    <h3 class="font-bold text-base text-slate-900 mb-1.5">Pengeringan</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Dicuci dengan air ramah lingkungan, dikeringkan secara higienis, lalu dicacah.</p>
+                </div>
+                <div class="pt-3 border-t border-slate-100 text-xs text-slate-500">Stasiun: <strong>Pengeringan</strong></div>
+            </div>
+
+            <div class="pb-card flex flex-col justify-between space-y-4">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">3</span>
+                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">± 2 hari</span>
+                    </div>
+                    <div class="pb-img-placeholder h-36 w-full rounded-2xl bg-emerald-100 text-3xl mb-4">
+                        ⚙️
+                        <span class="text-xs font-semibold text-emerald-900 mt-2">Foto: Pencucian & Pencacahan</span>
+                    </div>
+                    <h3 class="font-bold text-base text-slate-900 mb-1.5">Pencacahan</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">Dicuci dengan air ramah lingkungan, dikeringkan secara higienis, lalu dicacah.</p>
+                </div>
+                <div class="pt-3 border-t border-slate-100 text-xs text-slate-500">Stasiun: <strong>Pencacahan</strong></div>
             </div>
 
             <div class="pb-card flex flex-col justify-between space-y-4">
