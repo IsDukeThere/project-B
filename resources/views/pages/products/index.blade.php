@@ -22,7 +22,7 @@
                     <!-- Cek jika produk punya gambar atau pakai ikon/placeholder -->
                     <div class="pb-img-placeholder h-40 sm:h-48 w-full mb-3 rounded-xl bg-slate-100 flex items-center justify-center text-5xl overflow-hidden">
                         @if(isset($prod->image) && file_exists(public_path($prod->image)))
-                            <img src="{{ asset($prod->image) }}" alt="{{ $prod->name }}" class="w-full h-full object-cover">
+                            <img src="{{ asset($prod->image) }}" alt="{{ $prod->name }}" class="w-full h-full object-contain">
                         @else
                             <span>♻️</span>
                         @endif
