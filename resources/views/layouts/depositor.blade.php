@@ -59,7 +59,7 @@
                 </a>
 
                 <a href="{{ route('depositor.katalog') }}" 
-                class="transition flex items-center gap-1.5 {{ request()->routeIs('products.*') ? 'text-emerald-700 font-bold' : 'text-slate-600 hover:text-emerald-700' }}">
+                class="transition flex items-center gap-1.5 {{ request()->routeIs('depositor.katalog') ? 'text-emerald-700 font-bold' : 'text-slate-600 hover:text-emerald-700' }}">
                     @if(request()->routeIs('depositor.katalog')) <span>✨</span> @endif
                     Katalog
                 </a>
