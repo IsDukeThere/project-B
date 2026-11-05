@@ -8,7 +8,7 @@
         <div class="max-w-2xl space-y-3">
             <h1 class="text-3xl sm:text-4xl font-extrabold text-white">Alur Proses Produksi</h1>
             <p class="text-emerald-100 text-sm sm:text-base leading-relaxed">
-                Lihat langsung bagaimana sampah plastik berubah jadi karya bernilai tinggi melalui 5 tahapan sirkular yang terukur.
+                Lihat langsung bagaimana sampah plastik berubah jadi karya bernilai tinggi melalui 7 tahapan sirkular yang terukur.
             </p>
         </div>
     </div>
@@ -26,13 +26,13 @@
 
     <!-- 5 Tahap Pengolahan (Responsive Grid) -->
     <div>
-        <h2 class="font-extrabold text-xl text-slate-900 mb-6">5 Tahap Pengolahan Sirkular</h2>
+        <h2 class="font-extrabold text-xl text-slate-900 mb-6">7 Tahap Pengolahan Sirkular</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="pb-card flex flex-col justify-between space-y-4">
                 <div>
                     <div class="flex items-center justify-between mb-3">
                         <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">1</span>
-                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">± 1 hari</span>
+                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">1 hari</span>
                     </div>
                     <img src="{{ asset('images/alur-proses/pengumpulan.JPG') }}" 
                         alt="Foto Pengumpulan Sampah" 
@@ -47,7 +47,7 @@
                 <div>
                     <div class="flex items-center justify-between mb-3">
                         <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">2</span>
-                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">± 1 hari</span>
+                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">1 hari</span>
                     </div>
                     <img src="{{ asset('images/alur-proses/pemilahan.JPG') }}" 
                         alt="Foto Pemilahan Sampah" 
@@ -62,7 +62,7 @@
                 <div>
                     <div class="flex items-center justify-between mb-3">
                         <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">3</span>
-                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">± 2 hari</span>
+                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">1 hari</span>
                     </div>
                     <img src="{{ asset('images/alur-proses/pencucian.JPG') }}" 
                         alt="Foto Pencucian Sampah" 
@@ -77,7 +77,7 @@
                 <div>
                     <div class="flex items-center justify-between mb-3">
                         <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">4</span>
-                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">± 2 hari</span>
+                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">± 2-3 hari</span>
                     </div>
                     <img src="{{ asset('images/alur-proses/pengeringan.JPG') }}" 
                         alt="Foto Pengeringan Sampah" 
@@ -92,7 +92,7 @@
                 <div>
                     <div class="flex items-center justify-between mb-3">
                         <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">5</span>
-                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">± 2 hari</span>
+                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">1 hari</span>
                     </div>
                     <img src="{{ asset('images/alur-proses/pencacahan.PNG') }}" 
                         alt="Foto Pencacahan Sampah" 
@@ -107,7 +107,7 @@
                 <div>
                     <div class="flex items-center justify-between mb-3">
                         <span class="w-8 h-8 rounded-full bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center">6</span>
-                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">± 3 hari</span>
+                        <span class="text-xs font-semibold bg-emerald-50 text-emerald-800 px-3 py-1 rounded-full">2-3 hari</span>
                     </div>
                     <img src="{{ asset('images/alur-proses/pengolahan.JPG') }}" 
                         alt="Foto Pengolahan Sampah" 
