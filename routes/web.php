@@ -60,7 +60,7 @@ Route::middleware(['auth', PreventBackHistory::class])->group(function () {
         Route::get('/riwayat/{id}', [DepositController::class, 'show'])->name('detail');
         Route::delete('/riwayat/batal/{id}', [DepositController::class, 'destroy'])->name('cancel');
         Route::get('/peringkat', [DepositController::class, 'leaderboard'])->name('leaderboard');
-        Route::get('/penyetor/katalog', [ProductController::class, 'indexPenyetor'])->name('penyetor.katalog');
+        Route::get('/katalog', [ProductController::class, 'indexPenyetor'])->name('penyetor.katalog');
         Route::get('/profil', [ProfileController::class, 'index'])->name('profile');
     });
 
