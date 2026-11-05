@@ -4,9 +4,13 @@
 
 @section('content')
 <div class="space-y-8">
-    <div>
-        <h1 class="font-extrabold text-2xl sm:text-3xl text-slate-900">Events & Workshop</h1>
-        <p class="text-xs sm:text-sm text-slate-500 mt-1">Belajar teknik daur ulang dan ekonomi sirkular bersama instruktur praktisi</p>
+    <div class="pb-hero-banner">
+        <div class="max-w-2xl space-y-3">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white">Events & Workshop</h1>
+            <p class="text-emerald-100 text-sm sm:text-base leading-relaxed">
+                Belajar teknik daur ulang dan ekonomi sirkular bersama instruktur praktisi
+            </p>
+        </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
