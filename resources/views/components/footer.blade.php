@@ -35,7 +35,7 @@
                 <h4 class="text-white font-bold text-sm">Workshop & Butik</h4>
                 <p class="text-slate-400">Jl. Sukoharjo No.132 A, Gejayan, Condongcatur, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55283</p>
                 <p class="text-slate-400 font-semibold text-emerald-400">Senin–Sabtu: 08.00–20.00 WIB</p>
-                <a href="https://maps.app.goo.gl/uL7YM4hXxWefP2Eq6" class="text-xs font-bold text-white hover:text-emerald-400 flex items-center gap-1 pt-1">
+                <a href="https://maps.app.goo.gl/uL7YM4hXxWefP2Eq6" target="_blank" class="text-xs font-bold text-white hover:text-emerald-400 flex items-center gap-1 pt-1 block">
                     Petunjuk Arah Maps →
                 </a>
             </div>
