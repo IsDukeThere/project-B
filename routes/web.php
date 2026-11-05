@@ -24,8 +24,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ProductController::class, 'home'])->name('home');
 Route::get('/alur-proses', function () { return view('pages.production-process'); })->name('production-process');
 Route::get('/produk', [ProductController::class, 'index'])->name('products.index');
-Route::get('/penghargaan', [CertificateController::class, 'index'])->name('certificates.index');
-Route::get('/penghargaan/{id}', [CertificateController::class, 'show'])->name('certificates.show');
+Route::get('/Tentang-Kami', [CertificateController::class, 'index'])->name('certificates.index');
+Route::get('/Tentang-Kami/{id}', [CertificateController::class, 'show'])->name('certificates.show');
 Route::get('/lokasi', function () { return view('pages.location'); })->name('location');
 Route::get('/kontak', function () { return view('pages.contact'); })->name('contact');
 
