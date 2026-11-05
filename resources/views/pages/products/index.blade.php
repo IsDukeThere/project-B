@@ -4,12 +4,14 @@
 
 @section('content')
 <div class="space-y-8">
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-            <h1 class="font-extrabold text-2xl sm:text-3xl text-slate-900">Katalog Produk Daur Ulang</h1>
-            <p class="text-xs sm:text-sm text-slate-500 mt-1">Dibuat dari bahan baku kemasan plastik multilayer berkualitas tinggi</p>
+    <div class="pb-hero-banner">
+        <div class="max-w-2xl space-y-3">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white">Katalog Produk Daur Ulang</h1>
+            <p class="text-emerald-100 text-sm sm:text-base leading-relaxed">
+                Dibuat dari bahan baku kemasan plastik multilayer berkualitas tinggi
+            </p>
         </div>
-        <span class="text-xs font-bold bg-slate-200 text-slate-700 px-3 py-1.5 rounded-full self-start sm:self-auto">
+        <span class="text-xs font-bold bg-white/10 backdrop-blur-md border border-white/20 text-white space-y-5 px-3 py-1.5 rounded-full self-start sm:self-auto">
             {{ $products->count() }} Koleksi Tersedia
         </span>
     </div>
