@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="space-y-8">
-    <div class="pb-hero-banner">
+    <div class="pb-hero-banner flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div class="max-w-2xl space-y-3">
             <h1 class="text-3xl sm:text-4xl font-extrabold text-white">Katalog Produk Daur Ulang</h1>
             <p class="text-emerald-100 text-sm sm:text-base leading-relaxed">
