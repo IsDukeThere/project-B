@@ -58,7 +58,7 @@
                     Peringkat
                 </a>
 
-                <a href="{{ route('penyetor.katalog') }}" 
+                <a href="{{ route('depositor.katalog') }}" 
                 class="transition flex items-center gap-1.5 {{ request()->routeIs('products.*') ? 'text-emerald-700 font-bold' : 'text-slate-600 hover:text-emerald-700' }}">
                     @if(request()->routeIs('products.*')) <span>✨</span> @endif
                     Katalog
