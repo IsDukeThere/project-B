@@ -16,7 +16,7 @@
             <a href="{{ route('production-process') }}" class="hover:text-emerald-700 transition {{ request()->routeIs('production-process') ? 'text-emerald-700 font-bold' : '' }}">Alur Proses</a>
             <a href="{{ route('products.index') }}" class="hover:text-emerald-700 transition {{ request()->routeIs('products.*') ? 'text-emerald-700 font-bold' : '' }}">Produk</a>
             <a href="{{ route('workshops.index') }}" class="hover:text-emerald-700 transition {{ request()->routeIs('workshops.*') ? 'text-emerald-700 font-bold' : '' }}">Workshop</a>
-            <a href="{{ route('certificates.index') }}" class="hover:text-emerald-700 transition {{ request()->routeIs('certificates.*') ? 'text-emerald-700 font-bold' : '' }}">Pencapaian</a>
+            <a href="{{ route('certificates.index') }}" class="hover:text-emerald-700 transition {{ request()->routeIs('certificates.*') ? 'text-emerald-700 font-bold' : '' }}">Tentang Kami</a>
             <a href="{{ route('location') }}" class="hover:text-emerald-700 transition {{ request()->routeIs('location') ? 'text-emerald-700 font-bold' : '' }}">Lokasi</a>
             <a href="{{ route('contact') }}" class="hover:text-emerald-700 transition {{ request()->routeIs('contact') ? 'text-emerald-700 font-bold' : '' }}">Kontak</a>
         </nav>
