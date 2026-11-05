@@ -17,7 +17,7 @@
                     <li><a href="{{ route('production-process') }}" class="hover:text-white transition">Alur Proses 5 Tahap</a></li>
                     <li><a href="{{ route('workshops.index') }}" class="hover:text-white transition">Webinar & Pelatihan</a></li>
                     <li><a href="{{ route('depositor.procedure') }}" class="hover:text-white transition">Panduan Setor Sampah</a></li>
-                    <li><a href="{{ route('certificates.index') }}" class="hover:text-white transition">Pencapaian & Sertifikasi</a></li>
+                    <li><a href="{{ route('certificates.index') }}" class="hover:text-white transition">Tentang Kami</a></li>
                 </ul>
             </div>
 

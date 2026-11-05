@@ -51,7 +51,7 @@
         <a href="{{ route('production-process') }}" class="block text-sm font-semibold text-slate-700 hover:text-emerald-700">Alur Proses</a>
         <a href="{{ route('products.index') }}" class="block text-sm font-semibold text-slate-700 hover:text-emerald-700">Produk</a>
         <a href="{{ route('workshops.index') }}" class="block text-sm font-semibold text-slate-700 hover:text-emerald-700">Workshop</a>
-        <a href="{{ route('certificates.index') }}" class="block text-sm font-semibold text-slate-700 hover:text-emerald-700">Pencapaian</a>
+        <a href="{{ route('certificates.index') }}" class="block text-sm font-semibold text-slate-700 hover:text-emerald-700">Tentang Kami</a>
         <a href="{{ route('location') }}" class="block text-sm font-semibold text-slate-700 hover:text-emerald-700">Lokasi</a>
         <a href="{{ route('contact') }}" class="block text-sm font-semibold text-slate-700 hover:text-emerald-700">Kontak</a>
         <hr class="border-slate-100 my-2">
