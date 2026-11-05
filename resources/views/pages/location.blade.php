@@ -4,9 +4,13 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto space-y-6">
-    <div>
-        <h1 class="font-extrabold text-2xl sm:text-3xl text-slate-900">Lokasi Setor & Workshop</h1>
-        <p class="text-xs sm:text-sm text-slate-500 mt-1">Kunjungi workshop kami untuk mengantarkan sampah atau berbelanja produk</p>
+    <div class="pb-hero-banner">
+        <div class="max-w-2xl space-y-3">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-white">Lokasi Setor & Workshop</h1>
+            <p class="text-emerald-100 text-sm sm:text-base leading-relaxed">
+                Kunjungi workshop kami untuk mengantarkan sampah atau berbelanja produk
+            </p>
+        </div>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
