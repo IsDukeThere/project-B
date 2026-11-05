@@ -27,7 +27,7 @@
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
                     <div class="bg-emerald-50 rounded-2xl p-4 text-center border border-emerald-100">
-                        <b class="block text-2xl font-extrabold text-emerald-800">2023</b>
+                        <b class="block text-2xl font-extrabold text-emerald-800">2008</b>
                         <span class="text-xs text-slate-500 font-medium">Tahun berdiri</span>
                     </div>
                     <div class="bg-emerald-50 rounded-2xl p-4 text-center border border-emerald-100">

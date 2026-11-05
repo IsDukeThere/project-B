@@ -39,11 +39,11 @@
 
                     <div class="grid grid-cols-2 gap-4 text-center">
                         <div class="bg-black/20 p-3.5 rounded-2xl">
-                            <span class="text-2xl font-black text-white block">20+ Ton</span>
-                            <span class="text-xs text-emerald-200">Sampah Terolah</span>
+                            <span class="text-2xl font-black text-white block">983.002++</span>
+                            <span class="text-xs text-emerald-200">Sampah Sachet Terolah</span>
                         </div>
                         <div class="bg-black/20 p-3.5 rounded-2xl">
-                            <span class="text-2xl font-black text-white block">150+</span>
+                            <span class="text-2xl font-black text-white block">11500++</span>
                             <span class="text-xs text-emerald-200">Penyetor Aktif</span>
                         </div>
                         <div class="bg-black/20 p-3.5 rounded-2xl">
@@ -51,7 +51,7 @@
                             <span class="text-xs text-emerald-200">Pekerja Lokal</span>
                         </div>
                         <div class="bg-black/20 p-3.5 rounded-2xl">
-                            <span class="text-2xl font-black text-white block">10 Poin</span>
+                            <span class="text-2xl font-black text-white block">{{ $configs['Kemasan Multilayer']->poin_per_satuan ?? 10 }} Poin</span>
                             <span class="text-xs text-emerald-200">Per kg Sampah</span>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                         <!-- Gambar / Placeholder Produk -->
                         <div class="pb-img-placeholder h-40 sm:h-48 w-full mb-3 rounded-xl bg-slate-100 flex items-center justify-center text-5xl overflow-hidden">
                             @if(isset($prod->image) && file_exists(public_path($prod->image)))
-                                <img src="{{ asset($prod->image) }}" alt="{{ $prod->name }}" class="w-full h-full object-cover">
+                                <img src="{{ asset($prod->image) }}" alt="{{ $prod->name }}" class="w-full h-full object-contain p-2">
                             @else
                                 <span>🛍️</span>
                             @endif
