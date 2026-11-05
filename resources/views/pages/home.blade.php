@@ -51,7 +51,7 @@
                             <span class="text-xs text-emerald-200">Pekerja Lokal</span>
                         </div>
                         <div class="bg-black/20 p-3.5 rounded-2xl">
-                            <span class="text-2xl font-black text-white block">{{ $configs['Kemasan Multilayer']->poin_per_satuan ?? 10 }} Poin</span>
+                            <span class="text-2xl font-black text-white block">{{ $poinMultilayer}} Poin</span>
                             <span class="text-xs text-emerald-200">Per kg Sampah</span>
                         </div>
                     </div>
