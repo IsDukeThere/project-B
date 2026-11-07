@@ -97,7 +97,7 @@
             </div>
             <div class="self-start lg:self-auto text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-4 py-2 rounded-full flex items-center gap-2 shadow-sm">
                 <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                Diperbarui 7 November 2026 · Periode Oktober 2026
+                Periode {{ \Carbon\Carbon::now()->translatedFormat('F Y') }}
             </div>
         </div>
 
@@ -105,6 +105,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mt-8 items-stretch">
             
             <!-- KIRI: PAHLAWAN BULAN INI (COL-SPAN-5) -->
+            @if($pahlawanUtama)
             <article class="lg:col-span-5 bg-gradient-to-br from-emerald-600 to-emerald-900 rounded-[2rem] p-6 sm:p-8 flex flex-col justify-between border border-emerald-700 shadow-xl shadow-emerald-900/10 relative overflow-hidden">
                 <!-- Efek Lingkaran Latar -->
                 <div class="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -112,109 +113,78 @@
                 <div class="relative z-10 flex flex-col items-center text-center">
                     <!-- Badge -->
                     <span class="bg-amber-400 text-amber-950 text-[11px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-md">
-                        Pahlawan Bulan Ini
+                        Peringkat #1
                     </span>
                     
                     <!-- Avatar & Crown -->
                     <div class="relative mt-6 mb-4">
                         <div class="absolute -top-5 left-1/2 -translate-x-1/2 text-2xl drop-shadow-md z-20">👑</div>
                         <div class="w-24 h-24 rounded-full border-4 border-emerald-800 outline outline-4 outline-amber-400 bg-emerald-400 flex items-center justify-center text-3xl font-extrabold text-white shadow-xl">
-                            SW
+                            {{ Str::substr($pahlawanUtama->name, 0, 2) }}
                         </div>
                     </div>
 
                     <!-- Info -->
-                    <h3 class="text-2xl font-extrabold text-white mt-2">Sri Wahyuni</h3>
+                    <h3 class="text-2xl font-extrabold text-white mt-2">{{ $pahlawanUtama->name }}</h3>
                     <div class="text-emerald-300 text-xs font-semibold mt-1 flex items-center gap-1 justify-center">
-                        📍 Laweyan
+                        Pahlawan Terbaik Bulan Ini
                     </div>
-
-                    <!-- Quote -->
-                    <blockquote class="mt-5 mb-2 max-w-xs mx-auto text-[13px] sm:text-sm text-emerald-50 italic leading-relaxed font-medium">
-                        "Awalnya hanya iseng kumpulkan sachet di rumah, sekarang tetangga ikut setor bersama."
-                    </blockquote>
                 </div>
 
                 <!-- Stats -->
                 <div class="grid grid-cols-3 gap-2.5 mt-6 relative z-10">
                     <div class="bg-black/20 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/10">
-                        <b class="block text-lg sm:text-xl font-black text-amber-400">148,5</b>
+                        <b class="block text-lg sm:text-xl font-black text-amber-400">{{ number_format($pahlawanUtama->total_kg ?? 0, 1, ',', '.') }}</b>
                         <span class="text-[10px] text-emerald-100 font-medium">kg disetor</span>
                     </div>
                     <div class="bg-black/20 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/10">
-                        <b class="block text-lg sm:text-xl font-black text-amber-400">23×</b>
-                        <span class="text-[10px] text-emerald-100 font-medium">setoran</span>
-                    </div>
-                    <div class="bg-black/20 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/10">
-                        <b class="block text-lg sm:text-xl font-black text-amber-400">98.400</b>
-                        <span class="text-[10px] text-emerald-100 font-medium">sachet</span>
+                        <b class="block text-xl font-black text-amber-400">{{ number_format($pahlawanUtama->total_poin ?? 0, 0, ',', '.') }}</b>
+                        <span class="text-[10px] text-emerald-100 font-medium">Total Poin</span>
                     </div>
                 </div>
             </article>
+            @else
+            <div class="lg:col-span-5 flex items-center justify-center bg-slate-50 rounded-[2rem] border border-slate-200">
+                <p class="text-slate-400 font-medium text-sm">Belum ada data pahlawan bulan ini.</p>
+            </div>
+            @endif
 
             <!-- KANAN: GRID 4 KARTU LEADERBOARD (COL-SPAN-7) -->
             <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 
-                <!-- Kartu 1: Raja Sachet -->
-                <div class="bg-white rounded-3xl p-5 sm:p-6 flex flex-col justify-between border border-slate-200 border-t-[5px] border-t-orange-500 shadow-sm hover:shadow-md transition">
-                    <div class="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-xl mb-4 border border-orange-100">🧃</div>
-                    <div>
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Raja Sachet</div>
-                        <div class="text-lg font-bold text-slate-800 mt-1">Budi Santoso</div>
-                        <div class="text-xs text-slate-500 font-medium">Banjarsari</div>
-                    </div>
-                    <div class="mt-5">
-                        <span class="inline-block px-3 py-1.5 bg-orange-500 text-white text-[11px] font-extrabold rounded-full shadow-sm">
-                            72.300 sachet
-                        </span>
-                    </div>
-                </div>
+                {{-- Pengaturan warna untuk masing-masing ranking --}}
+                @php
+                    $cardStyles = [
+                        ['icon' => '🥈', 'color' => 'orange', 'bg' => 'bg-orange-50', 'text' => 'text-orange-500', 'border' => 'border-t-orange-500', 'badge' => 'bg-orange-500'],
+                        ['icon' => '🥉', 'color' => 'sky', 'bg' => 'bg-sky-50', 'text' => 'text-sky-500', 'border' => 'border-t-sky-500', 'badge' => 'bg-sky-500'],
+                        ['icon' => '🎖️', 'color' => 'rose', 'bg' => 'bg-rose-50', 'text' => 'text-rose-500', 'border' => 'border-t-rose-500', 'badge' => 'bg-rose-500'],
+                        ['icon' => '🏅', 'color' => 'emerald', 'bg' => 'bg-emerald-50', 'text' => 'text-emerald-500', 'border' => 'border-t-emerald-500', 'badge' => 'bg-emerald-500'],
+                    ];
+                @endphp
 
-                <!-- Kartu 2: Ratu Minyak Jelantah -->
-                <div class="bg-white rounded-3xl p-5 sm:p-6 flex flex-col justify-between border border-slate-200 border-t-[5px] border-t-sky-500 shadow-sm hover:shadow-md transition">
-                    <div class="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center text-xl mb-4 border border-sky-100">🛢️</div>
-                    <div>
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Ratu Minyak Jelantah</div>
-                        <div class="text-lg font-bold text-slate-800 mt-1">Dewi Lestari</div>
-                        <div class="text-xs text-slate-500 font-medium">Jebres</div>
+                @forelse($pahlawanLainnya as $index => $user)
+                    @php 
+                        $style = $cardStyles[$index]; 
+                        $rank = $index + 2; // Index 0 = Rank 2
+                    @endphp
+                    <div class="bg-white rounded-3xl p-5 sm:p-6 flex flex-col justify-between border border-slate-200 border-t-[5px] {{ $style['border'] }} shadow-sm hover:shadow-md transition">
+                        <div class="w-10 h-10 rounded-xl {{ $style['bg'] }} flex items-center justify-center text-xl mb-4 border border-slate-100">
+                            {{ $style['icon'] }}
+                        </div>
+                        <div>
+                            <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Peringkat #{{ $rank }}</div>
+                            <div class="text-lg font-bold text-slate-800 mt-1 line-clamp-1">{{ $user->name }}</div>
+                            <div class="text-xs text-slate-500 font-medium">{{ number_format($user->total_poin ?? 0, 0, ',', '.') }} Poin</div>
+                        </div>
+                        <div class="mt-5">
+                            <span class="inline-block px-3 py-1.5 {{ $style['badge'] }} text-white text-[11px] font-extrabold rounded-full shadow-sm">
+                                {{ number_format($user->total_kg ?? 0, 1, ',', '.') }} Kg Disetor
+                            </span>
+                        </div>
                     </div>
-                    <div class="mt-5">
-                        <span class="inline-block px-3 py-1.5 bg-sky-500 text-white text-[11px] font-extrabold rounded-full shadow-sm">
-                            42 liter
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Kartu 3: Paling Rajin -->
-                <div class="bg-white rounded-3xl p-5 sm:p-6 flex flex-col justify-between border border-slate-200 border-t-[5px] border-t-rose-500 shadow-sm hover:shadow-md transition">
-                    <div class="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center text-xl mb-4 border border-rose-100">🔥</div>
-                    <div>
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Paling Rajin</div>
-                        <div class="text-lg font-bold text-slate-800 mt-1">Agus Prasetyo</div>
-                        <div class="text-xs text-slate-500 font-medium">Pasar Kliwon</div>
-                    </div>
-                    <div class="mt-5">
-                        <span class="inline-block px-3 py-1.5 bg-rose-500 text-white text-[11px] font-extrabold rounded-full shadow-sm">
-                            28× setor
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Kartu 4: Pendatang Baru Terbaik -->
-                <div class="bg-white rounded-3xl p-5 sm:p-6 flex flex-col justify-between border border-slate-200 border-t-[5px] border-t-emerald-500 shadow-sm hover:shadow-md transition">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-xl mb-4 border border-emerald-100">🌱</div>
-                    <div>
-                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Pendatang Baru Terbaik</div>
-                        <div class="text-lg font-bold text-slate-800 mt-1">Rina Marlina</div>
-                        <div class="text-xs text-slate-500 font-medium">Serengan</div>
-                    </div>
-                    <div class="mt-5">
-                        <span class="inline-block px-3 py-1.5 bg-emerald-500 text-white text-[11px] font-extrabold rounded-full shadow-sm">
-                            31 kg bulan ini
-                        </span>
-                    </div>
-                </div>
-
+                @empty
+                    <div class="col-span-2 text-center text-sm text-slate-400 py-10">Belum ada data pahlawan lainnya.</div>
+                @endforelse
             </div>
         </div>
     </section>

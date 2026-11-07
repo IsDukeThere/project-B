@@ -53,21 +53,32 @@ class ProductController extends Controller
     {
         $products = Product::take(4)->get(); 
         $poinMultilayer = PointConfig::where('jenis_sampah', 'Kemasan Multilayer')->value('poin_per_satuan') ?? 0;
-        $leaderboard = User::where('role', 'customer')
-            ->withSum(['deposits' => function ($query) {
-                $query->where('status', 'diterima')
-                      ->whereMonth('created_at', Carbon::now()->month)
-                      ->whereYear('created_at', Carbon::now()->year);
-            }], 'poin_didapat')
-            
-            ->orderByDesc('deposits_sum_poin_didapat')
-            ->take(10)
-            ->get();
+        $leaderboard = User::selectRaw('
+            users.id, 
+            users.name, 
+            SUM(deposits.poin_didapat) as total_poin, 
+            SUM(deposits.berat) as total_kg 
+        ')
+        ->join('deposits', 'users.id', '=', 'deposits.user_id')
+
+        ->where('users.role', 'customer')
+        ->where('deposits.status', 'diterima')
+        ->whereMonth('deposits.created_at', Carbon::now()->month)
+        ->whereYear('deposits.created_at', Carbon::now()->year)
+
+        ->groupBy('users.id', 'users.name')
+        ->orderByDesc('total_poin')
+        ->take(5)
+        ->get();
+
+        $pahlawanUtama = $leaderboard->first();
+        $pahlawanLainnya = $leaderboard->slice(1, 4);
 
         return view('pages.home', compact(
             'products', 
             'poinMultilayer',
-            'leaderboard'
+            'pahlawanUtama', 
+            'pahlawanLainnya'
             ));
     }
 }
