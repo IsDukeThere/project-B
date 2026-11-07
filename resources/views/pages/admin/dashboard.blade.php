@@ -6,7 +6,7 @@
 <div class="space-y-8">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Selamat Pagi, Admin 👋</h1>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Selamat Datang, Admin 👋</h1>
             <p class="text-xs sm:text-sm text-slate-500 mt-1">Ringkasan operasional daur ulang dan status per hari ini</p>
         </div>
         <a href="{{ route('admin.deposits.index') }}" class="bg-amber-100 border border-amber-300 text-amber-900 px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2 hover:bg-amber-200 transition">
@@ -64,8 +64,8 @@
                         <div>
                             <h4 class="font-bold text-xs text-slate-900">{{ $deposit->user->name ?? 'Anonim' }} • {{ $deposit->jenis_sampah }}</h4>
                             <p class="text-[11px] text-slate-400">
-                                {{ number_format($deposit->berat, 1, ',', '.') }} {{ $deposit->jenis_sampah == 'Minyak Jelantah' ? 'L' : 'kg' }} • 
-                                {{ \Carbon\Carbon::parse($deposit->created_at)->translatedFormat('j M') }} • 
+                                {{ number_format($deposit->berat, 1, ',', '.') }} {{ $deposit->jenis_sampah == 'Minyak Jelantah' ? 'L' : 'kg' }} •
+                                {{ \Carbon\Carbon::parse($deposit->created_at)->translatedFormat('j M') }} •
                                 {{ $deposit->metode_setor }}
                             </p>
                         </div>
