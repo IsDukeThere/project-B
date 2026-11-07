@@ -85,53 +85,137 @@
         </a>
     </div>
 
-    <section id="pahlawan" class="space-y-7">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+    <section id="pahlawan" class="bg-[#111820] p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl">
+        <!-- HEADER SECTION -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5">
             <div>
-                <div class="text-xs uppercase font-extrabold tracking-wider text-emerald-700">Hall of Fame</div>
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-1">Pahlawan Sampah Kami</h2>
-                <p class="text-xs sm:text-sm text-slate-500 max-w-xl mt-1">
+                <div class="text-xs uppercase font-extrabold tracking-wider text-emerald-500">Hall of Fame</div>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mt-1">Pahlawan Sampah Kami</h2>
+                <p class="text-sm text-slate-400 max-w-xl mt-2 leading-relaxed">
                     Bukan sekadar peringkat. Kami merayakan setiap kebiasaan baik warga yang membuat sampah punya kehidupan kedua.
                 </p>
             </div>
-            <span class="self-start sm:self-auto text-xs font-bold text-emerald-800 bg-emerald-100 px-3.5 py-1.5 rounded-full">
+            <div class="self-start lg:self-auto text-xs font-bold text-emerald-300 bg-emerald-900/40 border border-emerald-800/60 px-4 py-2 rounded-full flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                 Diperbarui 7 November 2026 · Periode Oktober 2026
-            </span>
+            </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-            <article class="lg:col-span-5 spot-hof flex flex-col justify-between">
-                <div>
-                    <span class="ribbon-gold">Pahlawan Bulan Ini</span>
+        <!-- GRID LAYOUT -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mt-8 items-stretch">
+            
+            <!-- KIRI: PAHLAWAN BULAN INI (COL-SPAN-5) -->
+            <article class="lg:col-span-5 bg-gradient-to-br from-[#0c5c3e] to-[#073f29] rounded-[2rem] p-6 sm:p-8 flex flex-col justify-between border border-[#147953] shadow-lg relative overflow-hidden">
+                <!-- Efek Lingkaran Latar (Opsional untuk estetika) -->
+                <div class="absolute -top-20 -right-20 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <!-- Badge -->
+                    <span class="bg-amber-400 text-amber-950 text-[11px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-md">
+                        Pahlawan Bulan Ini
+                    </span>
                     
-                    <div class="rw-avatar-ring">
-                        <div class="crown-float">👑</div>
-                        <div class="face-avatar">SW</div>
+                    <!-- Avatar & Crown -->
+                    <div class="relative mt-6 mb-4">
+                        <div class="absolute -top-5 left-1/2 -translate-x-1/2 text-2xl drop-shadow-md z-20">👑</div>
+                        <div class="w-24 h-24 rounded-full border-4 border-[#0c5c3e] outline outline-4 outline-amber-400/90 bg-emerald-400 flex items-center justify-center text-3xl font-extrabold text-white shadow-xl">
+                            SW
+                        </div>
                     </div>
 
-                    <h3 class="text-2xl font-extrabold text-white mt-1">Sri Wahyuni</h3>
-                    <div class="text-emerald-200 text-xs font-semibold mt-1">📍 Laweyan</div>
+                    <!-- Info -->
+                    <h3 class="text-2xl font-extrabold text-white mt-2">Sri Wahyuni</h3>
+                    <div class="text-emerald-300 text-xs font-semibold mt-1 flex items-center gap-1 justify-center">
+                        📍 Laweyan
+                    </div>
 
-                    <blockquote class="my-4 max-w-xs mx-auto text-xs sm:text-sm text-emerald-100 italic leading-relaxed">
-                        “Awalnya hanya iseng kumpulkan sachet di rumah, sekarang tetangga ikut setor bersama.”
+                    <!-- Quote -->
+                    <blockquote class="mt-5 mb-2 max-w-xs mx-auto text-[13px] sm:text-sm text-emerald-50 italic leading-relaxed font-medium">
+                        "Awalnya hanya iseng kumpulkan sachet di rumah, sekarang tetangga ikut setor bersama."
                     </blockquote>
                 </div>
 
-                <div class="grid grid-cols-3 gap-2.5 mt-4">
-                    <div class="bg-black/25 rounded-2xl p-3 text-center">
-                        <b class="block text-lg font-black text-amber-300">148,5</b>
-                        <span class="text-[11px] text-emerald-200">kg disetor</span>
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-2.5 mt-6 relative z-10">
+                    <div class="bg-black/20 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/5">
+                        <b class="block text-lg sm:text-xl font-black text-amber-300">148,5</b>
+                        <span class="text-[10px] text-emerald-100 font-medium">kg disetor</span>
                     </div>
-                    <div class="bg-black/25 rounded-2xl p-3 text-center">
-                        <b class="block text-lg font-black text-amber-300">23×</b>
-                        <span class="text-[11px] text-emerald-200">setoran</span>
+                    <div class="bg-black/20 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/5">
+                        <b class="block text-lg sm:text-xl font-black text-amber-300">23×</b>
+                        <span class="text-[10px] text-emerald-100 font-medium">setoran</span>
                     </div>
-                    <div class="bg-black/25 rounded-2xl p-3 text-center">
-                        <b class="block text-lg font-black text-amber-300">98.400</b>
-                        <span class="text-[11px] text-emerald-200">sachet</span>
+                    <div class="bg-black/20 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/5">
+                        <b class="block text-lg sm:text-xl font-black text-amber-300">98.400</b>
+                        <span class="text-[10px] text-emerald-100 font-medium">sachet</span>
                     </div>
                 </div>
             </article>
+
+            <!-- KANAN: GRID 4 KARTU LEADERBOARD (COL-SPAN-7) -->
+            <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                
+                <!-- Kartu 1: Raja Sachet -->
+                <div class="bg-[#1b2228] rounded-3xl p-5 sm:p-6 flex flex-col justify-between border-t-[5px] border-orange-500 shadow-md">
+                    <div class="w-10 h-10 rounded-xl bg-slate-800/80 flex items-center justify-center text-xl shadow-inner mb-4">🧃</div>
+                    <div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Raja Sachet</div>
+                        <div class="text-lg font-bold text-white mt-1">Budi Santoso</div>
+                        <div class="text-xs text-slate-500 font-medium">Banjarsari</div>
+                    </div>
+                    <div class="mt-5">
+                        <span class="inline-block px-3 py-1.5 bg-orange-500 text-white text-[11px] font-extrabold rounded-full shadow-sm">
+                            72.300 sachet
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Kartu 2: Ratu Minyak Jelantah -->
+                <div class="bg-[#1b2228] rounded-3xl p-5 sm:p-6 flex flex-col justify-between border-t-[5px] border-sky-500 shadow-md">
+                    <div class="w-10 h-10 rounded-xl bg-slate-800/80 flex items-center justify-center text-xl shadow-inner mb-4">🛢️</div>
+                    <div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Ratu Minyak Jelantah</div>
+                        <div class="text-lg font-bold text-white mt-1">Dewi Lestari</div>
+                        <div class="text-xs text-slate-500 font-medium">Jebres</div>
+                    </div>
+                    <div class="mt-5">
+                        <span class="inline-block px-3 py-1.5 bg-sky-500 text-white text-[11px] font-extrabold rounded-full shadow-sm">
+                            42 liter
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Kartu 3: Paling Rajin -->
+                <div class="bg-[#1b2228] rounded-3xl p-5 sm:p-6 flex flex-col justify-between border-t-[5px] border-rose-500 shadow-md">
+                    <div class="w-10 h-10 rounded-xl bg-slate-800/80 flex items-center justify-center text-xl shadow-inner mb-4">🔥</div>
+                    <div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Paling Rajin</div>
+                        <div class="text-lg font-bold text-white mt-1">Agus Prasetyo</div>
+                        <div class="text-xs text-slate-500 font-medium">Pasar Kliwon</div>
+                    </div>
+                    <div class="mt-5">
+                        <span class="inline-block px-3 py-1.5 bg-rose-500 text-white text-[11px] font-extrabold rounded-full shadow-sm">
+                            28× setor
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Kartu 4: Pendatang Baru Terbaik -->
+                <div class="bg-[#1b2228] rounded-3xl p-5 sm:p-6 flex flex-col justify-between border-t-[5px] border-emerald-500 shadow-md">
+                    <div class="w-10 h-10 rounded-xl bg-slate-800/80 flex items-center justify-center text-xl shadow-inner mb-4">🌱</div>
+                    <div>
+                        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Pendatang Baru Terbaik</div>
+                        <div class="text-lg font-bold text-white mt-1">Rina Marlina</div>
+                        <div class="text-xs text-slate-500 font-medium">Serengan</div>
+                    </div>
+                    <div class="mt-5">
+                        <span class="inline-block px-3 py-1.5 bg-emerald-500 text-white text-[11px] font-extrabold rounded-full shadow-sm">
+                            31 kg bulan ini
+                        </span>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
