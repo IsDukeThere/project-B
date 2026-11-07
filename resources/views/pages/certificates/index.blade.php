@@ -11,6 +11,16 @@
             transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
         }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute; inset: 0; width: 100%; height: 100%;
+            backface-visibility: hidden; -webkit-backface-visibility: hidden;
+            border-radius: 28px;
+        }
+        .flip-card-back { transform: rotateY(180deg); }
+        /* Hover Lift Effect */
+        .card-perspective:hover .flip-card-inner:not(.is-flipped) { transform: translateY(-8px) rotateX(4deg); }
+
         @keyframes flowGreen { 0% { stroke-dashoffset: 28; } 100% { stroke-dashoffset: 0; } }
         @keyframes flowBlue { 0% { stroke-dashoffset: 28; } 100% { stroke-dashoffset: 0; } }
         .animate-flow-green { stroke-dasharray: 6 6; animation: flowGreen var(--anim-speed, 1.4s) linear infinite; }
@@ -633,10 +643,10 @@
         </div>
 
         <!-- TABLE SECTION -->
-        <div class="rounded-3xl bg-slate-900/90 border border-slate-800 p-6 space-y-5">
-            <div class="flex justify-between items-center">
-                <h2 class="text-lg font-bold text-white"><span class="text-emerald-400">📋</span> Tabel Penyebaran Produk</h2>
-                <input type="text" id="search-province" onkeyup="filterTable()" placeholder="Cari wilayah..." class="w-64 px-4 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200">
+        <div class="rounded-3xl bg-white border border-slate-200 p-6 space-y-5 shadow-sm mt-6">
+            <div class="flex flex-wrap justify-between items-center gap-4">
+                <h2 class="text-lg font-bold text-slate-800"><span class="text-emerald-500">📋</span> Tabel Penyebaran Produk</h2>
+                <input type="text" id="search-province" onkeyup="filterTable()" placeholder="Cari wilayah..." class="w-full sm:w-64 px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition">
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-3" id="table-grid-container">
                 <!-- Rendered by JS -->
@@ -818,15 +828,16 @@
 
         function renderTable() {
             const container = document.getElementById('table-grid-container');
+            container.innerHTML = ''; // Kosongkan dulu
             sebaranData.forEach(item => {
                 const isGreen = item.hub === 'jakarta';
                 container.innerHTML += `
-                    <div id="card-${item.kode}" class="table-card p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80 cursor-pointer flex justify-between" onclick="highlightRegion('${item.kode}')">
+                    <div id="card-${item.kode}" class="table-card p-2.5 rounded-xl bg-white border border-slate-200 hover:border-emerald-400 hover:shadow-md cursor-pointer flex justify-between items-center transition" onclick="highlightRegion('${item.kode}')">
                         <div class="flex items-center gap-2">
-                            <span class="w-5 h-5 rounded-md ${isGreen ? 'bg-emerald-500/20 text-emerald-400' : 'bg-sky-500/20 text-sky-400'} flex items-center justify-center text-[10px]">${item.no}</span>
-                            <span class="font-semibold text-xs text-slate-300">${item.nama}</span>
+                            <span class="w-5 h-5 rounded-md ${isGreen ? 'bg-emerald-100 text-emerald-600' : 'bg-sky-100 text-sky-600'} flex items-center justify-center text-[10px] font-bold">${item.no}</span>
+                            <span class="font-semibold text-xs text-slate-700">${item.nama}</span>
                         </div>
-                        <span class="px-2 py-0.5 rounded-md ${isGreen ? 'bg-emerald-950 text-emerald-300' : 'bg-sky-950 text-sky-300'} text-xs">${item.jumlah}</span>
+                        <span class="px-2 py-0.5 rounded-md ${isGreen ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-sky-50 text-sky-600 border border-sky-100'} text-xs font-bold">${item.jumlah}</span>
                     </div>`;
             });
         }
@@ -834,20 +845,40 @@
         function showTooltip(evt, data) {
             const t = document.getElementById('map-tooltip');
             const rect = document.getElementById('map-viewport').getBoundingClientRect();
+            
             document.getElementById('tooltip-title').textContent = data.nama;
             document.getElementById('tooltip-count').textContent = data.jumlah + ' Produk';
             document.getElementById('tooltip-sub').textContent = data.pulau;
-            t.style.left = `${(evt.clientX || (rect.left + (data.x / 1200) * rect.width)) - rect.left}px`;
-            t.style.top = `${(evt.clientY || (rect.top + (data.y / 580) * rect.height)) - rect.top}px`;
+
+            const xPos = (data.x / 1200) * rect.width;
+            const yPos = (data.y / 580) * rect.height;
+
+            t.style.left = `${xPos}px`;
+            t.style.top = `${yPos}px`;
             t.style.opacity = '1';
         }
         
         function hideTooltip() { document.getElementById('map-tooltip').style.opacity = '0'; }
         
         function highlightRegion(kode) {
-            document.querySelectorAll('.table-card').forEach(c => c.classList.remove('ring-2', 'ring-emerald-400', 'bg-slate-800'));
+            document.querySelectorAll('.table-card').forEach(c => {
+                c.classList.remove('ring-2', 'ring-emerald-500', 'bg-slate-50');
+            });
+
             const card = document.getElementById(`card-${kode}`);
-            if(card) card.classList.add('ring-2', 'ring-emerald-400', 'bg-slate-800');
+            if(card) {
+                card.classList.add('ring-2', 'ring-emerald-500', 'bg-slate-50');
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            const marker = document.getElementById(`marker-${kode}`);
+            if (marker) {
+                marker.animate([
+                    { transform: 'scale(1)' },
+                    { transform: 'scale(1.8)' },
+                    { transform: 'scale(1)' }
+                ], { duration: 600, easing: 'ease-in-out' });
+            }
         }
         
         function setFilter(filter) {
@@ -860,7 +891,24 @@
             document.querySelectorAll('.table-card').forEach(c => c.style.display = c.textContent.toLowerCase().includes(query) ? 'flex' : 'none');
         }
         
-        function setSpeed(speed) { document.documentElement.style.setProperty('--anim-speed', `${speed}s`); }
+        function setSpeed(speed) { 
+            currentSpeed = speed;
+            document.documentElement.style.setProperty('--anim-speed', `${speed}s`); 
+            
+            document.querySelectorAll('.speed-btn').forEach(btn => {
+                btn.classList.remove('bg-slate-800', 'text-white');
+                btn.classList.add('text-slate-400');
+            });
+
+            const activeId = speed === 2.2 ? 'speed-slow' : speed === 1.4 ? 'speed-normal' : 'speed-fast';
+            const activeBtn = document.getElementById(activeId);
+            if(activeBtn) {
+                activeBtn.classList.remove('text-slate-400');
+                activeBtn.classList.add('bg-slate-800', 'text-white');
+            }
+
+            renderMap();
+        }
         
         function toggleAnimation() {
             const svg = document.getElementById('persebaran-svg');
