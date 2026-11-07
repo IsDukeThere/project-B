@@ -64,32 +64,5 @@
     <form id="logoutForm" action="{{ route('logout') }}" method="POST" class="hidden">
         @csrf
     </form>
-
-    <script>
-        window.openLogoutModal = function() {
-            const modal = document.getElementById('logoutModal');
-            const container = document.getElementById('modalContainer');
-            if(modal && container) {
-                modal.classList.remove('opacity-0', 'pointer-events-none');
-                container.classList.remove('scale-95');
-                container.classList.add('scale-100');
-            }
-        }
-
-        window.closeLogoutModal = function() {
-            const modal = document.getElementById('logoutModal');
-            const container = document.getElementById('modalContainer');
-            if(modal && container) {
-                modal.classList.add('opacity-0', 'pointer-events-none');
-                container.classList.remove('scale-100');
-                container.classList.add('scale-95');
-            }
-        }
-
-        window.executeLogout = function() {
-            const form = document.getElementById('logoutForm');
-            if(form) { form.submit(); }
-        }
-    </script>
 </body>
 </html>
