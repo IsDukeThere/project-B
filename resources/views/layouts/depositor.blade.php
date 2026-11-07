@@ -76,31 +76,40 @@
                     <span>Hello!, {{ auth()->user()->name }}</span>
                 </a>
 
-                    <button type="button" onclick="document.getElementById('logoutModal').classList.remove('opacity-0', 'pointer-events-none'); document.getElementById('modalContainer').classList.remove('scale-95'); document.getElementById('modalContainer').classList.add('scale-100');" class="text-xs text-rose-600 hover:underline font-semibold px-2 py-1">
+                    <button type="button" onclick="openLogoutModal()" class="text-xs text-rose-600 hover:underline font-semibold px-2 py-1">
                         Keluar
                     </button>
 
-                    <div id="logoutModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
-                        <div class="bg-white rounded-3xl p-6 max-w-sm w-full mx-4 shadow-2xl transform scale-95 transition-transform duration-300" id="modalContainer">
-                            <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center text-xl mb-4 border border-rose-100">
+                    <div id="logoutModal" class="fixed inset-0 z-[99999] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 px-4"
+                        onclick="if(event.target === this) { closeLogoutModal(); }">
+
+                        <div class="bg-white rounded-[2rem] p-6 sm:p-8 max-w-sm w-full shadow-2xl transform scale-95 transition-transform duration-300 relative border border-slate-100" id="modalContainer">
+
+                            <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center text-xl mb-4 border border-rose-100 shadow-inner">
                                 ⚠️
                             </div>
-                            <h3 class="text-lg font-extrabold text-slate-800">Yakin ingin keluar?</h3>
-                            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+
+                            <h3 class="text-xl font-extrabold text-slate-900">Yakin ingin keluar?</h3>
+                            <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
                                 Sesi akan diakhiri dan harus login ulang untuk masuk kembali.
                             </p>
-                            <div class="flex items-center gap-3 mt-6">
-                                <button type="button" onclick="document.getElementById('logoutModal').classList.add('opacity-0', 'pointer-events-none'); document.getElementById('modalContainer').classList.remove('scale-100'); document.getElementById('modalContainer').classList.add('scale-95');" class="flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-bold text-xs hover:bg-slate-50 transition">
+
+                            <div class="flex items-center gap-3 mt-7">
+                                <!-- Tombol Batal -->
+                                <button type="button" onclick="closeLogoutModal()" class="flex-1 py-3 rounded-2xl border border-slate-200 text-slate-700 font-bold text-xs hover:bg-slate-50 transition active:scale-95">
                                     Batal
                                 </button>
-                                <button type="button" onclick="executeLogout()" class="flex-1 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs shadow-md shadow-rose-500/20 transition">
+
+                                <!-- Tombol Ya, Keluar -->
+                                <button type="button" onclick="document.getElementById('realLogoutForm').submit();" class="flex-1 py-3 rounded-2xl bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs shadow-lg shadow-rose-500/30 transition active:scale-95">
                                     Ya, Keluar
                                 </button>
                             </div>
+
                         </div>
                     </div>
 
-                    <form id="logoutForm" action="{{ route('logout') }}" method="POST" class="hidden">
+                    <form id="realLogoutForm" action="{{ route('logout') }}" method="POST" class="hidden">
                         @csrf
                     </form>
             </div>
