@@ -164,8 +164,8 @@
 
                 @forelse($pahlawanLainnya as $index => $user)
                     @php
-                        $style = $cardStyles[$index];
-                        $rank = $index + 1; // Index 0 = Rank 2
+                        $style = $cardStyles[$loop->index];
+                        $rank = $loop->index + 2;
                     @endphp
                     <div class="bg-white rounded-3xl p-5 sm:p-6 flex flex-col justify-between border border-slate-200 border-t-[5px] {{ $style['border'] }} shadow-sm hover:shadow-md transition">
                         <div class="w-10 h-10 rounded-xl {{ $style['bg'] }} flex items-center justify-center text-xl mb-4 border border-slate-100">
