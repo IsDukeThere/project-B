@@ -2670,15 +2670,15 @@ function openLogoutModal() {
         }
     }
 
-    function closeLogoutModal() {
-        const modal = document.getElementById('logoutModal');
-        const container = document.getElementById('modalContainer');
-        if(modal && container) {
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            container.classList.remove('scale-100');
-            container.classList.add('scale-95');
-        }
+function closeLogoutModal() {
+    const modal = document.getElementById('logoutModal');
+    const container = document.getElementById('modalContainer');
+    if(modal && container) {
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        container.classList.remove('scale-100');
+        container.classList.add('scale-95');
     }
+}
 
 window.executeLogout = function() {
     const form = document.getElementById('logoutForm');
