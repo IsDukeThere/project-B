@@ -53,13 +53,13 @@
             <div class="pb-card p-6 bg-gradient-to-br from-emerald-800 to-teal-900 text-white rounded-3xl shadow-md hover:shadow-2xl hover:-translate-y-1.5 border border-emerald-700/50 transition-all duration-300 flex flex-col justify-between gap-5 group relative overflow-hidden">
                 <!-- Watermark ikon samar di latar belakang -->
                 <div class="absolute -right-4 -bottom-4 text-7xl opacity-15 pointer-events-none select-none group-hover:scale-110 transition-transform duration-500">
-                    🍜
+                    <img src="{{ asset('ico/icon-multilayer.jpeg') }}" alt="Icon Multilayer" class="w-6 h-6 object-contain">
                 </div>
 
                 <div class="flex items-start justify-between gap-4 relative z-10">
                     <div class="flex items-center gap-3.5">
                         <div class="w-13 h-13 rounded-2xl bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center text-3xl shadow-inner group-hover:scale-110 transition-transform">
-                            🍜
+                            <img src="{{ asset('ico/icon-multilayer.jpeg') }}" alt="Icon Multilayer" class="w-6 h-6 object-contain">
                         </div>
                         <div>
                             <span class="text-[10px] font-bold tracking-wider uppercase text-emerald-300 block">Kategori 01</span>
@@ -84,13 +84,13 @@
             <!-- Card 2: Minyak Jelantah (Card Elegan dengan Ilustrasi Gambar) -->
             <div class="pb-card p-6 bg-white rounded-3xl shadow-md hover:shadow-2xl hover:-translate-y-1.5 border border-slate-100 hover:border-emerald-300 transition-all duration-300 flex flex-col justify-between gap-5 group relative overflow-hidden">
                 <div class="absolute -right-4 -bottom-4 text-7xl opacity-5 pointer-events-none select-none group-hover:scale-110 transition-transform duration-500">
-                    🛢️
+                    <img src="{{ asset('icon-MinyakJelantah.jpeg') }}" alt="Icon Multilayer" class="w-6 h-6 object-contain">
                 </div>
 
                 <div class="flex items-start justify-between gap-4 relative z-10">
                     <div class="flex items-center gap-3.5">
                         <div class="w-13 h-13 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-3xl shadow-xs group-hover:scale-110 transition-transform">
-                            🛢️
+                            <img src="{{ asset('icon-MinyakJelantah.jpeg') }}" alt="Icon Multilayer" class="w-6 h-6 object-contain">
                         </div>
                         <div>
                             <span class="text-[10px] font-bold tracking-wider uppercase text-emerald-700 block">Kategori 02</span>
@@ -334,7 +334,7 @@
                     </div>
                 </div>
 
-                <a href="https://maps.app.goo.gl/uL7YM4hXxWefP2Eq6" class="inline-flex items-center justify-between p-3.5 rounded-2xl bg-emerald-50 hover:bg-emerald-700 text-emerald-900 hover:text-white font-bold text-xs transition-all duration-200 group/btn mt-2">
+                <a href="https://maps.app.goo.gl/uL7YM4hXxWefP2Eq6" target="_blank" class="inline-flex items-center justify-between p-3.5 rounded-2xl bg-emerald-50 hover:bg-emerald-700 text-emerald-900 hover:text-white font-bold text-xs transition-all duration-200 group/btn mt-2 block">
                     <span>Lihat Alamat Lengkap & Titik Kirim</span>
                     <span class="transition-transform duration-200 group-hover/btn:translate-x-1.5">→</span>
                 </a>
