@@ -8,20 +8,34 @@
         .flip-card-inner {
             position: relative; width: 100%; height: 100%;
             transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d; /* Fix Safari */
             transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
         }
-
-        .flip-card-inner.is-flipped { transform: rotateY(180deg); }
-
+        
+        .flip-card-inner.is-flipped { 
+            transform: rotateY(180deg); 
+            -webkit-transform: rotateY(180deg); /* Fix Safari */
+        }
+        
         .flip-card-front, .flip-card-back {
             position: absolute; inset: 0; width: 100%; height: 100%;
-            backface-visibility: hidden; -webkit-backface-visibility: hidden;
+            backface-visibility: hidden; 
+            -webkit-backface-visibility: hidden; /* Fix Safari */
+            /* Paksa rendering GPU agar depan-belakang tidak tembus di HP */
+            transform: rotateY(0deg) translateZ(0); 
+            -webkit-transform: rotateY(0deg) translateZ(0);
             border-radius: 28px;
         }
-        .flip-card-back { transform: rotateY(180deg); }
-        /* Hover Lift Effect */
-        .card-perspective:hover .flip-card-inner:not(.is-flipped) { transform: translateY(-8px) rotateX(4deg); }
+        
+        .flip-card-back { 
+            transform: rotateY(180deg) translateZ(0); 
+            -webkit-transform: rotateY(180deg) translateZ(0); 
+        }
+        
+        .card-perspective:hover .flip-card-inner:not(.is-flipped) { 
+            transform: translateY(-8px) rotateX(4deg); 
+        }
 
         @keyframes flowGreen { 0% { stroke-dashoffset: 28; } 100% { stroke-dashoffset: 0; } }
         @keyframes flowBlue { 0% { stroke-dashoffset: 28; } 100% { stroke-dashoffset: 0; } }
@@ -110,7 +124,7 @@
         <div class="flip-card-inner rounded-[28px] focus:outline-none" onclick="toggleCard(this)" tabindex="0" onkeydown="handleCardKey(event, this)">
           
           <!-- SISI DEPAN (FRONT) -->
-          <div class="flip-card-front p-6 flex flex-col justify-between text-white shadow-2xl shadow-black/40 bg-gradient-to-b from-[#FD9D24] to-[#E58814] border border-white/20 overflow-hidden text-left">
+          <div class="flip-card-front p-6 flex flex-col justify-between text-white shadow-2xl shadow-black/40 bg-gradient-to-b from-[#FD9D24] to-[#E58814] border border-white/20 text-left">
             <!-- Watermark Nomor Besar -->
             <div class="absolute -right-8 -bottom-10 pointer-events-none opacity-10 select-none">
               <span class="text-[14rem] font-black leading-none">11</span>
@@ -164,7 +178,7 @@
           </div>
 
           <!-- SISI BELAKANG (BACK) -->
-          <div class="flip-card-back p-6 flex flex-col justify-between text-slate-100 shadow-2xl shadow-black/40 bg-slate-900 border border-slate-700/80 overflow-hidden text-left">
+          <div class="flip-card-back p-6 flex flex-col justify-between text-slate-100 shadow-2xl shadow-black/40 bg-slate-900 border border-slate-700/80 text-left">
             <div class="absolute top-0 left-0 right-0 h-2 bg-[#FD9D24]"></div>
             
             <div class="space-y-3 relative z-10">
@@ -219,7 +233,7 @@
         <div class="flip-card-inner rounded-[28px] focus:outline-none" onclick="toggleCard(this)" tabindex="0" onkeydown="handleCardKey(event, this)">
           
           <!-- SISI DEPAN (FRONT) -->
-          <div class="flip-card-front p-6 flex flex-col justify-between text-white shadow-2xl shadow-black/40 bg-gradient-to-b from-[#BF8B2E] to-[#A47420] border border-white/20 overflow-hidden text-left">
+          <div class="flip-card-front p-6 flex flex-col justify-between text-white shadow-2xl shadow-black/40 bg-gradient-to-b from-[#BF8B2E] to-[#A47420] border border-white/20 text-left">
             <div class="absolute -right-8 -bottom-10 pointer-events-none opacity-10 select-none">
               <span class="text-[14rem] font-black leading-none">12</span>
             </div>
@@ -268,7 +282,7 @@
           </div>
 
           <!-- SISI BELAKANG (BACK) -->
-          <div class="flip-card-back p-6 flex flex-col justify-between text-slate-100 shadow-2xl shadow-black/40 bg-slate-900 border border-slate-700/80 overflow-hidden text-left">
+          <div class="flip-card-back p-6 flex flex-col justify-between text-slate-100 shadow-2xl shadow-black/40 bg-slate-900 border border-slate-700/80 text-left">
             <div class="absolute top-0 left-0 right-0 h-2 bg-[#BF8B2E]"></div>
             
             <div class="space-y-3 relative z-10">
@@ -323,7 +337,7 @@
         <div class="flip-card-inner rounded-[28px] focus:outline-none" onclick="toggleCard(this)" tabindex="0" onkeydown="handleCardKey(event, this)">
           
           <!-- SISI DEPAN (FRONT) -->
-          <div class="flip-card-front p-6 flex flex-col justify-between text-white shadow-2xl shadow-black/40 bg-gradient-to-b from-[#A21942] to-[#861234] border border-white/20 overflow-hidden text-left">
+          <div class="flip-card-front p-6 flex flex-col justify-between text-white shadow-2xl shadow-black/40 bg-gradient-to-b from-[#A21942] to-[#861234] border border-white/20 text-left">
             <div class="absolute -right-8 -bottom-10 pointer-events-none opacity-10 select-none">
               <span class="text-[14rem] font-black leading-none">8</span>
             </div>
@@ -372,7 +386,7 @@
           </div>
 
           <!-- SISI BELAKANG (BACK) -->
-          <div class="flip-card-back p-6 flex flex-col justify-between text-slate-100 shadow-2xl shadow-black/40 bg-slate-900 border border-slate-700/80 overflow-hidden text-left">
+          <div class="flip-card-back p-6 flex flex-col justify-between text-slate-100 shadow-2xl shadow-black/40 bg-slate-900 border border-slate-700/80 text-left">
             <div class="absolute top-0 left-0 right-0 h-2 bg-[#A21942]"></div>
             
             <div class="space-y-3 relative z-10">
@@ -427,7 +441,7 @@
         <div class="flip-card-inner rounded-[28px] focus:outline-none" onclick="toggleCard(this)" tabindex="0" onkeydown="handleCardKey(event, this)">
           
           <!-- SISI DEPAN (FRONT) -->
-          <div class="flip-card-front p-6 flex flex-col justify-between text-white shadow-2xl shadow-black/40 bg-gradient-to-b from-[#F36E25] to-[#D55A16] border border-white/20 overflow-hidden text-left">
+          <div class="flip-card-front p-6 flex flex-col justify-between text-white shadow-2xl shadow-black/40 bg-gradient-to-b from-[#F36E25] to-[#D55A16] border border-white/20 text-left">
             <div class="absolute -right-8 -bottom-10 pointer-events-none opacity-10 select-none">
               <span class="text-[14rem] font-black leading-none">9</span>
             </div>
@@ -476,7 +490,7 @@
           </div>
 
           <!-- SISI BELAKANG (BACK) -->
-          <div class="flip-card-back p-6 flex flex-col justify-between text-slate-100 shadow-2xl shadow-black/40 bg-slate-900 border border-slate-700/80 overflow-hidden text-left">
+          <div class="flip-card-back p-6 flex flex-col justify-between text-slate-100 shadow-2xl shadow-black/40 bg-slate-900 border border-slate-700/80 text-left">
             <div class="absolute top-0 left-0 right-0 h-2 bg-[#F36E25]"></div>
             
             <div class="space-y-3 relative z-10">
@@ -849,19 +863,16 @@
         function showTooltip(evt, data) {
             const t = document.getElementById('map-tooltip');
             const rect = document.getElementById('map-viewport').getBoundingClientRect();
-            
-            document.getElementById('tooltip-title').textContent = data.nama;
-            document.getElementById('tooltip-count').textContent = data.jumlah + ' Produk';
-            document.getElementById('tooltip-sub').textContent = data.pulau;
 
-            const scaleX = rect.width / 1200;
-            const scaleY = rect.height / 580;
-            
-            const xPos = data.x * scaleX;
-            const yPos = data.y * scaleY - 12;
-            
-            t.style.left = `${xPos}px`;
-            t.style.top = `${yPos}px`;
+            document.getElementById('tooltip-title').textContent = data.nama || 'Tidak diketahui';
+            document.getElementById('tooltip-count').textContent = (data.jumlah || 0) + ' Produk';
+            document.getElementById('tooltip-sub').textContent = data.pulau || 'Indonesia';
+
+            const mouseX = evt.clientX - rect.left;
+            const mouseY = evt.clientY - rect.top;
+
+            t.style.left = `${mouseX}px`;
+            t.style.top = `${mouseY - 20}px`;
             t.style.opacity = '1';
         }
         
