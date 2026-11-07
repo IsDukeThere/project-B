@@ -85,6 +85,56 @@
         </a>
     </div>
 
+    <section id="pahlawan" class="space-y-7">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+                <div class="text-xs uppercase font-extrabold tracking-wider text-emerald-700">Hall of Fame</div>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-1">Pahlawan Sampah Kami</h2>
+                <p class="text-xs sm:text-sm text-slate-500 max-w-xl mt-1">
+                    Bukan sekadar peringkat. Kami merayakan setiap kebiasaan baik warga yang membuat sampah punya kehidupan kedua.
+                </p>
+            </div>
+            <span class="self-start sm:self-auto text-xs font-bold text-emerald-800 bg-emerald-100 px-3.5 py-1.5 rounded-full">
+                Diperbarui 7 November 2026 · Periode Oktober 2026
+            </span>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            <article class="lg:col-span-5 spot-hof flex flex-col justify-between">
+                <div>
+                    <span class="ribbon-gold">Pahlawan Bulan Ini</span>
+                    
+                    <div class="rw-avatar-ring">
+                        <div class="crown-float">👑</div>
+                        <div class="face-avatar">SW</div>
+                    </div>
+
+                    <h3 class="text-2xl font-extrabold text-white mt-1">Sri Wahyuni</h3>
+                    <div class="text-emerald-200 text-xs font-semibold mt-1">📍 Laweyan</div>
+
+                    <blockquote class="my-4 max-w-xs mx-auto text-xs sm:text-sm text-emerald-100 italic leading-relaxed">
+                        “Awalnya hanya iseng kumpulkan sachet di rumah, sekarang tetangga ikut setor bersama.”
+                    </blockquote>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2.5 mt-4">
+                    <div class="bg-black/25 rounded-2xl p-3 text-center">
+                        <b class="block text-lg font-black text-amber-300">148,5</b>
+                        <span class="text-[11px] text-emerald-200">kg disetor</span>
+                    </div>
+                    <div class="bg-black/25 rounded-2xl p-3 text-center">
+                        <b class="block text-lg font-black text-amber-300">23×</b>
+                        <span class="text-[11px] text-emerald-200">setoran</span>
+                    </div>
+                    <div class="bg-black/25 rounded-2xl p-3 text-center">
+                        <b class="block text-lg font-black text-amber-300">98.400</b>
+                        <span class="text-[11px] text-emerald-200">sachet</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
     <!-- Produk Unggulan -->
     <div class="space-y-4">
         <div class="flex items-center justify-between">
