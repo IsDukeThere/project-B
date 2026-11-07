@@ -12,23 +12,23 @@
         <!-- Navigation Menu -->
         <nav class="space-y-1.5 text-xs font-semibold">
             <a href="{{ route('admin.dashboard') }}"
-                class="flex items-center gap-3 px-4 py-3 rounded-2xl transition {{ request()->routeIs('admin.dashboard') ? 'bg-amber-500 text-slate-50 font-bold shadow-lg' : 'text-slate-400 hover:text-slate-800 hover:bg-slate-50' }}">
+                class="flex items-center gap-3 px-4 py-3 rounded-2xl transition {{ request()->routeIs('admin.dashboard') ? 'bg-amber-500 text-slate-50 font-bold shadow-lg' : 'text-slate-50 hover:text-slate-800 hover:bg-slate-50' }}">
                 <span>📊</span> Dashboard
             </a>
             <a href="{{ route('admin.deposits.index') }}"
-                class="flex items-center gap-3 px-4 py-3 rounded-2xl transition {{ request()->routeIs('admin.deposits') ? 'bg-amber-500 text-slate-50 font-bold shadow-lg' : 'text-slate-400 hover:text-slate-800 hover:bg-slate-50' }}">
+                class="flex items-center gap-3 px-4 py-3 rounded-2xl transition {{ request()->routeIs('admin.deposits') ? 'bg-amber-500 text-slate-50 font-bold shadow-lg' : 'text-slate-50 hover:text-slate-800 hover:bg-slate-50' }}">
                 <span>⚖️</span> Data Setoran Masuk
             </a>
             <a href="{{ route('admin.workshops.create') }}"
-                class="flex items-center gap-3 px-4 py-3 rounded-2xl transition {{ request()->routeIs('workshops.*') ? 'bg-amber-500 text-slate-50 font-bold shadow-lg' : 'text-slate-400 hover:text-slate-800 hover:bg-slate-50' }}">
+                class="flex items-center gap-3 px-4 py-3 rounded-2xl transition {{ request()->routeIs('workshops.*') ? 'bg-amber-500 text-slate-50 font-bold shadow-lg' : 'text-slate-50 hover:text-slate-800 hover:bg-slate-50' }}">
                 <span>🎓</span> Kelola Workshop
             </a>
             <a href="{{ route('admin.certificates.create') }}"
-                class="flex items-center gap-3 px-4 py-3 rounded-2xl transition {{ request()->routeIs('admin.certificates') ? 'bg-amber-500 text-slate-50 font-bold shadow-lg' : 'text-slate-400 hover:text-slate-800 hover:bg-slate-50' }}">
+                class="flex items-center gap-3 px-4 py-3 rounded-2xl transition {{ request()->routeIs('admin.certificates') ? 'bg-amber-500 text-slate-50 font-bold shadow-lg' : 'text-slate-50 hover:text-slate-800 hover:bg-slate-50' }}">
                 <span>📜</span> Kelola Sertifikat
             </a>
             <a href="{{ route('admin.points.edit') }}"
-                class="flex items-center gap-3 px-4 py-3 rounded-2xl transition {{ request()->routeIs('admin.points-config') ? 'bg-amber-500 text-slate-50 font-bold shadow-lg' : 'text-slate-400 hover:text-slate-800 hover:bg-slate-50' }}">
+                class="flex items-center gap-3 px-4 py-3 rounded-2xl transition {{ request()->routeIs('admin.points-config') ? 'bg-amber-500 text-slate-50 font-bold shadow-lg' : 'text-slate-50 hover:text-slate-800 hover:bg-slate-50' }}">
                 <span>⚙️</span> Pengaturan Poin
             </a>
         </nav>
