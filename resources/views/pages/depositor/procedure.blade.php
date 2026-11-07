@@ -255,10 +255,7 @@
                 <!-- Pemutar Video Besar & Mencolok (Tanpa Poin Penting di Sampingnya) -->
                 <div class="overflow-hidden rounded-2xl bg-black border-2 border-slate-800 shadow-2xl relative group">
                     <video class="w-full aspect-video sm:aspect-[21/9] object-cover focus:outline-none" controls preload="metadata" playsinline>
-                        <source src="{{ asset('videos/1025.mp4') }}" type="video/mp4">
-                        <source src="{{ asset('assets/video/1025.mp4') }}" type="video/mp4">
-                        <source src="{{ asset('assets/1025.mp4') }}" type="video/mp4">
-                        <source src="{{ asset('1025.mp4') }}" type="video/mp4">
+                        <source src="{{ asset('vid/1025.mp4') }}" type="video/mp4">
                         Browser Anda tidak mendukung pemutar video HTML5. Silakan letakkan file video 1025.mp4 di folder public/videos/.
                     </video>
                 </div>
@@ -300,7 +297,7 @@
                 </div>
                 
                 <div class="space-y-1.5 pt-1 border-t border-emerald-700/60">
-                    <p class="text-sm font-bold text-emerald-100">Butik Daur Ulang, Jl. Contoh No. 12</p>
+                    <p class="text-sm font-bold text-emerald-100">Butik Daur Ulang, Jl. Sukoharjo No.132 A, Gejayan, Condongcatur, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55283</p>
                     <p class="text-xs text-emerald-200/90 leading-relaxed">
                         Serahkan langsung ke petugas timbang kami di lokasi untuk verifikasi poin secara langsung di tempat.
                     </p>
@@ -337,7 +334,7 @@
                     </div>
                 </div>
 
-                <a href="{{ route('location') }}" class="inline-flex items-center justify-between p-3.5 rounded-2xl bg-emerald-50 hover:bg-emerald-700 text-emerald-900 hover:text-white font-bold text-xs transition-all duration-200 group/btn mt-2">
+                <a href="https://maps.app.goo.gl/uL7YM4hXxWefP2Eq6" class="inline-flex items-center justify-between p-3.5 rounded-2xl bg-emerald-50 hover:bg-emerald-700 text-emerald-900 hover:text-white font-bold text-xs transition-all duration-200 group/btn mt-2">
                     <span>Lihat Alamat Lengkap & Titik Kirim</span>
                     <span class="transition-transform duration-200 group-hover/btn:translate-x-1.5">→</span>
                 </a>
