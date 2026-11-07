@@ -57,7 +57,7 @@ class ProductController extends Controller
             users.id, 
             users.name, 
             SUM(deposits.poin_didapat) as total_poin, 
-            SUM(deposits.berat) as total_kg 
+            SUM(deposits.berat_volume) as total_kg 
         ')
         ->join('deposits', 'users.id', '=', 'deposits.user_id')
 
