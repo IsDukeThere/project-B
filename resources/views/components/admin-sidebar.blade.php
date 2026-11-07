@@ -40,7 +40,7 @@
                 <p class="text-[10px] text-slate-400">admin@projectb.id</p>
             </div>
         </div>
-        <button type="button" onclick="openLogoutModal()" class="block text-center text-xs py-2 px-3 rounded-xl border hover:border-rose-700 hover:text-rose-600 text-white border-slate-500 transition">
+        <button type="button" onclick="document.getElementById('logoutModal').classList.remove('opacity-0', 'pointer-events-none'); document.getElementById('modalContainer').classList.remove('scale-95'); document.getElementById('modalContainer').classList.add('scale-100');" class="block text-center text-xs py-2 px-3 rounded-xl border hover:border-rose-700 hover:text-rose-600 text-white border-slate-500 transition">
             Keluar
         </button>
         <div id="logoutModal" class="fixed inset-0 z-[99999] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 px-4"

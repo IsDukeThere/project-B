@@ -76,7 +76,7 @@
                     <span>Hello!, {{ auth()->user()->name }}</span>
                 </a>
 
-                    <button type="button" onclick="openLogoutModal()" class="text-xs text-rose-600 hover:underline font-semibold px-2 py-1">
+                    <button type="button" onclick="document.getElementById('logoutModal').classList.remove('opacity-0', 'pointer-events-none'); document.getElementById('modalContainer').classList.remove('scale-95'); document.getElementById('modalContainer').classList.add('scale-100');" class="text-xs text-rose-600 hover:underline font-semibold px-2 py-1">
                         Keluar
                     </button>
 
