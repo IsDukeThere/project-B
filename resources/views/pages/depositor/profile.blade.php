@@ -51,12 +51,6 @@
                 <span>✉️</span> Email: {{ auth()->user()->email }}
             </span>
         </div>
-        <form action="{{ route('logout') }}" method="POST" class="w-full p-4 flex items-center justify-between text-left hover:bg-rose-50 text-rose-600 transition block">
-            @csrf
-            <button type="submit" class="text-rose-600 hover:text-rose-800 text-xs sm:text-sm font-semibold flex items-center gap-3">
-                Keluar
-            </button>
-        </form>
     </div>
 </div>
 @endsection

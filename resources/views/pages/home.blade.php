@@ -103,7 +103,7 @@
 
         <!-- GRID LAYOUT -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mt-8 items-stretch">
-            
+
             <!-- KIRI: PAHLAWAN BULAN INI (COL-SPAN-5) -->
             @if($pahlawanUtama)
             <article class="lg:col-span-5 bg-gradient-to-br from-emerald-600 to-emerald-900 rounded-[2rem] p-6 sm:p-8 flex flex-col justify-between border border-emerald-700 shadow-xl shadow-emerald-900/10 relative overflow-hidden">
@@ -115,7 +115,7 @@
                     <span class="bg-amber-400 text-amber-950 text-[11px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-md">
                         Peringkat #1
                     </span>
-                    
+
                     <!-- Avatar & Crown -->
                     <div class="relative mt-6 mb-4">
                         <div class="absolute -top-5 left-1/2 -translate-x-1/2 text-2xl drop-shadow-md z-20">👑</div>
@@ -151,7 +151,7 @@
 
             <!-- KANAN: GRID 4 KARTU LEADERBOARD (COL-SPAN-7) -->
             <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                
+
                 {{-- Pengaturan warna untuk masing-masing ranking --}}
                 @php
                     $cardStyles = [
@@ -163,9 +163,9 @@
                 @endphp
 
                 @forelse($pahlawanLainnya as $index => $user)
-                    @php 
-                        $style = $cardStyles[$index]; 
-                        $rank = $index + 2; // Index 0 = Rank 2
+                    @php
+                        $style = $cardStyles[$index];
+                        $rank = $index + 1; // Index 0 = Rank 2
                     @endphp
                     <div class="bg-white rounded-3xl p-5 sm:p-6 flex flex-col justify-between border border-slate-200 border-t-[5px] {{ $style['border'] }} shadow-sm hover:shadow-md transition">
                         <div class="w-10 h-10 rounded-xl {{ $style['bg'] }} flex items-center justify-center text-xl mb-4 border border-slate-100">
