@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\PointConfig;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
@@ -51,7 +53,21 @@ class ProductController extends Controller
     {
         $products = Product::take(4)->get(); 
         $poinMultilayer = PointConfig::where('jenis_sampah', 'Kemasan Multilayer')->value('poin_per_satuan') ?? 0;
+        $leaderboard = User::where('role', 'customer')
+            ->withSum(['deposits' => function ($query) {
+                $query->where('status', 'diterima')
+                      ->whereMonth('created_at', Carbon::now()->month)
+                      ->whereYear('created_at', Carbon::now()->year);
+            }], 'poin_didapat')
+            
+            ->orderByDesc('deposits_sum_poin_didapat')
+            ->take(10)
+            ->get();
 
-        return view('pages.home', compact('products', 'poinMultilayer'));
+        return view('pages.home', compact(
+            'products', 
+            'poinMultilayer',
+            'leaderboard'
+            ));
     }
 }

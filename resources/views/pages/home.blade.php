@@ -85,18 +85,18 @@
         </a>
     </div>
 
-    <section id="pahlawan" class="bg-[#111820] p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl">
+    <section id="pahlawan" class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
         <!-- HEADER SECTION -->
         <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5">
             <div>
-                <div class="text-xs uppercase font-extrabold tracking-wider text-emerald-500">Hall of Fame</div>
-                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mt-1">Pahlawan Sampah Kami</h2>
-                <p class="text-sm text-slate-400 max-w-xl mt-2 leading-relaxed">
+                <div class="text-xs uppercase font-extrabold tracking-wider text-emerald-600">Hall of Fame</div>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-1">Pahlawan Sampah Kami</h2>
+                <p class="text-sm text-slate-500 max-w-xl mt-2 leading-relaxed">
                     Bukan sekadar peringkat. Kami merayakan setiap kebiasaan baik warga yang membuat sampah punya kehidupan kedua.
                 </p>
             </div>
-            <div class="self-start lg:self-auto text-xs font-bold text-emerald-300 bg-emerald-900/40 border border-emerald-800/60 px-4 py-2 rounded-full flex items-center gap-2">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <div class="self-start lg:self-auto text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-4 py-2 rounded-full flex items-center gap-2 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                 Diperbarui 7 November 2026 · Periode Oktober 2026
             </div>
         </div>
@@ -105,9 +105,9 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 mt-8 items-stretch">
             
             <!-- KIRI: PAHLAWAN BULAN INI (COL-SPAN-5) -->
-            <article class="lg:col-span-5 bg-gradient-to-br from-[#0c5c3e] to-[#073f29] rounded-[2rem] p-6 sm:p-8 flex flex-col justify-between border border-[#147953] shadow-lg relative overflow-hidden">
-                <!-- Efek Lingkaran Latar (Opsional untuk estetika) -->
-                <div class="absolute -top-20 -right-20 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <article class="lg:col-span-5 bg-gradient-to-br from-emerald-600 to-emerald-900 rounded-[2rem] p-6 sm:p-8 flex flex-col justify-between border border-emerald-700 shadow-xl shadow-emerald-900/10 relative overflow-hidden">
+                <!-- Efek Lingkaran Latar -->
+                <div class="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
 
                 <div class="relative z-10 flex flex-col items-center text-center">
                     <!-- Badge -->
@@ -118,7 +118,7 @@
                     <!-- Avatar & Crown -->
                     <div class="relative mt-6 mb-4">
                         <div class="absolute -top-5 left-1/2 -translate-x-1/2 text-2xl drop-shadow-md z-20">👑</div>
-                        <div class="w-24 h-24 rounded-full border-4 border-[#0c5c3e] outline outline-4 outline-amber-400/90 bg-emerald-400 flex items-center justify-center text-3xl font-extrabold text-white shadow-xl">
+                        <div class="w-24 h-24 rounded-full border-4 border-emerald-800 outline outline-4 outline-amber-400 bg-emerald-400 flex items-center justify-center text-3xl font-extrabold text-white shadow-xl">
                             SW
                         </div>
                     </div>
@@ -137,16 +137,16 @@
 
                 <!-- Stats -->
                 <div class="grid grid-cols-3 gap-2.5 mt-6 relative z-10">
-                    <div class="bg-black/20 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/5">
-                        <b class="block text-lg sm:text-xl font-black text-amber-300">148,5</b>
+                    <div class="bg-black/20 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/10">
+                        <b class="block text-lg sm:text-xl font-black text-amber-400">148,5</b>
                         <span class="text-[10px] text-emerald-100 font-medium">kg disetor</span>
                     </div>
-                    <div class="bg-black/20 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/5">
-                        <b class="block text-lg sm:text-xl font-black text-amber-300">23×</b>
+                    <div class="bg-black/20 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/10">
+                        <b class="block text-lg sm:text-xl font-black text-amber-400">23×</b>
                         <span class="text-[10px] text-emerald-100 font-medium">setoran</span>
                     </div>
-                    <div class="bg-black/20 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/5">
-                        <b class="block text-lg sm:text-xl font-black text-amber-300">98.400</b>
+                    <div class="bg-black/20 backdrop-blur-sm rounded-2xl p-3 text-center border border-white/10">
+                        <b class="block text-lg sm:text-xl font-black text-amber-400">98.400</b>
                         <span class="text-[10px] text-emerald-100 font-medium">sachet</span>
                     </div>
                 </div>
@@ -156,11 +156,11 @@
             <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
                 
                 <!-- Kartu 1: Raja Sachet -->
-                <div class="bg-[#1b2228] rounded-3xl p-5 sm:p-6 flex flex-col justify-between border-t-[5px] border-orange-500 shadow-md">
-                    <div class="w-10 h-10 rounded-xl bg-slate-800/80 flex items-center justify-center text-xl shadow-inner mb-4">🧃</div>
+                <div class="bg-white rounded-3xl p-5 sm:p-6 flex flex-col justify-between border border-slate-200 border-t-[5px] border-t-orange-500 shadow-sm hover:shadow-md transition">
+                    <div class="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center text-xl mb-4 border border-orange-100">🧃</div>
                     <div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Raja Sachet</div>
-                        <div class="text-lg font-bold text-white mt-1">Budi Santoso</div>
+                        <div class="text-lg font-bold text-slate-800 mt-1">Budi Santoso</div>
                         <div class="text-xs text-slate-500 font-medium">Banjarsari</div>
                     </div>
                     <div class="mt-5">
@@ -171,11 +171,11 @@
                 </div>
 
                 <!-- Kartu 2: Ratu Minyak Jelantah -->
-                <div class="bg-[#1b2228] rounded-3xl p-5 sm:p-6 flex flex-col justify-between border-t-[5px] border-sky-500 shadow-md">
-                    <div class="w-10 h-10 rounded-xl bg-slate-800/80 flex items-center justify-center text-xl shadow-inner mb-4">🛢️</div>
+                <div class="bg-white rounded-3xl p-5 sm:p-6 flex flex-col justify-between border border-slate-200 border-t-[5px] border-t-sky-500 shadow-sm hover:shadow-md transition">
+                    <div class="w-10 h-10 rounded-xl bg-sky-50 flex items-center justify-center text-xl mb-4 border border-sky-100">🛢️</div>
                     <div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Ratu Minyak Jelantah</div>
-                        <div class="text-lg font-bold text-white mt-1">Dewi Lestari</div>
+                        <div class="text-lg font-bold text-slate-800 mt-1">Dewi Lestari</div>
                         <div class="text-xs text-slate-500 font-medium">Jebres</div>
                     </div>
                     <div class="mt-5">
@@ -186,11 +186,11 @@
                 </div>
 
                 <!-- Kartu 3: Paling Rajin -->
-                <div class="bg-[#1b2228] rounded-3xl p-5 sm:p-6 flex flex-col justify-between border-t-[5px] border-rose-500 shadow-md">
-                    <div class="w-10 h-10 rounded-xl bg-slate-800/80 flex items-center justify-center text-xl shadow-inner mb-4">🔥</div>
+                <div class="bg-white rounded-3xl p-5 sm:p-6 flex flex-col justify-between border border-slate-200 border-t-[5px] border-t-rose-500 shadow-sm hover:shadow-md transition">
+                    <div class="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center text-xl mb-4 border border-rose-100">🔥</div>
                     <div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Paling Rajin</div>
-                        <div class="text-lg font-bold text-white mt-1">Agus Prasetyo</div>
+                        <div class="text-lg font-bold text-slate-800 mt-1">Agus Prasetyo</div>
                         <div class="text-xs text-slate-500 font-medium">Pasar Kliwon</div>
                     </div>
                     <div class="mt-5">
@@ -201,11 +201,11 @@
                 </div>
 
                 <!-- Kartu 4: Pendatang Baru Terbaik -->
-                <div class="bg-[#1b2228] rounded-3xl p-5 sm:p-6 flex flex-col justify-between border-t-[5px] border-emerald-500 shadow-md">
-                    <div class="w-10 h-10 rounded-xl bg-slate-800/80 flex items-center justify-center text-xl shadow-inner mb-4">🌱</div>
+                <div class="bg-white rounded-3xl p-5 sm:p-6 flex flex-col justify-between border border-slate-200 border-t-[5px] border-t-emerald-500 shadow-sm hover:shadow-md transition">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-xl mb-4 border border-emerald-100">🌱</div>
                     <div>
                         <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Pendatang Baru Terbaik</div>
-                        <div class="text-lg font-bold text-white mt-1">Rina Marlina</div>
+                        <div class="text-lg font-bold text-slate-800 mt-1">Rina Marlina</div>
                         <div class="text-xs text-slate-500 font-medium">Serengan</div>
                     </div>
                     <div class="mt-5">
