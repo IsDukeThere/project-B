@@ -40,5 +40,58 @@
     @include('components.footer')
 
     @stack('scripts')
+
+    <div id="logoutModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-white rounded-3xl p-6 max-w-sm w-full mx-4 shadow-2xl transform scale-95 transition-transform duration-300" id="modalContainer">
+
+            <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center text-xl mb-4 border border-rose-100">
+                ⚠️
+            </div>
+
+            <h3 class="text-lg font-extrabold text-slate-800">Yakin ingin keluar?</h3>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                Sesi akan diakhiri dan harus login ulang untuk masuk kembali.
+            </p>
+
+            <div class="flex items-center gap-3 mt-6">
+                <button onclick="closeLogoutModal()" class="flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-bold text-xs hover:bg-slate-50 transition">
+                    Batal
+                </button>
+
+                <button onclick="executeLogout()" class="flex-1 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs shadow-md shadow-rose-500/20 transition">
+                    Ya, Keluar
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <form id="logoutForm" action="{{ route('logout') }}" method="POST" class="hidden">
+        @csrf
+    </form>
+
+    <script>
+        function openLogoutModal() {
+            const modal = document.getElementById('logoutModal');
+            const container = document.getElementById('modalContainer');
+
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            container.classList.remove('scale-95');
+            container.classList.add('scale-100');
+        }
+
+        function closeLogoutModal() {
+            const modal = document.getElementById('logoutModal');
+            const container = document.getElementById('modalContainer');
+
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            container.classList.remove('scale-100');
+            container.classList.add('scale-95');
+        }
+
+        function executeLogout() {
+            document.getElementById('logoutForm').submit();
+        }
+    </script>
 </body>
 </html>

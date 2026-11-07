@@ -40,8 +40,8 @@
                 <p class="text-[10px] text-slate-400">admin@projectb.id</p>
             </div>
         </div>
-        <a href="{{ route('home') }}" class="block text-center text-xs py-2 px-3 rounded-xl border hover:border-rose-700 hover:text-rose-600 text-white border-slate-500 transition">
+        <button onclick="openLogoutModal()" class="block text-center text-xs py-2 px-3 rounded-xl border hover:border-rose-700 hover:text-rose-600 text-white border-slate-500 transition">
             Keluar
-        </a>
+        </button>
     </div>
 </aside>

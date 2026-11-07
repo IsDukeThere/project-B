@@ -76,12 +76,9 @@
                     <span>Hello!, {{ auth()->user()->name }}</span>
                 </a>
 
-                <form action="{{ route('logout') }}" method="POST" class="inline">
-                    @csrf
-                    <button type="submit" class="text-xs text-rose-600 hover:underline font-semibold px-2 py-1">
+                    <button onclick="openLogoutModal()" class="text-xs text-rose-600 hover:underline font-semibold px-2 py-1">
                         Keluar
                     </button>
-                </form>
             </div>
         </div>
     </header>
