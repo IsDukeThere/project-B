@@ -89,7 +89,7 @@
 
                             <h3 class="text-xl font-extrabold text-slate-900">Yakin ingin keluar?</h3>
                             <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
-                                Sesi Abang akan diakhiri dan harus login ulang untuk masuk kembali.
+                                Sesi akan diakhiri dan harus login ulang untuk masuk kembali.
                             </p>
 
                             <div class="flex items-center gap-3 mt-7">
