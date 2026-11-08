@@ -1,7 +1,7 @@
 <aside id="adminSidebar" class="w-64 bg-gradient-to-r from-emerald-800 to-teal-800 text-white flex flex-col justify-between p-6 flex-shrink-0 min-h-screen fixed md:relative z-[60] transform -translate-x-full md:translate-x-0 transition-transform duration-300">
     <div class="space-y-8">
         <!-- Logo -->
-        <div class="flex items-center justify-between"></div>
+        <div class="flex items-center justify-between">
             <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3">
                 <span class="text-2xl">♻️</span>
                 <div>
