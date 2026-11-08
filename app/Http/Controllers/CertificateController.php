@@ -60,17 +60,17 @@ class CertificateController extends Controller
         $dataSebaran = $this->getSebaranData();
         $internasional = $this->getInternasionalData();
         $hubs = $this->getHubsData();
-        
+
         $totalSebaran = array_sum(array_column($dataSebaran, 'jumlah'));
         $topRegion = collect($dataSebaran)->sortByDesc('jumlah')->first();
 
         // 3. KIRIM SEMUA DATANYA KE VIEW
         return view('pages.certificates.index', compact(
             'certificates',
-            'dataSebaran', 
-            'internasional', 
-            'hubs', 
-            'totalSebaran', 
+            'dataSebaran',
+            'internasional',
+            'hubs',
+            'totalSebaran',
             'topRegion'
         ));
     }
@@ -126,19 +126,19 @@ class CertificateController extends Controller
     {
         return [
             'jakarta' => [
-                'nama' => 'Main Distribution Hub (Jakarta)',
+                'nama' => 'Regional Sub-Hub (Jakarta)',
                 'lokasi' => 'DKI Jakarta',
                 'warna' => '#10b981', // Hijau Zamrud
-                'tipe' => 'main',
+                'tipe' => 'sub',
                 'deskripsi' => 'Pusat distribusi utama mencakup wilayah Jawa Barat, Tengah, Sumatera, dan Kalimantan',
                 'x' => 345,
                 'y' => 465,
             ],
             'surabaya' => [
-                'nama' => 'Regional Sub-Hub (Surabaya)',
-                'lokasi' => 'Jawa Timur',
+                'nama' => 'Main Distribution Hub (Yogyakarta)',
+                'lokasi' => 'Yogyakarta',
                 'warna' => '#0ea5e9', // Biru Safir
-                'tipe' => 'sub',
+                'tipe' => 'main',
                 'deskripsi' => 'Pusat distribusi regional mencakup wilayah Jawa Timur, Bali, Nusa Tenggara, Sulawesi, Maluku, dan Papua',
                 'x' => 505,
                 'y' => 490,
