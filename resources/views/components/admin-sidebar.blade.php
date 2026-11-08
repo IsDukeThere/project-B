@@ -1,13 +1,19 @@
-<aside class="w-64 bg-gradient-to-r from-emerald-800 to-teal-800 text-white flex flex-col justify-between p-6 flex-shrink-0 min-h-screen">
+<aside id="adminSidebar" class="w-64 bg-gradient-to-r from-emerald-800 to-teal-800 text-white flex flex-col justify-between p-6 flex-shrink-0 min-h-screen fixed md:relative z-[60] transform -translate-x-full md:translate-x-0 transition-transform duration-300">
     <div class="space-y-8">
         <!-- Logo -->
-        <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3">
-            <span class="text-2xl">♻️</span>
-            <div>
-                <span class="font-extrabold text-lg text-white block leading-tight">Project B</span>
-                <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block">Admin Panel</span>
-            </div>
-        </a>
+        <div class="flex items-center justify-between"></div>
+            <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3">
+                <span class="text-2xl">♻️</span>
+                <div>
+                    <span class="font-extrabold text-lg text-white block leading-tight">Project B</span>
+                    <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wider block">Admin Panel</span>
+                </div>
+            </a>
+
+            <button type="button" onclick="document.getElementById('adminSidebar').classList.add('-translate-x-full')" class="md:hidden text-white hover:text-amber-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
 
         <!-- Navigation Menu -->
         <nav class="space-y-1.5 text-xs font-semibold">

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Portal Penyetor') - Project B Indonesia</title>
-    
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♻️</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -34,31 +34,31 @@
 
             <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
 
-                <a href="{{ route('depositor.procedure') }}" 
+                <a href="{{ route('depositor.procedure') }}"
                 class="transition flex items-center gap-1.5 {{ request()->routeIs('depositor.procedure') ? 'text-emerald-700 font-bold' : 'text-slate-600 hover:text-emerald-700' }}">
                     @if(request()->routeIs('depositor.procedure')) <span>✨</span> @endif
                     Panduan Setor
                 </a>
 
-                <a href="{{ route('depositor.form') }}" 
+                <a href="{{ route('depositor.form') }}"
                 class="transition flex items-center gap-1.5 {{ request()->routeIs('depositor.form') ? 'text-emerald-700 font-bold' : 'text-slate-600 hover:text-emerald-700' }}">
                     @if(request()->routeIs('depositor.form')) <span>✨</span> @endif
                     Setor Sampah
                 </a>
 
-                <a href="{{ route('depositor.history') }}" 
+                <a href="{{ route('depositor.history') }}"
                 class="transition flex items-center gap-1.5 {{ request()->routeIs('depositor.history*') || request()->routeIs('depositor.detail*') ? 'text-emerald-700 font-bold' : 'text-slate-600 hover:text-emerald-700' }}">
                     @if(request()->routeIs('depositor.history*') || request()->routeIs('depositor.detail*')) <span>✨</span> @endif
                     Riwayat
                 </a>
 
-                <a href="{{ route('depositor.leaderboard') }}" 
+                <a href="{{ route('depositor.leaderboard') }}"
                 class="transition flex items-center gap-1.5 {{ request()->routeIs('depositor.leaderboard') ? 'text-emerald-700 font-bold' : 'text-slate-600 hover:text-emerald-700' }}">
                     @if(request()->routeIs('depositor.leaderboard')) <span>✨</span> @endif
                     Peringkat
                 </a>
 
-                <a href="{{ route('depositor.katalog') }}" 
+                <a href="{{ route('depositor.katalog') }}"
                 class="transition flex items-center gap-1.5 {{ request()->routeIs('depositor.katalog') ? 'text-emerald-700 font-bold' : 'text-slate-600 hover:text-emerald-700' }}">
                     @if(request()->routeIs('depositor.katalog')) <span>✨</span> @endif
                     Katalog
@@ -67,7 +67,6 @@
             </nav>
 
             <div class="flex items-center gap-3">
-
                 <a href="{{ route('depositor.profile') }}" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200 text-xs font-semibold whitespace-nowrap">
                     <span class="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-[10px] shrink-0">
                         {{ auth()->user()->initials }}
@@ -78,6 +77,10 @@
 
                     <button type="button" onclick="document.getElementById('logoutModal').classList.remove('opacity-0', 'pointer-events-none'); document.getElementById('modalContainer').classList.remove('scale-95'); document.getElementById('modalContainer').classList.add('scale-100');" class="text-xs text-rose-600 hover:underline font-semibold px-2 py-1">
                         Keluar
+                    </button>
+
+                    <button type="button" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" class="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
 
                     <div id="logoutModal" class="fixed inset-0 z-[99999] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300 p-4" style="position: fixed !important; top: 0; left: 0; width: 100vw; height: 100vh;">
@@ -109,6 +112,18 @@
                         @csrf
                     </form>
             </div>
+        </div>
+
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 py-4 space-y-3 shadow-lg">
+            <a href="{{ route('depositor.procedure') }}" class="block text-sm font-semibold {{ request()->routeIs('depositor.procedure') ? 'text-emerald-700' : 'text-slate-600' }}">Panduan Setor</a>
+            <a href="{{ route('depositor.form') }}" class="block text-sm font-semibold {{ request()->routeIs('depositor.form') ? 'text-emerald-700' : 'text-slate-600' }}">Setor Sampah</a>
+            <a href="{{ route('depositor.history') }}" class="block text-sm font-semibold {{ request()->routeIs('depositor.history*') || request()->routeIs('depositor.detail*') ? 'text-emerald-700' : 'text-slate-600' }}">Riwayat</a>
+            <a href="{{ route('depositor.leaderboard') }}" class="block text-sm font-semibold {{ request()->routeIs('depositor.leaderboard') ? 'text-emerald-700' : 'text-slate-600' }}">Peringkat</a>
+            <a href="{{ route('depositor.katalog') }}" class="block text-sm font-semibold {{ request()->routeIs('depositor.katalog') ? 'text-emerald-700' : 'text-slate-600' }}">Katalog</a>
+            <hr class="my-2">
+            <button type="button" onclick="document.getElementById('logoutModal').classList.remove('opacity-0', 'pointer-events-none'); document.getElementById('modalContainer').classList.remove('scale-95'); document.getElementById('modalContainer').classList.add('scale-100');" class="block w-full text-left text-sm text-rose-600 font-semibold">
+                Keluar
+            </button>
         </div>
     </header>
 
