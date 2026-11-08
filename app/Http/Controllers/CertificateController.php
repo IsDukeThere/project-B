@@ -78,44 +78,40 @@ class CertificateController extends Controller
      private function getSebaranData(): array
     {
         return [
-            // Wilayah Sumatera (Hub Jakarta - Jalur Hijau)
-            ['no' => 1,  'kode' => 'aceh',       'nama' => 'Aceh',         'jumlah' => 46,  'hub' => 'jakarta',   'pulau' => 'Sumatera', 'x' => 75,  'y' => 155],
-            ['no' => 2,  'kode' => 'riau',       'nama' => 'Riau',         'jumlah' => 89,  'hub' => 'jakarta',   'pulau' => 'Sumatera', 'x' => 200, 'y' => 265],
-            ['no' => 3,  'kode' => 'kepri',      'nama' => 'Kepri',        'jumlah' => 27,  'hub' => 'jakarta',   'pulau' => 'Sumatera', 'x' => 255, 'y' => 255],
-            ['no' => 4,  'kode' => 'jambi',      'nama' => 'Jambi',        'jumlah' => 46,  'hub' => 'jakarta',   'pulau' => 'Sumatera', 'x' => 220, 'y' => 335],
-            ['no' => 5,  'kode' => 'sumut',      'nama' => 'Sumut',        'jumlah' => 41,  'hub' => 'jakarta',   'pulau' => 'Sumatera', 'x' => 120, 'y' => 195],
-            ['no' => 6,  'kode' => 'sumsel',     'nama' => 'Sumsel',       'jumlah' => 44,  'hub' => 'jakarta',   'pulau' => 'Sumatera', 'x' => 250, 'y' => 385],
-            ['no' => 7,  'kode' => 'sumbar',     'nama' => 'Sumbar',       'jumlah' => 24,  'hub' => 'jakarta',   'pulau' => 'Sumatera', 'x' => 155, 'y' => 320],
-            ['no' => 8,  'kode' => 'lampung',    'nama' => 'Lampung',      'jumlah' => 44,  'hub' => 'jakarta',   'pulau' => 'Sumatera', 'x' => 275, 'y' => 435],
+            ['no' => 1,  'kode' => 'aceh',       'nama' => 'Aceh',         'jumlah' => 46,  'hub' => 'jakarta', 'pulau' => 'Sumatera', 'x' => 75,  'y' => 155],
+            ['no' => 2,  'kode' => 'riau',       'nama' => 'Riau',         'jumlah' => 89,  'hub' => 'jakarta', 'pulau' => 'Sumatera', 'x' => 200, 'y' => 265],
+            ['no' => 3,  'kode' => 'kepri',      'nama' => 'Kepri',        'jumlah' => 27,  'hub' => 'jakarta', 'pulau' => 'Sumatera', 'x' => 255, 'y' => 255],
+            ['no' => 4,  'kode' => 'jambi',      'nama' => 'Jambi',        'jumlah' => 46,  'hub' => 'jakarta', 'pulau' => 'Sumatera', 'x' => 220, 'y' => 335],
+            ['no' => 5,  'kode' => 'sumut',      'nama' => 'Sumut',        'jumlah' => 41,  'hub' => 'jakarta', 'pulau' => 'Sumatera', 'x' => 120, 'y' => 195],
+            ['no' => 6,  'kode' => 'sumsel',     'nama' => 'Sumsel',       'jumlah' => 44,  'hub' => 'jakarta', 'pulau' => 'Sumatera', 'x' => 250, 'y' => 385],
+            ['no' => 7,  'kode' => 'sumbar',     'nama' => 'Sumbar',       'jumlah' => 24,  'hub' => 'jakarta', 'pulau' => 'Sumatera', 'x' => 155, 'y' => 320],
+            ['no' => 8,  'kode' => 'lampung',    'nama' => 'Lampung',      'jumlah' => 44,  'hub' => 'jakarta', 'pulau' => 'Sumatera', 'x' => 275, 'y' => 435],
 
-            // Wilayah Jawa
-            ['no' => 9,  'kode' => 'jakarta',    'nama' => 'DKI Jakarta',  'jumlah' => 393, 'hub' => 'jakarta',   'pulau' => 'Jawa',     'x' => 345, 'y' => 465, 'is_hub' => true, 'hub_type' => 'main'],
-            ['no' => 10, 'kode' => 'banten',     'nama' => 'Banten',       'jumlah' => 181, 'hub' => 'jakarta',   'pulau' => 'Jawa',     'x' => 310, 'y' => 465],
-            ['no' => 11, 'kode' => 'jateng',     'nama' => 'Jawa Tengah',  'jumlah' => 591, 'hub' => 'jakarta',   'pulau' => 'Jawa',     'x' => 440, 'y' => 485],
-            ['no' => 12, 'kode' => 'jabar',      'nama' => 'Jawa Barat',   'jumlah' => 490, 'hub' => 'jakarta',   'pulau' => 'Jawa',     'x' => 375, 'y' => 485],
-            ['no' => 13, 'kode' => 'jatim',      'nama' => 'Jawa Timur',   'jumlah' => 365, 'hub' => 'surabaya',  'pulau' => 'Jawa',     'x' => 520, 'y' => 495, 'is_hub' => true, 'hub_type' => 'sub'],
-            ['no' => 14, 'kode' => 'yogyakarta', 'nama' => 'Yogyakarta',   'jumlah' => 259, 'hub' => 'jakarta',   'pulau' => 'Jawa',     'x' => 450, 'y' => 510],
+            ['no' => 9,  'kode' => 'jakarta',    'nama' => 'DKI Jakarta',  'jumlah' => 393, 'hub' => 'jakarta', 'pulau' => 'Jawa',     'x' => 345, 'y' => 465, 'is_hub' => true, 'hub_type' => 'sub'],
+            ['no' => 10, 'kode' => 'banten',     'nama' => 'Banten',       'jumlah' => 181, 'hub' => 'jakarta', 'pulau' => 'Jawa',     'x' => 310, 'y' => 465],
+            ['no' => 12, 'kode' => 'jabar',      'nama' => 'Jawa Barat',   'jumlah' => 490, 'hub' => 'jakarta', 'pulau' => 'Jawa',     'x' => 375, 'y' => 485],
 
-            // Wilayah Kalimantan
-            ['no' => 15, 'kode' => 'kaltra',     'nama' => 'Kaltra',       'jumlah' => 11,  'hub' => 'jakarta',   'pulau' => 'Kalimantan', 'x' => 575, 'y' => 220],
-            ['no' => 16, 'kode' => 'kalbar',     'nama' => 'Kalbar',       'jumlah' => 33,  'hub' => 'jakarta',   'pulau' => 'Kalimantan', 'x' => 405, 'y' => 320],
-            ['no' => 17, 'kode' => 'kaltim',     'nama' => 'Kaltim',       'jumlah' => 65,  'hub' => 'jakarta',   'pulau' => 'Kalimantan', 'x' => 565, 'y' => 310],
-            ['no' => 18, 'kode' => 'kalsel',     'nama' => 'Kalsel',       'jumlah' => 46,  'hub' => 'jakarta',   'pulau' => 'Kalimantan', 'x' => 525, 'y' => 375],
+            ['no' => 15, 'kode' => 'kaltra',     'nama' => 'Kaltra',       'jumlah' => 11,  'hub' => 'jakarta', 'pulau' => 'Kalimantan', 'x' => 575, 'y' => 220],
+            ['no' => 16, 'kode' => 'kalbar',     'nama' => 'Kalbar',       'jumlah' => 33,  'hub' => 'jakarta', 'pulau' => 'Kalimantan', 'x' => 405, 'y' => 320],
+            ['no' => 17, 'kode' => 'kaltim',     'nama' => 'Kaltim',       'jumlah' => 65,  'hub' => 'jakarta', 'pulau' => 'Kalimantan', 'x' => 565, 'y' => 310],
+            ['no' => 18, 'kode' => 'kalsel',     'nama' => 'Kalsel',       'jumlah' => 46,  'hub' => 'jakarta', 'pulau' => 'Kalimantan', 'x' => 525, 'y' => 375],
 
-            // Wilayah Sulawesi (Hub Surabaya - Jalur Biru)
-            ['no' => 19, 'kode' => 'sulut',      'nama' => 'Sulut',        'jumlah' => 33,  'hub' => 'surabaya',  'pulau' => 'Sulawesi',   'x' => 760, 'y' => 245],
-            ['no' => 20, 'kode' => 'sulteng',    'nama' => 'Sulteng',      'jumlah' => 10,  'hub' => 'surabaya',  'pulau' => 'Sulawesi',   'x' => 675, 'y' => 315],
-            ['no' => 21, 'kode' => 'sulbar',     'nama' => 'Sulbar',       'jumlah' => 8,   'hub' => 'surabaya',  'pulau' => 'Sulawesi',   'x' => 645, 'y' => 365],
-            ['no' => 22, 'kode' => 'sulsel',     'nama' => 'Sulsel',       'jumlah' => 53,  'hub' => 'surabaya',  'pulau' => 'Sulawesi',   'x' => 655, 'y' => 430],
+            ['no' => 11, 'kode' => 'jateng',     'nama' => 'Jawa Tengah',  'jumlah' => 591, 'hub' => 'yogyakarta', 'pulau' => 'Jawa', 'x' => 440, 'y' => 485],
+            ['no' => 13, 'kode' => 'jatim',      'nama' => 'Jawa Timur',   'jumlah' => 365, 'hub' => 'yogyakarta', 'pulau' => 'Jawa', 'x' => 520, 'y' => 495],
+            ['no' => 14, 'kode' => 'yogyakarta', 'nama' => 'Yogyakarta',   'jumlah' => 259, 'hub' => 'yogyakarta', 'pulau' => 'Jawa', 'x' => 450, 'y' => 510, 'is_hub' => true, 'hub_type' => 'main'],
 
-            // Bali & Nusa Tenggara (Hub Surabaya - Jalur Biru)
-            ['no' => 23, 'kode' => 'bali',       'nama' => 'Bali',         'jumlah' => 53,  'hub' => 'surabaya',  'pulau' => 'Bali & Nusa Tenggara', 'x' => 575, 'y' => 510],
-            ['no' => 24, 'kode' => 'ntb',        'nama' => 'NTB',          'jumlah' => 36,  'hub' => 'surabaya',  'pulau' => 'Bali & Nusa Tenggara', 'x' => 625, 'y' => 515],
-            ['no' => 25, 'kode' => 'ntt',        'nama' => 'NTT',          'jumlah' => 10,  'hub' => 'surabaya',  'pulau' => 'Bali & Nusa Tenggara', 'x' => 725, 'y' => 530],
+            ['no' => 19, 'kode' => 'sulut',      'nama' => 'Sulut',        'jumlah' => 33,  'hub' => 'yogyakarta', 'pulau' => 'Sulawesi', 'x' => 760, 'y' => 245],
+            ['no' => 20, 'kode' => 'sulteng',    'nama' => 'Sulteng',      'jumlah' => 10,  'hub' => 'yogyakarta', 'pulau' => 'Sulawesi', 'x' => 675, 'y' => 315],
+            ['no' => 21, 'kode' => 'sulbar',     'nama' => 'Sulbar',       'jumlah' => 8,   'hub' => 'yogyakarta', 'pulau' => 'Sulawesi', 'x' => 645, 'y' => 365],
+            ['no' => 22, 'kode' => 'sulsel',     'nama' => 'Sulsel',       'jumlah' => 53,  'hub' => 'yogyakarta', 'pulau' => 'Sulawesi', 'x' => 655, 'y' => 430],
 
-            // Maluku & Papua (Hub Surabaya - Jalur Biru)
-            ['no' => 26, 'kode' => 'maluku',     'nama' => 'Maluku',       'jumlah' => 4,   'hub' => 'surabaya',  'pulau' => 'Maluku & Papua', 'x' => 885,  'y' => 385],
-            ['no' => 27, 'kode' => 'papua',      'nama' => 'Papua',        'jumlah' => 3,   'hub' => 'surabaya',  'pulau' => 'Maluku & Papua', 'x' => 1090, 'y' => 390],
+            ['no' => 23, 'kode' => 'bali',       'nama' => 'Bali',         'jumlah' => 53,  'hub' => 'yogyakarta', 'pulau' => 'Bali & Nusa Tenggara', 'x' => 575, 'y' => 510],
+            ['no' => 24, 'kode' => 'ntb',        'nama' => 'NTB',          'jumlah' => 36,  'hub' => 'yogyakarta', 'pulau' => 'Bali & Nusa Tenggara', 'x' => 625, 'y' => 515],
+            ['no' => 25, 'kode' => 'ntt',        'nama' => 'NTT',          'jumlah' => 10,  'hub' => 'yogyakarta', 'pulau' => 'Bali & Nusa Tenggara', 'x' => 725, 'y' => 530],
+
+            // Maluku & Papua
+            ['no' => 26, 'kode' => 'maluku',     'nama' => 'Maluku',       'jumlah' => 4,   'hub' => 'yogyakarta', 'pulau' => 'Maluku & Papua', 'x' => 885,  'y' => 385],
+            ['no' => 27, 'kode' => 'papua',      'nama' => 'Papua',        'jumlah' => 3,   'hub' => 'yogyakarta', 'pulau' => 'Maluku & Papua', 'x' => 1090, 'y' => 390],
         ];
     }
 
@@ -130,18 +126,19 @@ class CertificateController extends Controller
                 'lokasi' => 'DKI Jakarta',
                 'warna' => '#10b981', // Hijau Zamrud
                 'tipe' => 'sub',
-                'deskripsi' => 'Pusat distribusi utama mencakup wilayah Jawa Barat, Tengah, Sumatera, dan Kalimantan',
+                'deskripsi' => 'Pusat distribusi mencakup Sumatera, Banten, Jawa Barat, dan Kalimantan',
                 'x' => 345,
                 'y' => 465,
             ],
-            'surabaya' => [
+            // ---> PERHATIKAN: Key 'yogyakarta' pakai huruf kecil semua supaya cocok dengan field 'hub' di atas
+            'yogyakarta' => [
                 'nama' => 'Main Distribution Hub (Yogyakarta)',
                 'lokasi' => 'Yogyakarta',
                 'warna' => '#0ea5e9', // Biru Safir
                 'tipe' => 'main',
-                'deskripsi' => 'Pusat distribusi regional mencakup wilayah Jawa Timur, Bali, Nusa Tenggara, Sulawesi, Maluku, dan Papua',
-                'x' => 505,
-                'y' => 490,
+                'deskripsi' => 'Pusat distribusi utama mencakup Jawa Tengah, Timur, Bali, Nusa Tenggara, Sulawesi, Maluku, dan Papua',
+                'x' => 450,
+                'y' => 510,
             ],
         ];
     }
@@ -154,9 +151,9 @@ class CertificateController extends Controller
         return [
             ['negara' => 'Amerika',  'kode' => 'USA', 'hub' => 'jakarta',  'x' => 105, 'y' => 80],
             ['negara' => 'Jerman',   'kode' => 'DEU', 'hub' => 'jakarta',  'x' => 245, 'y' => 105],
-            ['negara' => 'Taiwan',   'kode' => 'TWN', 'hub' => 'surabaya', 'x' => 460, 'y' => 115],
-            ['negara' => 'Jepang',   'kode' => 'JPN', 'hub' => 'surabaya', 'x' => 670, 'y' => 90],
-            ['negara' => 'Filipina', 'kode' => 'PHL', 'hub' => 'surabaya', 'x' => 745, 'y' => 175],
+            ['negara' => 'Taiwan',   'kode' => 'TWN', 'hub' => 'Yogyakarta', 'x' => 460, 'y' => 115],
+            ['negara' => 'Jepang',   'kode' => 'JPN', 'hub' => 'Yogyakarta', 'x' => 670, 'y' => 90],
+            ['negara' => 'Filipina', 'kode' => 'PHL', 'hub' => 'Yogyakarta', 'x' => 745, 'y' => 175],
         ];
     }
 
