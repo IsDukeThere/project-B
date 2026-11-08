@@ -73,7 +73,7 @@
 
                 <!-- Gambar Ilustrasi Sampah Multilayer -->
                 <div class="relative z-10 w-full rounded-2xl overflow-hidden bg-emerald-950/40 border border-emerald-600/30 aspect-[16/7] flex items-center justify-center p-3 group-hover:border-emerald-400/50 transition-all">
-                    <img src="{{ asset('ico/icon-multilayer.png') }}" alt="Contoh Kemasan Multilayer" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center gap-3 text-emerald-100 text-xs font-medium\'><span class=\'text-2xl\'>📦</span><span>Bungkus Mie Instan, Sachet Kopi, Snack & Pouch Sabun</span></div>';" class="w-full h-full object-contain rounded-xl">
+                    <img src="{{ asset('images/alur-proses/pengeringan.JPG') }}" alt="Contoh Kemasan Multilayer" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center gap-3 text-emerald-100 text-xs font-medium\'><span class=\'text-2xl\'>📦</span><span>Bungkus Mie Instan, Sachet Kopi, Snack & Pouch Sabun</span></div>';" class="w-full h-full object-cover rounded-xl">
                 </div>
 
                 <p class="text-xs text-emerald-100/90 leading-relaxed relative z-10">
@@ -104,7 +104,7 @@
 
                 <!-- Gambar Ilustrasi Minyak Jelantah -->
                 <div class="relative z-10 w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-100 aspect-[16/7] flex items-center justify-center p-3 group-hover:border-emerald-200 transition-all">
-                    <img src="{{ asset('ico/icon-MinyakJelantah.png') }}" alt="Contoh Minyak Jelantah" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center gap-3 text-slate-600 text-xs font-medium\'><span class=\'text-2xl\'>🧴</span><span>Minyak Masak Bekas Disaring dalam Jeriken/Botol Rapat</span></div>';" class="w-full h-full object-contain rounded-xl">
+                    <img src="{{ asset('images/mijel.png') }}" alt="Contoh Minyak Jelantah" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'flex items-center gap-3 text-slate-600 text-xs font-medium\'><span class=\'text-2xl\'>🧴</span><span>Minyak Masak Bekas Disaring dalam Jeriken/Botol Rapat</span></div>';" class="w-full h-full object-cover object-top rounded-xl">
                 </div>
 
                 <p class="text-xs text-slate-500 leading-relaxed relative z-10">
