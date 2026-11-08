@@ -151,9 +151,9 @@ class CertificateController extends Controller
         return [
             ['negara' => 'Amerika',  'kode' => 'USA', 'hub' => 'jakarta',  'x' => 105, 'y' => 80],
             ['negara' => 'Jerman',   'kode' => 'DEU', 'hub' => 'jakarta',  'x' => 245, 'y' => 105],
-            ['negara' => 'Taiwan',   'kode' => 'TWN', 'hub' => 'Yogyakarta', 'x' => 460, 'y' => 115],
-            ['negara' => 'Jepang',   'kode' => 'JPN', 'hub' => 'Yogyakarta', 'x' => 670, 'y' => 90],
-            ['negara' => 'Filipina', 'kode' => 'PHL', 'hub' => 'Yogyakarta', 'x' => 745, 'y' => 175],
+            ['negara' => 'Taiwan',   'kode' => 'TWN', 'hub' => 'yogyakarta', 'x' => 460, 'y' => 115],
+            ['negara' => 'Jepang',   'kode' => 'JPN', 'hub' => 'yogyakarta', 'x' => 670, 'y' => 90],
+            ['negara' => 'Filipina', 'kode' => 'PHL', 'hub' => 'yogyakarta', 'x' => 745, 'y' => 175],
         ];
     }
 
