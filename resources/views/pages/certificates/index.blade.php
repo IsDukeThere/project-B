@@ -759,7 +759,7 @@
         let isAnimationPlaying = true;
         let currentSpeed = 1.4;
 
-        const nodeCoords = { jakarta: { x: 345, y: 465 }, surabaya: { x: 505, y: 490 } };
+        const nodeCoords = { yogyakarta: { x: 465, y: 512 };
 
         function createCurvePath(x1, y1, x2, y2, curvature = 0.22) {
             const mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dx = x2 - x1, dy = y2 - y1;

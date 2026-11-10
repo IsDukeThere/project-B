@@ -136,7 +136,7 @@ class CertificateController extends Controller
             ['no' => 6,  'kode' => 'sumsel',     'nama' => 'Sumsel',       'jumlah' => 44,  'alur' => 'hijau', 'pulau' => 'Sumatera', 'x' => 250, 'y' => 385],
             ['no' => 7,  'kode' => 'sumbar',     'nama' => 'Sumbar',       'jumlah' => 24,  'alur' => 'hijau', 'pulau' => 'Sumatera', 'x' => 155, 'y' => 320],
             ['no' => 8,  'kode' => 'lampung',    'nama' => 'Lampung',      'jumlah' => 44,  'alur' => 'hijau', 'pulau' => 'Sumatera', 'x' => 275, 'y' => 435],
-            ['no' => 9,  'kode' => 'jakarta',    'nama' => 'Jakarta',      'jumlah' => 391, 'jumlah_map' => 393, 'alur' => 'hijau', 'pulau' => 'Jawa', 'x' => 345, 'y' => 465],
+            ['no' => 9,  'kode' => 'jakarta',    'nama' => 'Jakarta',      'jumlah' => 391, 'alur' => 'hijau', 'pulau' => 'Jawa', 'x' => 345, 'y' => 465],
             ['no' => 10, 'kode' => 'banten',     'nama' => 'Banten',       'jumlah' => 181, 'alur' => 'hijau', 'pulau' => 'Jawa',     'x' => 310, 'y' => 465],
 
             // Kolom 3
