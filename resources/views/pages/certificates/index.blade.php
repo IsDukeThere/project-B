@@ -750,167 +750,279 @@
         // ==========================================
         // 2. FUNGSI UNTUK PETA PERSEBARAN
         // ==========================================
-        const sebaranData = @json($dataSebaran);
-        const hubsData = @json($originHub);
-        const intlData = @json($internasional);
+        const sebaranData  = @json($dataSebaran);
+        const originRaw    = @json($originHub);
+        const intlData     = @json($internasional);
         const totalSebaran = {{ $totalSebaran }};
 
         let currentFilter = 'all';
         let isAnimationPlaying = true;
         let currentSpeed = 1.4;
 
-        const nodeCoords = { yogyakarta: { x: 465, y: 512 };
+        const SVG_NS = 'http://www.w3.org/2000/svg';
+        const MAP_W = 1200, MAP_H = 580;
 
+        // ==========================================
+        // 2. HUB = YOGYAKARTA
+        // ==========================================
+        // Dibuat toleran: bisa terima $originHub berbentuk {x,y,...}, {yogyakarta:{...}},
+        // atau array berisi item kode 'yogyakarta'. Kalau datanya kosong/rusak, pakai koordinat default.
+        const DEFAULT_ORIGIN = { kode: 'yogyakarta', nama: 'Yogyakarta', jumlah: 0, x: 465, y: 512 };
+
+        function resolveOrigin(raw) {
+            let o = raw;
+            if (Array.isArray(o)) o = o.find(h => h && h.kode === 'yogyakarta') || o[0];
+            else if (o && o.yogyakarta) o = o.yogyakarta;
+            o = o || {};
+
+            const fromList = (sebaranData || []).find(i => i.kode === 'yogyakarta') || {};
+            const x = Number(o.x), y = Number(o.y);
+
+            return {
+                ...DEFAULT_ORIGIN, ...fromList, ...o,
+                x: Number.isFinite(x) ? x : DEFAULT_ORIGIN.x,
+                y: Number.isFinite(y) ? y : DEFAULT_ORIGIN.y,
+            };
+        }
+        const ORIGIN = resolveOrigin(originRaw);
+
+        const isOrigin = (item) => item.is_origin || item.kode === 'yogyakarta';
+
+        // Kunci grup warna. Nama 'jakarta' / 'surabaya' dipertahankan supaya tombol filter di HTML tidak perlu diubah:
+        // 'jakarta' = jalur hijau (barat), 'surabaya' = jalur biru (timur).
+        function getGroup(item) {
+            if (item.alur) return item.alur === 'biru' ? 'surabaya' : 'jakarta';
+            return item.hub === 'surabaya' ? 'surabaya' : 'jakarta';
+        }
+
+        // ==========================================
+        // 3. HELPER KURVA
+        // ==========================================
         function createCurvePath(x1, y1, x2, y2, curvature = 0.22) {
+            x1 = +x1; y1 = +y1; x2 = +x2; y2 = +y2;
             const mx = (x1 + x2) / 2, my = (y1 + y2) / 2, dx = x2 - x1, dy = y2 - y1;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            const cx = mx - (dy / (dist || 1)) * (dist * curvature * 0.3);
-            const cy = my - Math.abs(dist * curvature);
+            const cx = mx - (dy / (dist || 1)) * (dist * 0.12);
+            const cy = Math.max(30, my - Math.abs(dist * curvature));
             return `M ${x1} ${y1} Q ${cx.toFixed(1)} ${cy.toFixed(1)} ${x2} ${y2}`;
         }
 
+        // ==========================================
+        // 4. RENDER PETA
+        // ==========================================
         function renderMap() {
             const routesLayer = document.getElementById('routes-layer');
             const markersLayer = document.getElementById('markers-layer');
+            routesLayer.innerHTML = '';
+            markersLayer.innerHTML = '';
 
+            // --- Domestik: semua rute berangkat dari Yogyakarta ---
             sebaranData.forEach(item => {
-                const isHub = item.is_hub;
-                const hubId = item.hub || 'jakarta';
-                const hub = hubsData[hubId] || nodeCoords[hubId];
+                if (isOrigin(item)) return; // Yogyakarta digambar terpisah sebagai hub di bawah
 
-                if (!isHub) {
-                    const isGreen = hubId === 'jakarta';
-                    const color = isGreen ? '#10b981' : '#0ea5e9';
-                    const animClass = isGreen ? 'animate-flow-green' : 'animate-flow-blue';
-                    const curveD = createCurvePath(hub.x, hub.y, item.x, item.y);
-                    const dur = (1.5 + Math.random() * 1.2).toFixed(2);
+                const group = getGroup(item);
+                const isGreen = group === 'jakarta';
+                const color = isGreen ? '#10b981' : '#0ea5e9';
+                const animClass = isGreen ? 'animate-flow-green' : 'animate-flow-blue';
+                const curveD = createCurvePath(ORIGIN.x, ORIGIN.y, item.x, item.y);
+                const dur = (1.5 + Math.random() * 1.2).toFixed(2);
 
-                    const route = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                    route.className.baseVal = `route-item route-hub-${hubId}`;
-                    route.innerHTML = `
-                        <path d="${curveD}" fill="none" stroke="${color}" stroke-width="1.8" class="${animClass}" opacity="0.75" />
-                        <circle r="2.8" fill="${color}"><animateMotion dur="${dur}s" repeatCount="indefinite" path="${curveD}" /></circle>`;
-                    routesLayer.appendChild(route);
-                }
+                const route = document.createElementNS(SVG_NS, 'g');
+                route.className.baseVal = `route-item route-hub-${group}`;
+                route.innerHTML = `
+                    <path d="${curveD}" fill="none" stroke="${color}" stroke-width="1.8" class="${animClass}" opacity="0.75" />
+                    <circle r="2.8" fill="${color}"><animateMotion dur="${dur}s" repeatCount="indefinite" path="${curveD}" /></circle>`;
+                routesLayer.appendChild(route);
 
-                const marker = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                marker.className.baseVal = `node-point marker-item marker-hub-${hubId} group cursor-pointer`;
+                const marker = document.createElementNS(SVG_NS, 'g');
+                marker.className.baseVal = `node-point marker-item marker-hub-${group}`;
                 marker.id = `marker-${item.kode}`;
                 marker.setAttribute('transform', `translate(${item.x}, ${item.y})`);
 
-                if (isHub) {
-                    const isMain = item.hub_type === 'main';
-                    const color = isMain ? '#10b981' : '#0ea5e9';
+                // rect transparan = area hover yang STATIS (tidak ikut membesar/bergeser)
+                marker.innerHTML = `
+                    <rect x="-14" y="-20" width="28" height="40" fill="transparent" />
+                    <g class="node-inner">
+                        <circle r="4.5" fill="${color}" stroke="#fff" stroke-width="1.5" />
+                        <rect x="-13" y="-18" width="26" height="12" rx="4" fill="rgba(255,255,255,0.95)" stroke="${color}" stroke-width="1" />
+                        <text y="-9" text-anchor="middle" fill="#0f172a" font-size="8.5" font-weight="800">${item.mapCount ?? item.jumlah}</text>
+                        <text y="15" text-anchor="middle" fill="#475569" font-size="9" font-weight="600">${item.nama}</text>
+                    </g>`;
 
-                    marker.innerHTML = `
-                        <circle class="radar-wave-1" cx="0" cy="0" fill="none" stroke="${color}" />
-                        <circle class="radar-wave-2" cx="0" cy="0" fill="none" stroke="${color}" />
-                        <circle r="8.5" fill="${color}" stroke="#fff" stroke-width="2.5" class="transition-transform duration-300 origin-center group-hover:scale-[1.2]" />
-                        <text y="-13.5" text-anchor="middle" fill="#0f172a" font-size="9.5" font-weight="900" class="transition-transform duration-300 origin-center group-hover:-translate-y-1">${item.jumlah}</text>`;
-                } else {
-                    const color = hubId === 'jakarta' ? '#10b981' : '#0ea5e9';
-
-                    marker.innerHTML = `
-                        <g class="transition-transform duration-300 origin-center group-hover:scale-[1.15]">
-                            <circle r="4.5" fill="${color}" stroke="#fff" stroke-width="1.5" />
-                            <rect x="-13" y="-18" width="26" height="12" rx="4" fill="rgba(255,255,255,0.95)" stroke="${color}" stroke-width="1" />
-                            <text y="-9" text-anchor="middle" fill="#0f172a" font-size="8.5" font-weight="800">${item.jumlah}</text>
-                            <text y="15" text-anchor="middle" fill="#475569" font-size="9" font-weight="600">${item.nama}</text>
-                        </g>`;
-                }
-
-                marker.style.cursor = "pointer";
-
-                marker.addEventListener('mouseenter', (e) => showTooltip(e, item));
+                marker.addEventListener('mouseenter', () => showTooltip(item));
                 marker.addEventListener('mouseleave', hideTooltip);
                 marker.addEventListener('click', () => highlightRegion(item.kode));
                 markersLayer.appendChild(marker);
             });
 
+            // --- Internasional: juga dari Yogyakarta ---
             intlData.forEach(intl => {
-                const hubId = intl.hub || 'jakarta';
-                const hub = hubsData[hubId] || nodeCoords[hubId];
-                const curveD = createCurvePath(hub.x, hub.y, intl.x, intl.y, 0.38);
+                const curveD = createCurvePath(ORIGIN.x, ORIGIN.y, intl.x, intl.y, 0.38);
 
-                const intlRoute = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                intlRoute.className.baseVal = `route-item route-intl`;
-                intlRoute.innerHTML = `<path d="${curveD}" fill="none" stroke="#0ea5e9" stroke-width="1.8" stroke-dasharray="5 5" class="animate-flow-blue" opacity="0.85" /><use href="#airplane-icon"><animateMotion dur="3.8s" repeatCount="indefinite" rotate="auto" path="${curveD}" /></use>`;
+                const intlRoute = document.createElementNS(SVG_NS, 'g');
+                intlRoute.className.baseVal = 'route-item route-intl';
+                intlRoute.innerHTML = `
+                    <path d="${curveD}" fill="none" stroke="#0ea5e9" stroke-width="1.8" stroke-dasharray="5 5" class="animate-flow-blue" opacity="0.85" />
+                    <use href="#airplane-icon"><animateMotion dur="3.8s" repeatCount="indefinite" rotate="auto" path="${curveD}" /></use>`;
                 routesLayer.appendChild(intlRoute);
 
-                const intlMarker = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                intlMarker.className.baseVal = `node-point marker-item marker-intl`;
+                const intlMarker = document.createElementNS(SVG_NS, 'g');
+                intlMarker.className.baseVal = 'node-point marker-item marker-intl';
                 intlMarker.setAttribute('transform', `translate(${intl.x}, ${intl.y})`);
-                intlMarker.innerHTML = `<circle r="5.5" fill="#0ea5e9" stroke="#fff" stroke-width="1.8" /><text y="18" text-anchor="middle" fill="#0284c7" font-size="10.5" font-weight="800">${intl.negara.toUpperCase()}</text>`;
+                intlMarker.innerHTML = `
+                    <rect x="-30" y="-12" width="60" height="38" fill="transparent" />
+                    <g class="node-inner">
+                        <circle r="5.5" fill="#0ea5e9" stroke="#fff" stroke-width="1.8" />
+                        <text y="18" text-anchor="middle" fill="#0284c7" font-size="10.5" font-weight="800">${String(intl.negara).toUpperCase()}</text>
+                    </g>`;
+
+                intlMarker.addEventListener('mouseenter', () => showTooltip({
+                    nama: `Ekspor Internasional: ${intl.negara}`,
+                    jumlah: 'Jalur Ekspor',
+                    pulau: 'Global Logistics',
+                    x: intl.x, y: intl.y
+                }));
+                intlMarker.addEventListener('mouseleave', hideTooltip);
                 markersLayer.appendChild(intlMarker);
             });
+
+            // --- Hub Yogyakarta (digambar paling akhir supaya ada di atas) ---
+            const hub = document.createElementNS(SVG_NS, 'g');
+            hub.className.baseVal = 'node-point marker-item marker-origin';
+            hub.id = 'marker-yogyakarta';
+            hub.setAttribute('transform', `translate(${ORIGIN.x}, ${ORIGIN.y})`);
+            hub.innerHTML = `
+                <circle class="radar-wave-1" cx="0" cy="0" fill="none" stroke="#10b981" />
+                <circle class="radar-wave-2" cx="0" cy="0" fill="none" stroke="#0ea5e9" />
+                <rect x="-18" y="-28" width="36" height="42" fill="transparent" />
+                <g class="node-inner">
+                    <circle r="9.5" fill="#059669" stroke="#ffffff" stroke-width="2.5" filter="url(#glowGreen)" />
+                    <circle r="3.5" fill="#ffffff" />
+                    <rect x="-18" y="-25" width="36" height="15" rx="7.5" fill="#059669" stroke="#ffffff" stroke-width="1.2" />
+                    <text y="-14.5" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="900">${ORIGIN.jumlah ?? ''}</text>
+                </g>
+                <g transform="translate(0, 24)" pointer-events="none">
+                    <rect x="-65" y="-9" width="130" height="18" rx="9" fill="#1b4317" />
+                    <text text-anchor="middle" y="3.5" fill="#ffffff" font-size="8.5" font-weight="900" letter-spacing="0.5">★ PUSAT DISTRIBUSI: JOGJA</text>
+                </g>`;
+
+            hub.addEventListener('mouseenter', () => showTooltip({
+                nama: 'D.I. Yogyakarta (Pusat Distribusi)',
+                jumlah: ORIGIN.jumlah,
+                pulau: 'Pusat Rumah Produksi & Gudang Utama',
+                x: ORIGIN.x, y: ORIGIN.y
+            }));
+            hub.addEventListener('mouseleave', hideTooltip);
+            hub.addEventListener('click', () => highlightRegion('yogyakarta'));
+            markersLayer.appendChild(hub);
         }
 
+        // ==========================================
+        // 5. TABEL
+        // ==========================================
         function renderTable() {
             const container = document.getElementById('table-grid-container');
-            container.innerHTML = ''; // Kosongkan dulu
+            let html = '';
             sebaranData.forEach(item => {
-                const isGreen = item.hub === 'jakarta';
-                container.innerHTML += `
-                    <div id="card-${item.kode}" class="table-card p-2.5 rounded-xl bg-white border border-slate-200 hover:border-emerald-400 hover:shadow-md cursor-pointer flex justify-between items-center transition" onclick="highlightRegion('${item.kode}')">
+                const isGreen = getGroup(item) === 'jakarta';
+                const origin = isOrigin(item);
+                html += `
+                    <div id="card-${item.kode}" class="table-card p-2.5 rounded-xl bg-white border ${origin ? 'border-emerald-500 ring-2 ring-emerald-500/30' : 'border-slate-200'} hover:border-emerald-400 hover:shadow-md cursor-pointer flex justify-between items-center transition" onclick="highlightRegion('${item.kode}')">
                         <div class="flex items-center gap-2">
-                            <span class="w-5 h-5 rounded-md ${isGreen ? 'bg-emerald-100 text-emerald-600' : 'bg-sky-100 text-sky-600'} flex items-center justify-center text-[10px] font-bold">${item.no}</span>
-                            <span class="font-semibold text-xs text-slate-700">${item.nama}</span>
+                            <span class="w-5 h-5 rounded-md ${origin ? 'bg-emerald-600 text-white' : (isGreen ? 'bg-emerald-100 text-emerald-600' : 'bg-sky-100 text-sky-600')} flex items-center justify-center text-[10px] font-bold">${item.no}</span>
+                            <span class="font-semibold text-xs text-slate-700">${item.nama} ${origin ? '📍' : ''}</span>
                         </div>
-                        <span class="px-2 py-0.5 rounded-md ${isGreen ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-sky-50 text-sky-600 border border-sky-100'} text-xs font-bold">${item.jumlah}</span>
+                        <span class="px-2 py-0.5 rounded-md ${origin ? 'bg-emerald-600 text-white' : (isGreen ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-sky-50 text-sky-600 border border-sky-100')} text-xs font-bold">${item.jumlah}</span>
                     </div>`;
             });
+            container.innerHTML = html;
         }
 
-        function showTooltip(evt, data) {
+        // ==========================================
+        // 6. TOOLTIP (diposisikan di node, bukan di kursor -> tidak goyang)
+        // ==========================================
+        function showTooltip(data) {
             const t = document.getElementById('map-tooltip');
             const rect = document.getElementById('map-viewport').getBoundingClientRect();
 
             document.getElementById('tooltip-title').textContent = data.nama || 'Tidak diketahui';
-            document.getElementById('tooltip-count').textContent = (data.jumlah || 0) + ' Produk';
+            document.getElementById('tooltip-count').textContent =
+                typeof data.jumlah === 'number' ? `${data.jumlah} Produk` : (data.jumlah ?? '0 Produk');
             document.getElementById('tooltip-sub').textContent = data.pulau || 'Indonesia';
 
-            const mouseX = evt.clientX - rect.left;
-            const mouseY = evt.clientY - rect.top;
+            // Hitung posisi dari koordinat SVG node (viewBox 1200x580)
+            const px = (Number(data.x) / MAP_W) * rect.width;
+            const py = (Number(data.y) / MAP_H) * rect.height;
 
-            t.style.left = `${mouseX}px`;
-            t.style.top = `${mouseY - 20}px`;
+            t.style.left = `${px}px`;
+            t.style.top = `${py - 14}px`;
             t.style.opacity = '1';
         }
 
         function hideTooltip() { document.getElementById('map-tooltip').style.opacity = '0'; }
 
+        // ==========================================
+        // 7. HIGHLIGHT, FILTER, KONTROL
+        // ==========================================
         function highlightRegion(kode) {
             document.querySelectorAll('.table-card').forEach(c => {
                 c.classList.remove('ring-2', 'ring-emerald-500', 'bg-slate-50');
             });
 
             const card = document.getElementById(`card-${kode}`);
-            if(card) {
+            if (card) {
                 card.classList.add('ring-2', 'ring-emerald-500', 'bg-slate-50');
                 card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
 
-            const marker = document.getElementById(`marker-${kode}`);
-            if (marker) {
-                marker.animate([
-                    { transform: 'scale(1)' },
-                    { transform: 'scale(1.8)' },
-                    { transform: 'scale(1)' }
-                ], { duration: 600, easing: 'ease-in-out' });
+            // Animasikan elemen dalam (.node-inner), bukan <g> yang punya translate()
+            const inner = document.querySelector(`#marker-${kode} .node-inner`);
+            if (inner) {
+                inner.animate(
+                    [{ transform: 'scale(1)' }, { transform: 'scale(1.8)' }, { transform: 'scale(1)' }],
+                    { duration: 600, easing: 'ease-in-out' }
+                );
             }
         }
 
         function setFilter(filter) {
-            document.querySelectorAll('.route-item').forEach(r => r.style.display = (filter === 'all' || r.classList.contains(`route-hub-${filter}`) || (filter==='intl' && r.classList.contains('route-intl'))) ? 'block' : 'none');
-            document.querySelectorAll('.marker-item').forEach(m => m.style.opacity = (filter === 'all' || m.classList.contains(`marker-hub-${filter}`) || m.id === `marker-${filter}` || (filter==='intl' && m.classList.contains('marker-intl'))) ? '1' : '0.25');
+            currentFilter = filter;
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-gradient-to-r', 'from-emerald-500', 'to-sky-500', 'text-white', 'font-semibold');
+                btn.classList.add('text-slate-500');
+            });
+            const activeBtn = document.getElementById(`btn-filter-${filter}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('text-slate-500');
+                activeBtn.classList.add('bg-gradient-to-r', 'from-emerald-500', 'to-sky-500', 'text-white', 'font-semibold');
+            }
+
+            document.querySelectorAll('.route-item').forEach(r => {
+                const show = filter === 'all'
+                    || r.classList.contains(`route-hub-${filter}`)
+                    || (filter === 'intl' && r.classList.contains('route-intl'));
+                r.style.display = show ? 'block' : 'none';
+            });
+
+            document.querySelectorAll('.marker-item').forEach(m => {
+                const show = filter === 'all'
+                    || m.classList.contains('marker-origin') // hub Yogyakarta selalu terlihat
+                    || m.classList.contains(`marker-hub-${filter}`)
+                    || (filter === 'intl' && m.classList.contains('marker-intl'));
+                m.style.opacity = show ? '1' : '0.25';
+            });
         }
 
         function filterTable() {
             const query = document.getElementById('search-province').value.toLowerCase();
-            document.querySelectorAll('.table-card').forEach(c => c.style.display = c.textContent.toLowerCase().includes(query) ? 'flex' : 'none');
+            document.querySelectorAll('.table-card').forEach(c => {
+                c.style.display = c.textContent.toLowerCase().includes(query) ? 'flex' : 'none';
+            });
         }
 
         function setSpeed(speed) {
+            currentSpeed = speed;
             document.documentElement.style.setProperty('--anim-speed', `${speed}s`);
 
             document.querySelectorAll('.speed-btn').forEach(btn => {
@@ -920,7 +1032,7 @@
 
             const activeId = speed === 2.2 ? 'speed-slow' : speed === 1.4 ? 'speed-normal' : 'speed-fast';
             const activeBtn = document.getElementById(activeId);
-            if(activeBtn) {
+            if (activeBtn) {
                 activeBtn.classList.remove('text-slate-500');
                 activeBtn.classList.add('bg-slate-800', 'text-white', 'font-bold');
             }
@@ -928,12 +1040,25 @@
 
         function toggleAnimation() {
             const svg = document.getElementById('persebaran-svg');
+            const icon = document.getElementById('play-pause-icon');
+            const text = document.getElementById('play-pause-text');
+
             isAnimationPlaying = !isAnimationPlaying;
-            isAnimationPlaying ? svg.unpauseAnimations() : svg.pauseAnimations();
+            if (isAnimationPlaying) {
+                svg.unpauseAnimations();
+                document.documentElement.style.setProperty('--anim-speed', `${currentSpeed}s`);
+                icon.setAttribute('data-lucide', 'pause');
+                text.textContent = 'Pause';
+            } else {
+                svg.pauseAnimations();
+                icon.setAttribute('data-lucide', 'play');
+                text.textContent = 'Play';
+            }
+            lucide.createIcons();
         }
 
         // ==========================================
-        // 3. JALANKAN SEMUANYA SAAT HALAMAN DIBUKA
+        // 8. JALANKAN SAAT HALAMAN DIBUKA
         // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
             renderMap();
