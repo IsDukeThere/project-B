@@ -43,13 +43,13 @@
             <div class="flex-grow border-t border-slate-200"></div>
         </div>
 
-        <a href="{{ route('depositor.procedure') }}" class="w-full py-3 rounded-full text-xs font-semibold bg-emerald-100/70 text-emerald-800 hover:bg-emerald-200/80 transition flex items-center justify-center gap-2">
+        {{-- <a href="{{ route('depositor.procedure') }}" class="w-full py-3 rounded-full text-xs font-semibold bg-emerald-100/70 text-emerald-800 hover:bg-emerald-200/80 transition flex items-center justify-center gap-2">
             <span>🌐</span> Masuk dengan Google
-        </a>
+        </a> --}}
     </form>
 
     <div class="text-center text-xs text-slate-500">
-        Belum punya akun? 
+        Belum punya akun?
         <a href="{{ route('register') }}" class="font-bold text-emerald-700 hover:underline">
             Daftar Akun Baru
         </a>
