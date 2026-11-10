@@ -53,7 +53,6 @@ class CertificateController extends Controller
             }
 
             $image->move($publicDir, $imageName);
-
             $validated['image'] = 'img/certificates/' . $imageName;
         }
 
