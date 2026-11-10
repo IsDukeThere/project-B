@@ -77,6 +77,7 @@ class CertificateController extends Controller
     // 4. Tampil daftar semua sertifikat di User
     public function index()
     {
+        $certificates = Certificate::latest()->get();
         $originHub = $this->getOriginHub();
         $dataSebaran = $this->getSebaranData();
         $internasional = $this->getInternasionalData();
@@ -85,6 +86,7 @@ class CertificateController extends Controller
         $topRegion = collect($dataSebaran)->sortByDesc('jumlah')->first();
 
         return view('pages.certificates.index', compact(
+            'certificates',
             'originHub',
             'dataSebaran',
             'internasional',
