@@ -124,17 +124,17 @@ class CertificateController extends Controller
             'jakarta' => [
                 'nama' => 'Regional Sub-Hub (Jakarta)',
                 'lokasi' => 'DKI Jakarta',
-                'warna' => '#10b981', // Hijau Zamrud
+                'warna' => '#0ea5e9', // Hijau Zamrud
                 'tipe' => 'sub',
                 'deskripsi' => 'Pusat distribusi mencakup Sumatera, Banten, Jawa Barat, dan Kalimantan',
                 'x' => 345,
                 'y' => 465,
             ],
-            // ---> PERHATIKAN: Key 'yogyakarta' pakai huruf kecil semua supaya cocok dengan field 'hub' di atas
+
             'yogyakarta' => [
                 'nama' => 'Main Distribution Hub (Yogyakarta)',
                 'lokasi' => 'Yogyakarta',
-                'warna' => '#0ea5e9', // Biru Safir
+                'warna' => '#10b981', // Biru Safir
                 'tipe' => 'main',
                 'deskripsi' => 'Pusat distribusi utama mencakup Jawa Tengah, Timur, Bali, Nusa Tenggara, Sulawesi, Maluku, dan Papua',
                 'x' => 450,

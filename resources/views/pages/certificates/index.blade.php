@@ -12,29 +12,29 @@
             transition: transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
             cursor: pointer;
         }
-        
-        .flip-card-inner.is-flipped { 
-            transform: rotateY(180deg); 
+
+        .flip-card-inner.is-flipped {
+            transform: rotateY(180deg);
             -webkit-transform: rotateY(180deg); /* Fix Safari */
         }
-        
+
         .flip-card-front, .flip-card-back {
             position: absolute; inset: 0; width: 100%; height: 100%;
-            backface-visibility: hidden; 
+            backface-visibility: hidden;
             -webkit-backface-visibility: hidden; /* Fix Safari */
             /* Paksa rendering GPU agar depan-belakang tidak tembus di HP */
-            transform: rotateY(0deg) translateZ(0); 
+            transform: rotateY(0deg) translateZ(0);
             -webkit-transform: rotateY(0deg) translateZ(0);
             border-radius: 28px;
         }
-        
-        .flip-card-back { 
-            transform: rotateY(180deg) translateZ(0); 
-            -webkit-transform: rotateY(180deg) translateZ(0); 
+
+        .flip-card-back {
+            transform: rotateY(180deg) translateZ(0);
+            -webkit-transform: rotateY(180deg) translateZ(0);
         }
-        
-        .card-perspective:hover .flip-card-inner:not(.is-flipped) { 
-            transform: translateY(-8px) rotateX(4deg); 
+
+        .card-perspective:hover .flip-card-inner:not(.is-flipped) {
+            transform: translateY(-8px) rotateX(4deg);
         }
 
         @keyframes flowGreen { 0% { stroke-dashoffset: 28; } 100% { stroke-dashoffset: 0; } }
@@ -122,7 +122,7 @@
       <!-- ==================== KARTU 1: SDG 11 ==================== -->
       <div class="card-perspective w-full max-w-[305px] h-[470px]">
         <div class="flip-card-inner rounded-[28px] focus:outline-none" onclick="toggleCard(this)" tabindex="0" onkeydown="handleCardKey(event, this)">
-          
+
           <!-- SISI DEPAN (FRONT) -->
           <div class="flip-card-front p-6 flex flex-col justify-between text-white shadow-2xl shadow-black/40 bg-gradient-to-b from-[#FD9D24] to-[#E58814] border border-white/20 text-left">
             <!-- Watermark Nomor Besar -->
@@ -180,7 +180,7 @@
           <!-- SISI BELAKANG (BACK) -->
           <div class="flip-card-back p-6 flex flex-col justify-between text-slate-100 shadow-2xl shadow-black/40 bg-slate-900 border border-slate-700/80 text-left">
             <div class="absolute top-0 left-0 right-0 h-2 bg-[#FD9D24]"></div>
-            
+
             <div class="space-y-3 relative z-10">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2.5">
@@ -231,7 +231,7 @@
       <!-- ==================== KARTU 2: SDG 12 ==================== -->
       <div class="card-perspective w-full max-w-[305px] h-[470px]">
         <div class="flip-card-inner rounded-[28px] focus:outline-none" onclick="toggleCard(this)" tabindex="0" onkeydown="handleCardKey(event, this)">
-          
+
           <!-- SISI DEPAN (FRONT) -->
           <div class="flip-card-front p-6 flex flex-col justify-between text-white shadow-2xl shadow-black/40 bg-gradient-to-b from-[#BF8B2E] to-[#A47420] border border-white/20 text-left">
             <div class="absolute -right-8 -bottom-10 pointer-events-none opacity-10 select-none">
@@ -284,7 +284,7 @@
           <!-- SISI BELAKANG (BACK) -->
           <div class="flip-card-back p-6 flex flex-col justify-between text-slate-100 shadow-2xl shadow-black/40 bg-slate-900 border border-slate-700/80 text-left">
             <div class="absolute top-0 left-0 right-0 h-2 bg-[#BF8B2E]"></div>
-            
+
             <div class="space-y-3 relative z-10">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2.5">
@@ -335,7 +335,7 @@
       <!-- ==================== KARTU 3: SDG 8 ==================== -->
       <div class="card-perspective w-full max-w-[305px] h-[470px]">
         <div class="flip-card-inner rounded-[28px] focus:outline-none" onclick="toggleCard(this)" tabindex="0" onkeydown="handleCardKey(event, this)">
-          
+
           <!-- SISI DEPAN (FRONT) -->
           <div class="flip-card-front p-6 flex flex-col justify-between text-white shadow-2xl shadow-black/40 bg-gradient-to-b from-[#A21942] to-[#861234] border border-white/20 text-left">
             <div class="absolute -right-8 -bottom-10 pointer-events-none opacity-10 select-none">
@@ -388,7 +388,7 @@
           <!-- SISI BELAKANG (BACK) -->
           <div class="flip-card-back p-6 flex flex-col justify-between text-slate-100 shadow-2xl shadow-black/40 bg-slate-900 border border-slate-700/80 text-left">
             <div class="absolute top-0 left-0 right-0 h-2 bg-[#A21942]"></div>
-            
+
             <div class="space-y-3 relative z-10">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2.5">
@@ -439,7 +439,7 @@
       <!-- ==================== KARTU 4: SDG 9 ==================== -->
       <div class="card-perspective w-full max-w-[305px] h-[470px]">
         <div class="flip-card-inner rounded-[28px] focus:outline-none" onclick="toggleCard(this)" tabindex="0" onkeydown="handleCardKey(event, this)">
-          
+
           <!-- SISI DEPAN (FRONT) -->
           <div class="flip-card-front p-6 flex flex-col justify-between text-white shadow-2xl shadow-black/40 bg-gradient-to-b from-[#F36E25] to-[#D55A16] border border-white/20 text-left">
             <div class="absolute -right-8 -bottom-10 pointer-events-none opacity-10 select-none">
@@ -492,7 +492,7 @@
           <!-- SISI BELAKANG (BACK) -->
           <div class="flip-card-back p-6 flex flex-col justify-between text-slate-100 shadow-2xl shadow-black/40 bg-slate-900 border border-slate-700/80 text-left">
             <div class="absolute top-0 left-0 right-0 h-2 bg-[#F36E25]"></div>
-            
+
             <div class="space-y-3 relative z-10">
               <div class="flex items-center justify-between">
                 <div class="flex items-center gap-2.5">
@@ -614,43 +614,34 @@
                 </div>
 
                 <svg viewBox="0 0 1200 580" class="w-full h-full select-none" id="persebaran-svg">
-                    <defs>
-                        <filter id="glowGreen" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-                        <filter id="glowBlue" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.5" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
-                        <g id="airplane-icon"><path d="M -6 -4 L 6 0 L -6 4 L -4 0 Z" fill="#0284c7" stroke="#ffffff" stroke-width="0.8" /></g>
-                    </defs>
-                    
-                    <!-- Grid Lines Terang -->
-                    <g stroke="#cbd5e1" stroke-width="0.6" stroke-dasharray="3,4" opacity="0.6">
-                        <line x1="0" y1="140" x2="1200" y2="140" /><line x1="0" y1="280" x2="1200" y2="280" /><line x1="0" y1="420" x2="1200" y2="420" />
-                        <line x1="250" y1="0" x2="250" y2="580" /><line x1="500" y1="0" x2="500" y2="580" /><line x1="750" y1="0" x2="750" y2="580" /><line x1="1000" y1="0" x2="1000" y2="580" />
-                    </g>
+                  <defs>
+                      <filter id="glowGreen" x="-20%" y="-20%" width="140%" height="140%">
+                          <feGaussianBlur stdDeviation="2.5" result="blur" />
+                          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                      </filter>
+                      <filter id="glowBlue" x="-20%" y="-20%" width="140%" height="140%">
+                          <feGaussianBlur stdDeviation="2.5" result="blur" />
+                          <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                      </filter>
+                      <g id="airplane-icon"><path d="M -6 -4 L 6 0 L -6 4 L -4 0 Z" fill="#0284c7" stroke="#ffffff" stroke-width="0.8" /></g>
+                  </defs>
 
-                    <!-- SILUET PULAU TERANG -->
-                    <g id="islands-group" class="transition-opacity duration-300">
-                        <path class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" d="M 65 140 C 85 125, 110 145, 125 170 C 150 210, 175 250, 205 295 C 230 330, 255 375, 275 425 C 290 455, 295 478, 280 485 C 265 488, 250 465, 235 435 C 210 390, 180 340, 150 295 C 125 255, 95 215, 75 180 C 60 155, 55 145, 65 140 Z" />
-                        <path class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" d="M 305 470 C 325 465, 355 465, 385 480 C 415 490, 445 490, 475 495 C 505 495, 535 490, 565 510 C 565 520, 545 525, 515 520 C 475 520, 445 520, 405 515 C 365 510, 325 500, 300 485 C 295 475, 300 470, 305 470 Z" />
-                        <path class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" d="M 395 320 C 410 270, 450 240, 500 240 C 540 240, 570 220, 585 230 C 595 250, 575 280, 565 310 C 575 335, 570 365, 555 390 C 540 405, 515 405, 495 400 C 470 395, 445 390, 425 380 C 400 370, 385 345, 395 320 Z" />
-                        <path class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" d="M 625 375 C 630 345, 650 320, 665 300 C 675 275, 695 250, 725 235 C 730 245, 710 265, 695 285 C 690 310, 680 330, 690 355 C 705 380, 715 405, 705 425 C 690 430, 680 410, 665 390 C 655 390, 650 420, 640 450 C 630 455, 625 430, 630 405 C 620 395, 620 385, 625 375 Z" />
-                        <path class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" d="M 760 230 C 775 225, 785 240, 775 260 C 785 275, 775 295, 765 290 C 760 270, 765 255, 760 230 Z" />
-                        <path class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" d="M 860 320 C 885 305, 910 325, 915 345 C 900 360, 875 355, 860 340 C 855 330, 855 325, 860 320 Z" />
-                        <path class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" d="M 915 355 C 950 355, 990 350, 1040 360 C 1065 365, 1070 420, 1065 470 C 1045 480, 1010 470, 975 440 C 950 420, 925 390, 915 355 Z" />
-                        <ellipse cx="260" cy="370" rx="12" ry="18" transform="rotate(25 260 370)" class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" />
-                        <ellipse cx="290" cy="385" rx="8" ry="10" class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" />
-                        <ellipse cx="535" cy="480" rx="20" ry="6" class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" />
-                        <ellipse cx="575" cy="515" rx="9" ry="6" class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" />
-                        <ellipse cx="605" cy="518" rx="11" ry="7" class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" />
-                        <path class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" d="M 630 518 C 650 514, 670 516, 675 524 C 665 528, 640 528, 630 518 Z" />
-                        <path class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" d="M 700 520 C 730 516, 755 522, 755 530 C 730 534, 705 532, 700 520 Z" />
-                        <path class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" d="M 760 532 C 780 528, 800 536, 795 545 C 775 548, 760 544, 760 532 Z" />
-                        <ellipse cx="760" cy="375" rx="12" ry="9" class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" />
-                        <ellipse cx="805" cy="370" rx="22" ry="8" class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" />
-                    </g>
-                    <g id="routes-layer"></g>
-                    <g id="markers-layer"></g>
-                </svg>
+                  <g stroke="#cbd5e1" stroke-width="0.6" stroke-dasharray="3,4" opacity="0.6" class="pointer-events-none">
+                      <line x1="0" y1="140" x2="1200" y2="140" /><line x1="0" y1="280" x2="1200" y2="280" /><line x1="0" y1="420" x2="1200" y2="420" />
+                      <line x1="250" y1="0" x2="250" y2="580" /><line x1="500" y1="0" x2="500" y2="580" /><line x1="750" y1="0" x2="750" y2="580" /><line x1="1000" y1="0" x2="1000" y2="580" />
+                  </g>
+
+                  <g id="islands-group" class="transition-opacity duration-300 pointer-events-none">
+                      <path class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" d="M 65 140 C 85 125, 110 145, 125 170 C 150 210, 175 250, 205 295 C 230 330, 255 375, 275 425 C 290 455, 295 478, 280 485 C 265 488, 250 465, 235 435 C 210 390, 180 340, 150 295 C 125 255, 95 215, 75 180 C 60 155, 55 145, 65 140 Z" />
+                      <ellipse cx="805" cy="370" rx="22" ry="8" class="fill-slate-200/80 stroke-slate-300/80" stroke-width="1.2" />
+                  </g>
+
+                  <g id="routes-layer" class="pointer-events-none"></g>
+
+                  <g id="markers-layer"></g>
+              </svg>
             </div>
-            
+
             <div class="px-6 py-3.5 bg-white border-t border-slate-200 flex justify-between text-xs">
                 <div class="flex gap-5">
                     <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-emerald-500"></span><span class="text-slate-600 font-semibold">Hub Utama (Jakarta)</span></div>
@@ -674,7 +665,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="space-y-4">
             <h2 class="font-extrabold text-lg text-slate-900">Semua Penghargaan yang Diterima</h2>
-            
+
             <div class="space-y-3">
                 @forelse($certificates as $certificate)
                     <div class="pb-card flex items-center justify-between p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
@@ -776,7 +767,7 @@
         function renderMap() {
             const routesLayer = document.getElementById('routes-layer');
             const markersLayer = document.getElementById('markers-layer');
-            
+
             sebaranData.forEach(item => {
                 const isHub = item.is_hub;
                 const hubId = item.hub || 'jakarta';
@@ -788,7 +779,7 @@
                     const animClass = isGreen ? 'animate-flow-green' : 'animate-flow-blue';
                     const curveD = createCurvePath(hub.x, hub.y, item.x, item.y);
                     const dur = (1.5 + Math.random() * 1.2).toFixed(2);
-                    
+
                     const route = document.createElementNS('http://www.w3.org/2000/svg', 'g');
                     route.className.baseVal = `route-item route-hub-${hubId}`;
                     route.innerHTML = `
@@ -819,6 +810,8 @@
                         <text y="-9" text-anchor="middle" fill="#0f172a" font-size="8.5" font-weight="800">${item.jumlah}</text>
                         <text y="15" text-anchor="middle" fill="#475569" font-size="9" font-weight="600">${item.nama}</text>`;
                 }
+
+                marker.style.cursor = "pointer";
 
                 marker.addEventListener('mouseenter', (e) => showTooltip(e, item));
                 marker.addEventListener('mouseleave', hideTooltip);
@@ -875,9 +868,9 @@
             t.style.top = `${mouseY - 20}px`;
             t.style.opacity = '1';
         }
-        
+
         function hideTooltip() { document.getElementById('map-tooltip').style.opacity = '0'; }
-        
+
         function highlightRegion(kode) {
             document.querySelectorAll('.table-card').forEach(c => {
                 c.classList.remove('ring-2', 'ring-emerald-500', 'bg-slate-50');
@@ -898,19 +891,19 @@
                 ], { duration: 600, easing: 'ease-in-out' });
             }
         }
-        
+
         function setFilter(filter) {
             document.querySelectorAll('.route-item').forEach(r => r.style.display = (filter === 'all' || r.classList.contains(`route-hub-${filter}`) || (filter==='intl' && r.classList.contains('route-intl'))) ? 'block' : 'none');
             document.querySelectorAll('.marker-item').forEach(m => m.style.opacity = (filter === 'all' || m.classList.contains(`marker-hub-${filter}`) || m.id === `marker-${filter}` || (filter==='intl' && m.classList.contains('marker-intl'))) ? '1' : '0.25');
         }
-        
+
         function filterTable() {
             const query = document.getElementById('search-province').value.toLowerCase();
             document.querySelectorAll('.table-card').forEach(c => c.style.display = c.textContent.toLowerCase().includes(query) ? 'flex' : 'none');
         }
-        
-        function setSpeed(speed) { 
-            document.documentElement.style.setProperty('--anim-speed', `${speed}s`); 
+
+        function setSpeed(speed) {
+            document.documentElement.style.setProperty('--anim-speed', `${speed}s`);
 
             document.querySelectorAll('.speed-btn').forEach(btn => {
                 btn.classList.remove('bg-slate-800', 'text-white', 'font-bold');
@@ -924,7 +917,7 @@
                 activeBtn.classList.add('bg-slate-800', 'text-white', 'font-bold');
             }
         }
-        
+
         function toggleAnimation() {
             const svg = document.getElementById('persebaran-svg');
             isAnimationPlaying = !isAnimationPlaying;
@@ -934,9 +927,9 @@
         // ==========================================
         // 3. JALANKAN SEMUANYA SAAT HALAMAN DIBUKA
         // ==========================================
-        document.addEventListener('DOMContentLoaded', () => { 
-            renderMap(); 
-            renderTable(); 
+        document.addEventListener('DOMContentLoaded', () => {
+            renderMap();
+            renderTable();
             lucide.createIcons();
         });
     </script>
