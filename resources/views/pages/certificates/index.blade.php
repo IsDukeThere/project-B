@@ -607,7 +607,10 @@
             <!-- SVG MAP AREA -->
             <div class="relative w-full aspect-[1200/580] bg-slate-50 flex items-center justify-center overflow-hidden" id="map-viewport">
                 <!-- Tooltip (Udah Diganti Warna Terang) -->
-                <div id="map-tooltip" class="absolute pointer-events-none opacity-0 transition-opacity z-50 bg-white/95 backdrop-blur border border-slate-200 px-4 py-2.5 rounded-xl shadow-xl text-xs -translate-x-1/2 -translate-y-full mb-3 min-w-[150px]">
+                <div id="map-tooltip"
+                    class="fixed pointer-events-none opacity-0 transition-opacity duration-150 z-[100] bg-white/95 backdrop-blur border border-slate-200 px-4 py-2.5 rounded-xl shadow-xl text-xs -translate-x-1/2 -translate-y-[120%] min-w-[150px]"
+                    style="will-change: transform, opacity; top: 0; left: 0;">
+
                     <div id="tooltip-title" class="font-bold text-slate-800 text-sm"></div>
                     <div id="tooltip-count" class="text-emerald-600 font-extrabold text-base mt-0.5"></div>
                     <div id="tooltip-sub" class="text-[11px] text-slate-500 mt-1"></div>
@@ -858,17 +861,15 @@
 
         function showTooltip(evt, data) {
             const t = document.getElementById('map-tooltip');
-            const rect = document.getElementById('map-viewport').getBoundingClientRect();
 
             document.getElementById('tooltip-title').textContent = data.nama || 'Tidak diketahui';
             document.getElementById('tooltip-count').textContent = (data.jumlah || 0) + ' Produk';
             document.getElementById('tooltip-sub').textContent = data.pulau || 'Indonesia';
 
-            const mouseX = evt.clientX - rect.left;
-            const mouseY = evt.clientY - rect.top;
+            t.style.left = `${evt.clientX}px`;
 
-            t.style.left = `${mouseX}px`;
-            t.style.top = `${mouseY - 20}px`;
+            t.style.top = `${evt.clientY - 20}px`;
+
             t.style.opacity = '1';
         }
 
