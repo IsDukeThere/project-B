@@ -751,7 +751,7 @@
         // 2. FUNGSI UNTUK PETA PERSEBARAN
         // ==========================================
         const sebaranData = @json($dataSebaran);
-        const hubsData = @json($hubs);
+        const hubsData = @json($originHub);
         const intlData = @json($internasional);
         const totalSebaran = {{ $totalSebaran }};
 
