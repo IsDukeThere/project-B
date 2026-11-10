@@ -27,14 +27,33 @@ class CertificateController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:5120', // Maksimal 5MB
         ]);
 
+        // if ($request->hasFile('image')) {
+        //     $image = $request->file('image');
+        //     $imageName = time() . '_' . $image->getClientOriginalName();
+        //     $image->move(public_path('img/certificates'), $imageName);
+        //     $validated['image'] = 'img/certificates/' . $imageName;
+        // }
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
-            // $destinationPath = public_path('img/certificates');
-            // if (!file_exists($destinationPath)) {
-            //     mkdir($destinationPath, 0755, true);
-            // }
-            $image->move(public_path('img/certificates'), $imageName);
+
+            $publicDir = public_path('img/certificates');
+            $storageDir = storage_path('app/public/certificates');
+
+            if (!file_exists($storageDir)) {
+                mkdir($storageDir, 0755, true);
+            }
+
+            if (!is_link($publicDir)) {
+                if (is_dir($publicDir)) {
+                    @rmdir($publicDir);
+                }
+                @symlink($storageDir, $publicDir);
+            }
+
+            $image->move($publicDir, $imageName);
+
             $validated['image'] = 'img/certificates/' . $imageName;
         }
 

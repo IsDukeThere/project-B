@@ -67,7 +67,7 @@ Route::middleware(['auth', PreventBackHistory::class])->group(function () {
     // ==========================================
     // 3. Rute Halaman Admin
     // ==========================================
-    
+
     // Rute Workshop Admin (Sengaja dikeluarkan dari prefix name 'admin.' agar tidak bentrok)
     // Route::get('/admin/workshops', [WorkshopController::class, 'create'])->name('workshops.create');
     // Route::post('/admin/workshops/simpan', [WorkshopController::class, 'store'])->name('workshops.store');
