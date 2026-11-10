@@ -43,12 +43,14 @@
         .animate-flow-blue { stroke-dasharray: 6 6; animation: flowBlue var(--anim-speed, 1.4s) linear infinite; }
         /* Radar Pulse Expansion */
         @keyframes radarPulse { 0% { r: 6; opacity: 0.9; stroke-width: 2.5; } 70% { opacity: 0.35; } 100% { r: 45; opacity: 0; stroke-width: 0.5; } }
-        .radar-wave-1 { animation: radarPulse 2.6s cubic-bezier(0.2, 0.8, 0.4, 1) infinite; }
-        .radar-wave-2 { animation: radarPulse 2.6s cubic-bezier(0.2, 0.8, 0.4, 1) infinite; animation-delay: 1.3s; }
+        /* .radar-wave-1 { animation: radarPulse 2.6s cubic-bezier(0.2, 0.8, 0.4, 1) infinite; }
+        .radar-wave-2 { animation: radarPulse 2.6s cubic-bezier(0.2, 0.8, 0.4, 1) infinite; animation-delay: 1.3s; } */
+        .radar-wave-1, .radar-wave-2 { pointer-events: none; }
         /* Point Glow Hover */
         /* .node-point { cursor: pointer; transition: transform 0.25s ease; }
         .node-point:hover { transform: scale(1.2); } */
         /* Custom Scrollbar */
+        .node-point * { transform-box: fill-box; transform-origin: center; }
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
         ::-webkit-scrollbar-thumb { background: #334155; border-radius: 999px; }
@@ -608,7 +610,7 @@
             <div class="relative w-full aspect-[1200/580] bg-slate-50 flex items-center justify-center overflow-hidden" id="map-viewport">
                 <!-- Tooltip (Udah Diganti Warna Terang) -->
                 <div id="map-tooltip"
-                    class="fixed pointer-events-none opacity-0 transition-opacity duration-150 z-[100] bg-white/95 backdrop-blur border border-slate-200 px-4 py-2.5 rounded-xl shadow-xl text-xs -translate-x-1/2 -translate-y-[120%] min-w-[150px]"
+                    class="absolute pointer-events-none opacity-0 transition-opacity duration-150 z-[100] bg-white/95 backdrop-blur border border-slate-200 px-4 py-2.5 rounded-xl shadow-xl text-xs -translate-x-1/2 -translate-y-[120%] min-w-[150px]"
                     style="will-change: transform, opacity; top: 0; left: 0;">
 
                     <div id="tooltip-title" class="font-bold text-slate-800 text-sm"></div>
@@ -861,15 +863,17 @@
 
         function showTooltip(evt, data) {
             const t = document.getElementById('map-tooltip');
+            const rect = document.getElementById('map-viewport').getBoundingClientRect();
 
             document.getElementById('tooltip-title').textContent = data.nama || 'Tidak diketahui';
             document.getElementById('tooltip-count').textContent = (data.jumlah || 0) + ' Produk';
             document.getElementById('tooltip-sub').textContent = data.pulau || 'Indonesia';
 
-            t.style.left = `${evt.clientX}px`;
+            const mouseX = evt.clientX - rect.left;
+            const mouseY = evt.clientY - rect.top;
 
-            t.style.top = `${evt.clientY - 20}px`;
-
+            t.style.left = `${mouseX}px`;
+            t.style.top = `${mouseY - 20}px`;
             t.style.opacity = '1';
         }
 

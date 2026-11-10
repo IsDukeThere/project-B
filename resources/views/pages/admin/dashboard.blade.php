@@ -70,9 +70,15 @@
                             </p>
                         </div>
                     </div>
-                    <a href="{{ route('admin.deposits.verify', $deposit->id) }}" class="px-3.5 py-1.5 rounded-lg bg-emerald-700 text-white text-xs font-bold">
+                    {{-- <a href="{{ route('admin.deposits.verify', $deposit->id) }}" class="px-3.5 py-1.5 rounded-lg bg-emerald-700 text-white text-xs font-bold">
                         Timbang
-                    </a>
+                    </a> --}}
+                    <form action="{{ route('admin.deposits.verifikasi', $deposit->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="px-3 py-1.5 bg-emerald-600 text-white rounded-xl text-xs font-bold hover:bg-emerald-700 transition">
+                            Timbang
+                        </button>
+                    </form>
                 </div>
                 @empty
                 <div class="text-center py-4 text-xs text-slate-500">
