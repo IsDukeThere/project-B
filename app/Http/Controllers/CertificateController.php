@@ -84,7 +84,7 @@ class CertificateController extends Controller
         $totalSebaran = 2952;
         $topRegion = collect($dataSebaran)->sortByDesc('jumlah')->first();
 
-        return view('persebaran', compact(
+        return view('pages.certificates.index', compact(
             'originHub',
             'dataSebaran',
             'internasional',
