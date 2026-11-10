@@ -30,6 +30,10 @@ class CertificateController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
+            $destinationPath = public_path('img/certificates');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
             $image->move(public_path('img/certificates'), $imageName);
             $validated['image'] = 'img/certificates/' . $imageName;
         }
