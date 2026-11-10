@@ -46,8 +46,8 @@
         .radar-wave-1 { animation: radarPulse 2.6s cubic-bezier(0.2, 0.8, 0.4, 1) infinite; }
         .radar-wave-2 { animation: radarPulse 2.6s cubic-bezier(0.2, 0.8, 0.4, 1) infinite; animation-delay: 1.3s; }
         /* Point Glow Hover */
-        .node-point { cursor: pointer; transition: transform 0.25s ease; }
-        .node-point:hover { transform: scale(1.2); }
+        /* .node-point { cursor: pointer; transition: transform 0.25s ease; }
+        .node-point:hover { transform: scale(1.2); } */
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #0f172a; }
@@ -789,26 +789,29 @@
                 }
 
                 const marker = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-                marker.className.baseVal = `node-point marker-item marker-hub-${hubId}`;
+                marker.className.baseVal = `node-point marker-item marker-hub-${hubId} group cursor-pointer`;
                 marker.id = `marker-${item.kode}`;
                 marker.setAttribute('transform', `translate(${item.x}, ${item.y})`);
 
                 if (isHub) {
                     const isMain = item.hub_type === 'main';
                     const color = isMain ? '#10b981' : '#0ea5e9';
+
                     marker.innerHTML = `
                         <circle class="radar-wave-1" cx="0" cy="0" fill="none" stroke="${color}" />
                         <circle class="radar-wave-2" cx="0" cy="0" fill="none" stroke="${color}" />
-                        <circle r="8.5" fill="${color}" stroke="#fff" stroke-width="2.5" />
-                        <text y="-13.5" text-anchor="middle" fill="#0f172a" font-size="9.5" font-weight="900">${item.jumlah}</text>`; // Teks hub jadi gelap
+                        <circle r="8.5" fill="${color}" stroke="#fff" stroke-width="2.5" class="transition-transform duration-300 origin-center group-hover:scale-[1.2]" />
+                        <text y="-13.5" text-anchor="middle" fill="#0f172a" font-size="9.5" font-weight="900" class="transition-transform duration-300 origin-center group-hover:-translate-y-1">${item.jumlah}</text>`;
                 } else {
                     const color = hubId === 'jakarta' ? '#10b981' : '#0ea5e9';
-                    // INI YANG DIUBAH: Kotak putih (rgba 255), tulisan gelap
+
                     marker.innerHTML = `
-                        <circle r="4.5" fill="${color}" stroke="#fff" stroke-width="1.5" />
-                        <rect x="-13" y="-18" width="26" height="12" rx="4" fill="rgba(255,255,255,0.95)" stroke="${color}" stroke-width="1" />
-                        <text y="-9" text-anchor="middle" fill="#0f172a" font-size="8.5" font-weight="800">${item.jumlah}</text>
-                        <text y="15" text-anchor="middle" fill="#475569" font-size="9" font-weight="600">${item.nama}</text>`;
+                        <g class="transition-transform duration-300 origin-center group-hover:scale-[1.15]">
+                            <circle r="4.5" fill="${color}" stroke="#fff" stroke-width="1.5" />
+                            <rect x="-13" y="-18" width="26" height="12" rx="4" fill="rgba(255,255,255,0.95)" stroke="${color}" stroke-width="1" />
+                            <text y="-9" text-anchor="middle" fill="#0f172a" font-size="8.5" font-weight="800">${item.jumlah}</text>
+                            <text y="15" text-anchor="middle" fill="#475569" font-size="9" font-weight="600">${item.nama}</text>
+                        </g>`;
                 }
 
                 marker.style.cursor = "pointer";
