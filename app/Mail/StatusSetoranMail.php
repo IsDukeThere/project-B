@@ -32,7 +32,7 @@ class StatusSetoranMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.status-setoran',
+            view: 'emails.status-setoran',
         );
     }
 }
