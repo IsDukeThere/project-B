@@ -262,7 +262,7 @@
 
                 <div class="flex items-center justify-between text-xs text-slate-400 pt-1">
                     <span class="flex items-center gap-1.5">
-                        <span class="text-emerald-400">💡</span> Ikuti teknik mencuci pada video untuk memastikan sampah Anda langsung lolos verifikasi poin.
+                        <span class="text-emerald-50">💡</span> Ikuti teknik mencuci pada video untuk memastikan sampah Anda langsung lolos verifikasi poin.
                     </span>
                     <span class="text-[11px] font-semibold text-emerald-400">Project B Indonesia</span>
                 </div>
