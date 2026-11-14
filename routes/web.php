@@ -21,6 +21,15 @@ use Illuminate\Support\Facades\Route;
 // ==========================================
 // 1. Rute Halaman Publik / Pengunjung
 // ==========================================
+Route::get('/img/certificates/{filename}', function ($filename) {
+    $path = storage_path('app/public/certificates/' . basename($filename));
+
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+});
 Route::get('/', [ProductController::class, 'home'])->name('home');
 Route::get('/alur-proses', function () { return view('pages.production-process'); })->name('production-process');
 Route::get('/produk', [ProductController::class, 'index'])->name('products.index');

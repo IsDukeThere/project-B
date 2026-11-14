@@ -10,6 +10,7 @@ class CertificateController extends Controller
     // ================= BAGIAN ADMIN =================
 
     // 1. Tampil form & daftar di Admin
+    // 1. Tampil form & daftar di Admin
     public function create()
     {
         $certificates = Certificate::latest()->get();
@@ -30,31 +31,15 @@ class CertificateController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('img/certificates'), $imageName);
+
+            $storageDir = storage_path('app/public/certificates');
+            if (!file_exists($storageDir)) {
+                mkdir($storageDir, 0755, true);
+            }
+
+            $image->move($storageDir, $imageName);
             $validated['image'] = 'img/certificates/' . $imageName;
         }
-
-        // if ($request->hasFile('image')) {
-        //     $image = $request->file('image');
-        //     $imageName = time() . '_' . $image->getClientOriginalName();
-
-        //     $publicDir = public_path('img/certificates');
-        //     $storageDir = storage_path('app/public/certificates');
-
-        //     if (!file_exists($storageDir)) {
-        //         mkdir($storageDir, 0755, true);
-        //     }
-
-        //     if (!is_link($publicDir)) {
-        //         if (is_dir($publicDir)) {
-        //             @rmdir($publicDir);
-        //         }
-        //         @symlink($storageDir, $publicDir);
-        //     }
-
-        //     $image->move($publicDir, $imageName);
-        //     $validated['image'] = 'img/certificates/' . $imageName;
-        // }
 
         Certificate::create($validated);
         return redirect()->back()->with('success', 'Sertifikat berhasil ditambahkan!');
@@ -64,9 +49,18 @@ class CertificateController extends Controller
     public function destroy($id)
     {
         $certificate = Certificate::findOrFail($id);
-        if ($certificate->image && file_exists(public_path($certificate->image))) {
-            unlink(public_path($certificate->image));
+
+        if ($certificate->image) {
+            $storagePath = storage_path('app/public/certificates/' . basename($certificate->image));
+            $publicPath = public_path($certificate->image);
+
+            if (file_exists($storagePath)) {
+                unlink($storagePath);
+            } elseif (file_exists($publicPath)) {
+                unlink($publicPath);
+            }
         }
+
         $certificate->delete();
         return redirect()->back()->with('success', 'Sertifikat berhasil dihapus!');
     }
