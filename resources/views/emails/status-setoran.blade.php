@@ -27,7 +27,7 @@ Selamat! Setoran Anda telah **diterima** dan poin otomatis ditambahkan ke akun A
 Mohon maaf, setoran Anda **ditolak** saat ini.
 @endif
 
-<x-mail::button :url="url('/')">
+<x-mail::button :url="url('https://project-b-k8tf.onrender.com/penyetor/riwayat')">
 Cek Riwayat & Poin Saya
 </x-mail::button>
 
