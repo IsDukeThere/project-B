@@ -45,6 +45,55 @@ class CertificateController extends Controller
         return redirect()->back()->with('success', 'Sertifikat berhasil ditambahkan!');
     }
 
+    // 2b. Tampil mode Edit di form yang sama
+    public function edit($id)
+    {
+        $certificates = Certificate::latest()->get();
+        $editCertificate = Certificate::findOrFail($id);
+
+        return view('pages.admin.certificates', compact('certificates', 'editCertificate'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $certificate = Certificate::findOrFail($id);
+
+        $validated = $request->validate([
+            'nama' => 'required|string|max:255',
+            'penyelenggara' => 'required|string|max:255',
+            'tahun' => 'required|string|max:4',
+            'penjelasan' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:5120', // Maksimal 5MB
+        ]);
+
+        if ($request->hasFile('image')) {
+            if ($certificate->image) {
+                $oldStoragePath = storage_path('app/public/certificates/' . basename($certificate->image));
+                $oldPublicPath = public_path($certificate->image);
+
+                if (file_exists($oldStoragePath)) {
+                    unlink($oldStoragePath);
+                } elseif (file_exists($oldPublicPath)) {
+                    unlink($oldPublicPath);
+                }
+            }
+
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            $storageDir = storage_path('app/public/certificates');
+            if (!file_exists($storageDir)) {
+                mkdir($storageDir, 0755, true);
+            }
+
+            $image->move($storageDir, $imageName);
+            $validated['image'] = 'img/certificates/' . $imageName;
+        }
+
+        $certificate->update($validated);
+        return redirect()->route('admin.certificates.create')->with('success', 'Sertifikat berhasil diperbarui!');
+    }
+
     // 3. Hapus data di Admin
     public function destroy($id)
     {

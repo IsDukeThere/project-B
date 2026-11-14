@@ -91,9 +91,13 @@ Route::middleware(['auth', PreventBackHistory::class])->group(function () {
         Route::post('/pengaturan-poin/simpan', [AdminPointConfigController::class, 'update'])->name('points.update');
         Route::get('/sertifikat', [CertificateController::class, 'create'])->name('certificates.create');
         Route::post('/sertifikat/simpan', [CertificateController::class, 'store'])->name('certificates.store');
+        Route::get('/sertifikat/edit/{id}', [CertificateController::class, 'edit'])->name('certificates.edit');
+        Route::put('/sertifikat/update/{id}', [CertificateController::class, 'update'])->name('certificates.update');
         Route::delete('/sertifikat/hapus/{id}', [CertificateController::class, 'destroy'])->name('certificates.destroy');
         Route::get('/workshops', [WorkshopController::class, 'create'])->name('workshops.create');
         Route::post('/workshops/simpan', [WorkshopController::class, 'store'])->name('workshops.store');
+        Route::get('/workshops/edit/{id}', [WorkshopController::class, 'edit'])->name('workshops.edit');
+        Route::put('/workshops/update/{id}', [WorkshopController::class, 'update'])->name('workshops.update');
         Route::delete('/workshops/hapus/{id}', [WorkshopController::class, 'destroy'])->name('workshops.destroy');
     });
 
