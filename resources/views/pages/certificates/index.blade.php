@@ -839,7 +839,7 @@
         </div>
 
     <!-- 2 Columns: Penghargaan vs Kepercayaan -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div id="sertifikat" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div class="space-y-4">
             <h2 class="font-extrabold text-lg text-slate-900">Semua Penghargaan yang Diterima</h2>
 
@@ -954,6 +954,15 @@
 
         // Render Wheel
         const wheelEl = document.getElementById("blade-sdg-wheel");
+        if (window.location.hash === '#sertifikat') {
+            const target = document.getElementById('sertifikat');
+            if (target) {
+                setTimeout(() => {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 150);
+            }
+        }
+
         if (wheelEl) {
             const pol = (r, a) => [r * Math.cos(a), r * Math.sin(a)];
             let w = "";

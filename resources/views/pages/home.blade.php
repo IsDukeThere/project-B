@@ -73,7 +73,7 @@
             </div>
         </a>
 
-        <a href="{{ route('certificates.index') }}" class="pb-card pb-card-interactive flex items-center gap-4">
+        <a href="{{ route('certificates.index') }}#sertifikat" class="pb-card pb-card-interactive flex items-center gap-4">
             <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-3xl flex-shrink-0">
                 🏆
             </div>
