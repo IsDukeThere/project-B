@@ -120,7 +120,7 @@
 
         <!-- DUA CARD SAJA: 1 CAUTION RINGKAS TEMA HIJAU + 1 CARD GAMBAR ANIMASI NAIK TURUN -->
         <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
-            
+
             <!-- CARD 1: CAUTION RINGKAS (TEMA HIJAU ELEGAN, TIDAK KUNING & TIDAK BANYAK TEKS) -->
             <div class="md:col-span-8 pb-card p-6 bg-gradient-to-br from-emerald-900 to-teal-950 text-white rounded-3xl border border-emerald-700/60 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between gap-4">
                 <div class="space-y-2.5">
@@ -229,7 +229,7 @@
         <!-- ==================== CARD VIDEO PANDUAN DIBUAT SANGAT MENCOLOK (CINEMATIC) ==================== -->
         <div class="relative p-1 rounded-[32px] bg-gradient-to-r from-emerald-600 via-teal-400 to-emerald-700 shadow-2xl hover:shadow-emerald-900/40 transition-all duration-300">
             <div class="bg-gradient-to-br from-emerald-800 to-teal-900 rounded-[28px] p-6 sm:p-8 space-y-5 text-white">
-                
+
                 <!-- Header Video Mencolok -->
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800/80 pb-4">
                     <div class="flex items-center gap-3">
@@ -248,14 +248,14 @@
                     </div>
 
                     <span class="text-xs text-emerald-400 font-bold px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 self-start sm:self-auto">
-                        File: 1025.mp4
+                        File: Video Proses Pembersihan.mov
                     </span>
                 </div>
 
                 <!-- Pemutar Video Besar & Mencolok (Tanpa Poin Penting di Sampingnya) -->
                 <div class="overflow-hidden rounded-2xl bg-black border-2 border-slate-800 shadow-2xl relative group">
                     <video class="w-full aspect-video sm:aspect-[21/9] object-cover focus:outline-none" controls preload="metadata" playsinline>
-                        <source src="{{ asset('vid/1025.mp4') }}" type="video/mp4">
+                        <source src="{{ asset('vid/Video_Proses Pembersihan.mov') }}" type="video/mp4">
                         Browser Anda tidak mendukung pemutar video HTML5. Silakan letakkan file video 1025.mp4 di folder public/videos/.
                     </video>
                 </div>
@@ -295,7 +295,7 @@
                         Bebas Ongkir
                     </span>
                 </div>
-                
+
                 <div class="space-y-1.5 pt-1 border-t border-emerald-700/60">
                     <p class="text-sm font-bold text-emerald-100">Butik Daur Ulang, Jl. Sukoharjo No.132 A, Gejayan, Condongcatur, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55283</p>
                     <p class="text-xs text-emerald-200/90 leading-relaxed">
