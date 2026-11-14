@@ -248,14 +248,14 @@
                     </div>
 
                     <span class="text-xs text-emerald-400 font-bold px-3 py-1 rounded-xl bg-slate-900 border border-slate-800 self-start sm:self-auto">
-                        File: Video Proses Pembersihan.mov
+                        File: Video Proses Pembersihan.mp4
                     </span>
                 </div>
 
                 <!-- Pemutar Video Besar & Mencolok (Tanpa Poin Penting di Sampingnya) -->
                 <div class="overflow-hidden rounded-2xl bg-black border-2 border-slate-800 shadow-2xl relative group">
                     <video class="w-full aspect-video sm:aspect-[21/9] object-cover focus:outline-none" controls preload="metadata" playsinline>
-                        <source src="{{ asset('vid/Video_Proses Pembersihan.mov') }}" type="video/mp4">
+                        <source src="{{ asset('Video-Proses-Pembersihan.mp4') }}" type="video/mp4">
                         Browser Anda tidak mendukung pemutar video HTML5. Silakan letakkan file video 1025.mp4 di folder public/videos/.
                     </video>
                 </div>
