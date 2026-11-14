@@ -845,17 +845,34 @@
 
             <div class="space-y-3">
                 @forelse($certificates as $certificate)
-                    <div class="pb-card flex items-center justify-between p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center text-2xl flex-shrink-0">
-                                🏆
+                    @php
+                        $certHasImage = $certificate->image && (
+                            file_exists(storage_path('app/public/certificates/' . basename($certificate->image))) ||
+                            file_exists(public_path($certificate->image))
+                        );
+                    @endphp
+
+                    <div class="pb-card flex items-center justify-between gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
+                        <div class="flex items-center gap-4 min-w-0">
+                            <!-- Kotak Thumbnail Lebih Lebar (Lanskap 96x64px) -->
+                            <div class="w-24 h-16 rounded-xl bg-amber-50 border border-slate-200/80 text-amber-700 flex items-center justify-center text-2xl overflow-hidden shrink-0">
+                                @if($certHasImage)
+                                    <img src="{{ asset($certificate->image) }}"
+                                         alt="{{ $certificate->nama }}"
+                                         onerror="this.parentElement.innerHTML='🏆'"
+                                         class="w-full h-full object-cover">
+                                @else
+                                    🏆
+                                @endif
                             </div>
-                            <div>
-                                <h3 class="font-bold text-sm text-slate-900">{{ $certificate->nama }}</h3>
-                                <p class="text-xs text-slate-500">{{ $certificate->penyelenggara }} · {{ $certificate->tahun }}</p>
+
+                            <div class="min-w-0">
+                                <h3 class="font-bold text-sm text-slate-900 truncate">{{ $certificate->nama }}</h3>
+                                <p class="text-xs text-slate-500 mt-0.5">{{ $certificate->penyelenggara }} · {{ $certificate->tahun }}</p>
                             </div>
                         </div>
-                        <a href="{{ route('certificates.show', $certificate->id) }}" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 transition">
+
+                        <a href="{{ route('certificates.show', $certificate->id) }}" class="text-xs font-bold text-emerald-700 hover:text-emerald-800 transition shrink-0 whitespace-nowrap">
                             Lihat Dokumen ›
                         </a>
                     </div>
