@@ -265,7 +265,6 @@
     <!-- ===== KATA PENGANTAR & RODA SDGs ===== -->
     <section class="sdg-intro">
         <div>
-            <span class="sdg-pill"><i></i>Kata Pengantar</span>
             <h2>Kontribusi terhadap <span>Sustainable Development Goals</span> (SDGs)</h2>
             <p class="lead">Project B Indonesia berkomitmen untuk mendukung pembangunan berkelanjutan melalui pengelolaan sampah plastik menjadi produk kerajinan yang bernilai guna.</p>
             <p>Komitmen ini diwujudkan melalui kegiatan pengumpulan, pemilahan, dan pemanfaatan kembali sampah plastik serta penerapan sistem informasi untuk mendukung pengelolaan setoran sampah dan penyebaran informasi kepada masyarakat.</p>
