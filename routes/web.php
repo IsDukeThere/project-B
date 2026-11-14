@@ -80,7 +80,6 @@ Route::middleware(['auth', PreventBackHistory::class])->group(function () {
         Route::post('/setoran/verifikasi/{id}', [AdminDepositController::class, 'verify'])->name('deposits.verify');
         Route::get('/pengaturan-poin', [AdminPointConfigController::class, 'edit'])->name('points.edit');
         Route::post('/pengaturan-poin/simpan', [AdminPointConfigController::class, 'update'])->name('points.update');
-        Route::get('/sertifikat', function () { return view('pages.admin.certificates'); })->name('certificates');
         Route::get('/sertifikat', [CertificateController::class, 'create'])->name('certificates.create');
         Route::post('/sertifikat/simpan', [CertificateController::class, 'store'])->name('certificates.store');
         Route::delete('/sertifikat/hapus/{id}', [CertificateController::class, 'destroy'])->name('certificates.destroy');

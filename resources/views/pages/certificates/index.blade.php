@@ -4,6 +4,151 @@
 
 @push('styles')
     <style>
+        /* ===== KATA PENGANTAR & RODA SDGS (DARK EMERALD THEME) ===== */
+        .sdg-intro {
+            position: relative;
+            overflow: hidden;
+            margin-top: 36px;
+            border-radius: 28px;
+            padding: 44px;
+            background: radial-gradient(circle at 88% 50%, rgba(74, 222, 128, 0.25) 0%, transparent 55%),
+                        linear-gradient(135deg, #093b33 0%, #0d5c52 50%, #15803d 100%);
+            box-shadow: 0 12px 30px -10px rgba(9, 59, 51, 0.35);
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .sdg-intro::before {
+            content: "“";
+            position: absolute;
+            left: 32px;
+            top: -26px;
+            font-size: 165px;
+            font-weight: 800;
+            line-height: 1;
+            color: #ffffff;
+            opacity: 0.08;
+            pointer-events: none;
+        }
+
+        .sdg-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #ecfdf5;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 6px 14px;
+            border-radius: 99px;
+        }
+
+        .sdg-pill i {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #6ee7b7;
+            box-shadow: 0 0 0 3px rgba(110, 231, 183, 0.25);
+        }
+
+        .sdg-intro h2 {
+            margin: 18px 0 16px;
+            font-size: clamp(26px, 3.6vw, 38px);
+            line-height: 1.15;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+        }
+
+        .sdg-intro h2 span {
+            color: #6ee7b7;
+        }
+
+        .sdg-intro p {
+            margin: 0 0 14px;
+            color: #d1fae5;
+            font-size: 14.5px;
+            line-height: 1.65;
+        }
+
+        .sdg-intro p.lead {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .sdg-wheel {
+            width: 100%;
+            max-width: 330px;
+            margin: 0 auto;
+            display: block;
+            filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.25));
+        }
+
+        .sdg-wheel path {
+            transition: transform 0.3s;
+            transform-origin: 0 0;
+        }
+
+        .sdg-wheel .on {
+            animation: pulseWheel 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseWheel {
+            50% { opacity: 0.85; }
+        }
+
+        @media (max-width: 860px) {
+            .sdg-intro {
+                grid-template-columns: 1fr;
+                padding: 34px 22px;
+            }
+        }
+
+        /* ===== BRIDGE PEMISAH KE KARTU SDG ===== */
+        .sdg-bridge {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 40px 0 26px;
+        }
+
+        .sdg-bridge::before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #cbd5e1);
+        }
+
+        .sdg-bridge::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(270deg, transparent, #cbd5e1);
+        }
+
+        .sdg-bridge span {
+            font-weight: 700;
+            font-size: 14px;
+            color: #64748b;
+            text-align: center;
+        }
+
+        .sdg-bridge em {
+            font-style: normal;
+            display: inline-block;
+            color: #047857;
+            animation: bobBridge 1.6s ease-in-out infinite;
+        }
+
+        @keyframes bobBridge {
+            50% { transform: translateY(5px); }
+        }
+
         .card-perspective { perspective: 1200px; }
         .flip-card-inner {
             position: relative; width: 100%; height: 100%;
@@ -116,6 +261,22 @@
             </div>
         </div>
     </section>
+
+    <!-- ===== KATA PENGANTAR & RODA SDGs ===== -->
+    <section class="sdg-intro">
+        <div>
+            <span class="sdg-pill"><i></i>Kata Pengantar</span>
+            <h2>Kontribusi terhadap <span>Sustainable Development Goals</span> (SDGs)</h2>
+            <p class="lead">Project B Indonesia berkomitmen untuk mendukung pembangunan berkelanjutan melalui pengelolaan sampah plastik menjadi produk kerajinan yang bernilai guna.</p>
+            <p>Komitmen ini diwujudkan melalui kegiatan pengumpulan, pemilahan, dan pemanfaatan kembali sampah plastik serta penerapan sistem informasi untuk mendukung pengelolaan setoran sampah dan penyebaran informasi kepada masyarakat.</p>
+        </div>
+        <svg class="sdg-wheel" id="blade-sdg-wheel" viewBox="-125 -125 250 250" role="img" aria-label="Roda 17 tujuan SDGs, tujuan 8, 9, 11, dan 12 ditonjolkan"></svg>
+    </section>
+
+    <!-- ===== BRIDGE ===== -->
+    <div class="sdg-bridge">
+        <span>Kegiatan Project B Indonesia berkontribusi terhadap tujuan berikut <em>↓</em></span>
+    </div>
 
     <!-- ===== SUSTAINABLE DEVELOPMENT GOALS (SDGs) ===== -->
     <section id="sdgs" class="space-y-4">
@@ -766,6 +927,34 @@
         const originRaw    = @json($originHub);
         const intlData     = @json($internasional);
         const totalSebaran = {{ $totalSebaran }};
+
+        const AKTIF = [8, 9, 11, 12];
+        const G = [
+            ["#E5243B","Tanpa Kemiskinan","🏠"],["#DDA63A","Tanpa Kelaparan","🌾"],["#4C9F38","Kehidupan Sehat dan Sejahtera","❤️"],["#C5192D","Pendidikan Berkualitas","📖"],
+            ["#FF3A21","Kesetaraan Gender","⚧"],["#26BDE2","Air Bersih dan Sanitasi Layak","💧"],["#FCC30B","Energi Bersih dan Terjangkau","⚡"],["#A21942","Pekerjaan Layak dan Pertumbuhan Ekonomi","📈"],
+            ["#FD6925","Industri, Inovasi dan Infrastruktur","🏭"],["#DD1367","Berkurangnya Kesenjangan","⚖️"],["#FD9D24","Kota dan Permukiman yang Berkelanjutan","🏙️"],["#BF8B2E","Konsumsi dan Produksi yang Bertanggung Jawab","♻️"],
+            ["#3F7E44","Penanganan Perubahan Iklim","🌍"],["#0A97D9","Ekosistem Lautan","🐟"],["#56C02B","Ekosistem Daratan","🌳"],["#00689D","Perdamaian, Keadilan dan Kelembagaan yang Tangguh","🕊️"],["#19486A","Kemitraan untuk Mencapai Tujuan","🤝"]
+        ];
+
+        // Render Wheel
+        const wheelEl = document.getElementById("blade-sdg-wheel");
+        if (wheelEl) {
+            const pol = (r, a) => [r * Math.cos(a), r * Math.sin(a)];
+            let w = "";
+            G.forEach((g, i) => {
+                const a0 = i / 17 * 2 * Math.PI - Math.PI / 2 + 0.012;
+                const a1 = (i + 1) / 17 * 2 * Math.PI - Math.PI / 2 - 0.012;
+                const on = AKTIF.includes(i + 1);
+                const R = on ? 118 : 104;
+                const r = 54;
+                const [x0, y0] = pol(R, a0), [x1, y1] = pol(R, a1), [x2, y2] = pol(r, a1), [x3, y3] = pol(r, a0);
+                const [tx, ty] = pol((R + r) / 2 + 6, (a0 + a1) / 2);
+                w += `<path class="${on ? 'on' : ''}" d="M${x0} ${y0}A${R} ${R} 0 0 1 ${x1} ${y1}L${x2} ${y2}A${r} ${r} 0 0 0 ${x3} ${y3}Z" fill="${g[0]}" opacity="${on ? 1 : 0.35}"/>`
+                  + `<text x="${tx}" y="${ty + 4}" text-anchor="middle" font-size="${on ? 13 : 10}" font-weight="800" fill="#fff" font-family="sans-serif" opacity="${on ? 1 : 0.8}">${i + 1}</text>`;
+            });
+            w += `<circle r="46" fill="#fff"/><text y="-2" text-anchor="middle" font-size="19" font-weight="800" fill="#0f2a20" font-family="sans-serif">SDGs</text><text y="14" text-anchor="middle" font-size="8" font-weight="700" fill="#5b6b64" font-family="sans-serif">17 TUJUAN</text>`;
+            wheelEl.innerHTML = w;
+        }
 
         let currentFilter = 'all';
         let isAnimationPlaying = true;
