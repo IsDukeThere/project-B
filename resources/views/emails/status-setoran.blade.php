@@ -99,7 +99,7 @@
                                         Verifikasi Berhasil!
                                     </p>
                                     <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #047857;">
-                                        Terima kasih telah memilah dan membersihkan sampah sesuai standar. Poin sudah otomatis masuk ke saldo akun Anda dan siap ditukarkan.
+                                        Terima kasih telah memilah dan membersihkan sampah sesuai standar. Poin sudah otomatis masuk akun Anda.
                                     </p>
                                 </div>
                             @else

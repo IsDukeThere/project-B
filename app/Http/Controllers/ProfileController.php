@@ -13,22 +13,25 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $now = Carbon::now();
 
         $totalBeratBulanIni = Deposit::where('user_id', $user->id)
             ->where('status', 'diterima')
-            ->whereMonth('created_at', Carbon::now()->month)
-            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', $now->month)
+            ->whereYear('created_at', $now->year)
             ->sum('berat_volume');
 
         $totalPoin = Deposit::where('user_id', $user->id)
             ->where('status', 'diterima')
+            ->whereMonth('created_at', $now->month)
+            ->whereYear('created_at', $now->year)
             ->sum('poin_didapat');
 
         $allPenyetor = User::where('role', 'customer')
-            ->withSum(['deposits' => function ($query) {
+            ->withSum(['deposits' => function ($query) use ($now) {
                 $query->where('status', 'diterima')
-                      ->whereMonth('created_at', Carbon::now()->month)
-                      ->whereYear('created_at', Carbon::now()->year);
+                    ->whereMonth('created_at', $now->month)
+                    ->whereYear('created_at', $now->year);
             }], 'poin_didapat')
             ->orderByDesc('deposits_sum_poin_didapat')
             ->get();
