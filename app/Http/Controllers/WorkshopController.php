@@ -36,6 +36,14 @@ class WorkshopController extends Controller
         return redirect()->back()->with('success', 'Workshop berhasil ditambahkan!');
     }
 
+    public function edit($id)
+    {
+        $workshops = Workshop::latest()->get();
+        $editWorkshop = Workshop::findOrFail($id);
+
+        return view('pages.admin.workshops', compact('workshops', 'editWorkshop'));
+    }
+
     public function update(Request $request, $id)
     {
         $workshop = Workshop::findOrFail($id);

@@ -37,6 +37,14 @@ class CertificateController extends Controller
         return redirect()->back()->with('success', 'Sertifikat berhasil ditambahkan!');
     }
 
+    public function edit($id)
+    {
+        $certificates = Certificate::latest()->get();
+        $editCertificate = Certificate::findOrFail($id);
+
+        return view('pages.admin.certificates', compact('certificates', 'editCertificate'));
+    }
+
     public function update(Request $request, $id)
     {
         $certificate = Certificate::findOrFail($id);
