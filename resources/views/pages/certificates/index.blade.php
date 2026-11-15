@@ -846,10 +846,13 @@
             <div class="space-y-3">
                 @forelse($certificates as $certificate)
                     @php
+                        $isRemoteUrl = $certificate->image && str_starts_with($certificate->image, 'http');
                         $certHasImage = $certificate->image && (
+                            $isRemoteUrl ||
                             file_exists(storage_path('app/public/certificates/' . basename($certificate->image))) ||
                             file_exists(public_path($certificate->image))
                         );
+                        $certImageSrc = $isRemoteUrl ? $certificate->image : asset($certificate->image);
                     @endphp
 
                     <div class="pb-card flex items-center justify-between gap-3 p-4 bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
@@ -857,10 +860,10 @@
                             <!-- Kotak Thumbnail Lebih Lebar (Lanskap 96x64px) -->
                             <div class="w-24 h-16 rounded-xl bg-amber-50 border border-slate-200/80 text-amber-700 flex items-center justify-center text-2xl overflow-hidden shrink-0">
                                 @if($certHasImage)
-                                    <img src="{{ asset($certificate->image) }}"
-                                         alt="{{ $certificate->nama }}"
-                                         onerror="this.parentElement.innerHTML='🏆'"
-                                         class="w-full h-full object-cover">
+                                    <img src="{{ $certImageSrc }}"
+                                        alt="{{ $certificate->nama }}"
+                                        onerror="this.parentElement.innerHTML='🏆'"
+                                        class="w-full h-full object-cover">
                                 @else
                                     🏆
                                 @endif

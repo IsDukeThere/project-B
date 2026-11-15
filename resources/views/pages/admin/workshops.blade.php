@@ -144,6 +144,7 @@
                 @forelse($workshops as $ws)
                     @php
                         $wsHasImage = $ws->image && (
+                            str_starts_with($ws->image, 'http') ||
                             file_exists(storage_path('app/public/workshops/' . basename($ws->image))) ||
                             file_exists(public_path($ws->image))
                         );
@@ -154,7 +155,7 @@
                         <div class="flex items-center gap-4">
                             <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-xl overflow-hidden shrink-0">
                                 @if($wsHasImage)
-                                    <img src="{{ asset($ws->image) }}" alt="" class="w-full h-full object-cover">
+                                    <img src="{{ str_starts_with($ws->image, 'http') ? $ws->image : asset($ws->image) }}" alt="" class="w-full h-full object-cover">
                                 @else
                                     🎓
                                 @endif
@@ -180,7 +181,7 @@
                         </div>
 
                     </div>
-                    
+
                 @empty
                     <!-- Tampilan jika belum ada data sama sekali -->
                     <div class="text-center py-6">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Workshop;
+use App\Services\CloudinaryService;
 
 class WorkshopController extends Controller
 {
@@ -28,28 +29,11 @@ class WorkshopController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '_' . $image->getClientOriginalName();
-
-            $storageDir = storage_path('app/public/workshops');
-            if (!file_exists($storageDir)) {
-                mkdir($storageDir, 0755, true);
-            }
-
-            $image->move($storageDir, $imageName);
-            $validated['image'] = 'images/workshops/' . $imageName;
+            $validated['image'] = CloudinaryService::upload($request->file('image'), 'project-b/workshops');
         }
 
         Workshop::create($validated);
         return redirect()->back()->with('success', 'Workshop berhasil ditambahkan!');
-    }
-
-    public function edit($id)
-    {
-        $workshops = Workshop::latest()->get();
-        $editWorkshop = Workshop::findOrFail($id);
-
-        return view('pages.admin.workshops', compact('workshops', 'editWorkshop'));
     }
 
     public function update(Request $request, $id)
@@ -68,27 +52,7 @@ class WorkshopController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            if ($workshop->image) {
-                $oldStoragePath = storage_path('app/public/workshops/' . basename($workshop->image));
-                $oldPublicPath = public_path($workshop->image);
-
-                if (file_exists($oldStoragePath)) {
-                    unlink($oldStoragePath);
-                } elseif (file_exists($oldPublicPath)) {
-                    unlink($oldPublicPath);
-                }
-            }
-
-            $image = $request->file('image');
-            $imageName = time() . '_' . $image->getClientOriginalName();
-
-            $storageDir = storage_path('app/public/workshops');
-            if (!file_exists($storageDir)) {
-                mkdir($storageDir, 0755, true);
-            }
-
-            $image->move($storageDir, $imageName);
-            $validated['image'] = 'images/workshops/' . $imageName;
+            $validated['image'] = CloudinaryService::upload($request->file('image'), 'project-b/workshops');
         }
 
         $workshop->update($validated);
@@ -99,14 +63,14 @@ class WorkshopController extends Controller
     {
         $workshop = Workshop::findOrFail($id);
 
-        if ($workshop->image) {
+        if ($workshop->image && !str_starts_with($workshop->image, 'http')) {
             $storagePath = storage_path('app/public/workshops/' . basename($workshop->image));
             $publicPath = public_path($workshop->image);
 
-            if (file_exists($storagePath)) {
-                unlink($storagePath);
-            } elseif (file_exists($publicPath)) {
-                unlink($publicPath);
+            if (file_exists($storagePath) && is_writable($storagePath)) {
+                @unlink($storagePath);
+            } elseif (file_exists($publicPath) && is_writable($publicPath)) {
+                @unlink($publicPath);
             }
         }
 
